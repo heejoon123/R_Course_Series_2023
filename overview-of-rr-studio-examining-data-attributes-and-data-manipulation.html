@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>1 Overview of R/R Studio, Examining Data Attributes, and Data Manipulation | Introduction to Statistical Computing: R</title>
+  <meta name="description" content="1 Overview of R/R Studio, Examining Data Attributes, and Data Manipulation | Introduction to Statistical Computing: R" />
+  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="1 Overview of R/R Studio, Examining Data Attributes, and Data Manipulation | Introduction to Statistical Computing: R" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="1 Overview of R/R Studio, Examining Data Attributes, and Data Manipulation | Introduction to Statistical Computing: R" />
+  
+  
+  
+
+<meta name="author" content="Heejoon Ahn, MS; Eun Jeung Oh, PhD; and Codruta Chiuzan, PhD" />
+
+
+<meta name="date" content="2023-01-31" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="introduction-to-r.html"/>
+<link rel="next" href="descriptive-statistics-hypothesis-testing.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.10.0/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-2.5.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-2.5.1/plotly-latest.min.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Before getting started…</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#why-r"><i class="fa fa-check"></i>Why R?</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#what-is-rstudio"><i class="fa fa-check"></i>What is RStudio?</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#install-r-and-rstudio"><i class="fa fa-check"></i>Install R and RStudio</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#install-r"><i class="fa fa-check"></i>Install R</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#install-rstudio"><i class="fa fa-check"></i>Install RStudio</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#coding-in-r"><i class="fa fa-check"></i>Coding in R</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#create-r-script"><i class="fa fa-check"></i>Create R Script</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#r-packages"><i class="fa fa-check"></i>R Packages</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#r-syntax"><i class="fa fa-check"></i>R Syntax</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#r-errors"><i class="fa fa-check"></i>R Errors</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="introduction-to-r.html"><a href="introduction-to-r.html"><i class="fa fa-check"></i>Introduction to R</a>
+<ul>
+<li class="chapter" data-level="" data-path="introduction-to-r.html"><a href="introduction-to-r.html#understanding-basic-data-types-and-data-structures"><i class="fa fa-check"></i>Understanding Basic Data Types and Data Structures</a>
+<ul>
+<li class="chapter" data-level="" data-path="introduction-to-r.html"><a href="introduction-to-r.html#variables"><i class="fa fa-check"></i>Variables</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="introduction-to-r.html"><a href="introduction-to-r.html#fundamentals-of-r"><i class="fa fa-check"></i>Fundamentals of R</a>
+<ul>
+<li class="chapter" data-level="" data-path="introduction-to-r.html"><a href="introduction-to-r.html#operators"><i class="fa fa-check"></i>Operators</a></li>
+<li class="chapter" data-level="" data-path="introduction-to-r.html"><a href="introduction-to-r.html#keywords"><i class="fa fa-check"></i>Keywords</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="introduction-to-r.html"><a href="introduction-to-r.html#data-structures"><i class="fa fa-check"></i>Data Structures</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html"><i class="fa fa-check"></i><b>1</b> Overview of R/R Studio, Examining Data Attributes, and Data Manipulation</a>
+<ul>
+<li class="chapter" data-level="" data-path="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#importing-data"><i class="fa fa-check"></i>Importing Data</a>
+<ul>
+<li class="chapter" data-level="" data-path="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#prepare-data"><i class="fa fa-check"></i>Prepare Data</a></li>
+<li class="chapter" data-level="" data-path="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#set-your-working-directory"><i class="fa fa-check"></i>Set Your Working Directory</a></li>
+<li class="chapter" data-level="" data-path="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#read-data-into-r"><i class="fa fa-check"></i>Read Data into R</a></li>
+<li class="chapter" data-level="" data-path="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#load-data-from-r-packages"><i class="fa fa-check"></i>Load Data from R Packages</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#data-description"><i class="fa fa-check"></i>Data Description</a>
+<ul>
+<li class="chapter" data-level="" data-path="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#missing-data"><i class="fa fa-check"></i>Missing Data</a></li>
+<li class="chapter" data-level="" data-path="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#data-class"><i class="fa fa-check"></i>Data Class</a></li>
+<li class="chapter" data-level="" data-path="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#count-and-proportions-of-data"><i class="fa fa-check"></i>Count and Proportions of Data</a></li>
+<li class="chapter" data-level="" data-path="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#summary-statistics"><i class="fa fa-check"></i>Summary Statistics</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#data-manipulation"><i class="fa fa-check"></i>Data Manipulation</a>
+<ul>
+<li class="chapter" data-level="" data-path="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#subset-data"><i class="fa fa-check"></i>Subset Data</a></li>
+<li class="chapter" data-level="" data-path="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#order-data"><i class="fa fa-check"></i>Order Data</a></li>
+<li class="chapter" data-level="" data-path="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#rename-variables"><i class="fa fa-check"></i>Rename Variables</a></li>
+<li class="chapter" data-level="" data-path="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#data-transformation"><i class="fa fa-check"></i>Data Transformation</a></li>
+<li class="chapter" data-level="" data-path="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#if-else-function"><i class="fa fa-check"></i>If-Else Function</a></li>
+<li class="chapter" data-level="" data-path="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#combine-data-sets-stacking"><i class="fa fa-check"></i>Combine Data Sets (Stacking)</a></li>
+<li class="chapter" data-level="" data-path="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#merge-data-sets"><i class="fa fa-check"></i>Merge Data Sets</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="descriptive-statistics-hypothesis-testing.html"><a href="descriptive-statistics-hypothesis-testing.html"><i class="fa fa-check"></i><b>2</b> Descriptive Statistics &amp; Hypothesis Testing</a>
+<ul>
+<li class="chapter" data-level="" data-path="descriptive-statistics-hypothesis-testing.html"><a href="descriptive-statistics-hypothesis-testing.html#descriptive-statistics"><i class="fa fa-check"></i>Descriptive Statistics</a>
+<ul>
+<li class="chapter" data-level="" data-path="descriptive-statistics-hypothesis-testing.html"><a href="descriptive-statistics-hypothesis-testing.html#continuous-vs.-categorical-variables"><i class="fa fa-check"></i>Continuous vs. Categorical Variables</a></li>
+<li class="chapter" data-level="" data-path="descriptive-statistics-hypothesis-testing.html"><a href="descriptive-statistics-hypothesis-testing.html#continuous-variables"><i class="fa fa-check"></i>Continuous Variables</a></li>
+<li class="chapter" data-level="" data-path="descriptive-statistics-hypothesis-testing.html"><a href="descriptive-statistics-hypothesis-testing.html#categorical-variables"><i class="fa fa-check"></i>Categorical Variables</a></li>
+<li class="chapter" data-level="" data-path="descriptive-statistics-hypothesis-testing.html"><a href="descriptive-statistics-hypothesis-testing.html#how-to-create-table-1-with-gtsummary"><i class="fa fa-check"></i>How to Create ‘Table 1’ with <code>gtsummary</code></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="descriptive-statistics-hypothesis-testing.html"><a href="descriptive-statistics-hypothesis-testing.html#basic-hypothesis-testing"><i class="fa fa-check"></i>Basic Hypothesis Testing</a>
+<ul>
+<li class="chapter" data-level="" data-path="descriptive-statistics-hypothesis-testing.html"><a href="descriptive-statistics-hypothesis-testing.html#students-t-test"><i class="fa fa-check"></i>Student’s T-test</a></li>
+<li class="chapter" data-level="" data-path="descriptive-statistics-hypothesis-testing.html"><a href="descriptive-statistics-hypothesis-testing.html#analysis-of-variance-anova"><i class="fa fa-check"></i>Analysis of Variance (ANOVA)</a></li>
+<li class="chapter" data-level="" data-path="descriptive-statistics-hypothesis-testing.html"><a href="descriptive-statistics-hypothesis-testing.html#categorical-data-analysis"><i class="fa fa-check"></i>Categorical Data Analysis</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="data-visualization.html"><a href="data-visualization.html"><i class="fa fa-check"></i><b>3</b> Data Visualization</a>
+<ul>
+<li class="chapter" data-level="" data-path="data-visualization.html"><a href="data-visualization.html#basic-plots"><i class="fa fa-check"></i>Basic Plots</a>
+<ul>
+<li class="chapter" data-level="" data-path="data-visualization.html"><a href="data-visualization.html#scatterplots"><i class="fa fa-check"></i>Scatterplots</a></li>
+<li class="chapter" data-level="" data-path="data-visualization.html"><a href="data-visualization.html#line-plots"><i class="fa fa-check"></i>Line Plots</a></li>
+<li class="chapter" data-level="" data-path="data-visualization.html"><a href="data-visualization.html#bar-plots"><i class="fa fa-check"></i>Bar Plots</a></li>
+<li class="chapter" data-level="" data-path="data-visualization.html"><a href="data-visualization.html#histogram-and-density-plots"><i class="fa fa-check"></i>Histogram and Density Plots</a></li>
+<li class="chapter" data-level="" data-path="data-visualization.html"><a href="data-visualization.html#boxplots"><i class="fa fa-check"></i>Boxplots</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="data-visualization.html"><a href="data-visualization.html#ggplot2-plots"><i class="fa fa-check"></i><code>ggplot2</code> Plots</a>
+<ul>
+<li class="chapter" data-level="" data-path="data-visualization.html"><a href="data-visualization.html#scatterplots-1"><i class="fa fa-check"></i>Scatterplots</a></li>
+<li class="chapter" data-level="" data-path="data-visualization.html"><a href="data-visualization.html#barplots"><i class="fa fa-check"></i>Barplots</a></li>
+<li class="chapter" data-level="" data-path="data-visualization.html"><a href="data-visualization.html#histogram"><i class="fa fa-check"></i>Histogram</a></li>
+<li class="chapter" data-level="" data-path="data-visualization.html"><a href="data-visualization.html#boxplots-1"><i class="fa fa-check"></i>Boxplots</a></li>
+<li class="chapter" data-level="" data-path="data-visualization.html"><a href="data-visualization.html#formatting-plots"><i class="fa fa-check"></i>Formatting Plots</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="data-visualization.html"><a href="data-visualization.html#other-plots"><i class="fa fa-check"></i>Other Plots</a>
+<ul>
+<li class="chapter" data-level="" data-path="data-visualization.html"><a href="data-visualization.html#forest-plot"><i class="fa fa-check"></i>Forest Plot</a></li>
+<li class="chapter" data-level="" data-path="data-visualization.html"><a href="data-visualization.html#correlation-matrix"><i class="fa fa-check"></i>Correlation Matrix</a></li>
+<li class="chapter" data-level="" data-path="data-visualization.html"><a href="data-visualization.html#interactive-plots-plotly"><i class="fa fa-check"></i>Interactive Plots: Plotly</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="data-visualization.html"><a href="data-visualization.html#saving-the-plot"><i class="fa fa-check"></i>Saving the Plot</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="resources.html"><a href="resources.html"><i class="fa fa-check"></i><b>4</b> Resources</a>
+<ul>
+<li class="chapter" data-level="" data-path="resources.html"><a href="resources.html#cran-repository"><i class="fa fa-check"></i>CRAN repository</a></li>
+<li class="chapter" data-level="" data-path="resources.html"><a href="resources.html#r-and-rstudio-guides"><i class="fa fa-check"></i>R and RStudio Guides</a></li>
+<li class="chapter" data-level="" data-path="resources.html"><a href="resources.html#other-r-package-guides"><i class="fa fa-check"></i>Other R Package Guides</a></li>
+<li class="chapter" data-level="" data-path="resources.html"><a href="resources.html#data-visualization-1"><i class="fa fa-check"></i>Data Visualization</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introduction to Statistical Computing: R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="overview-of-rr-studio-examining-data-attributes-and-data-manipulation" class="section level1 hasAnchor" number="1">
+<h1><span class="header-section-number">1</span> Overview of R/R Studio, Examining Data Attributes, and Data Manipulation<a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#overview-of-rr-studio-examining-data-attributes-and-data-manipulation" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="importing-data" class="section level2 unnumbered hasAnchor">
+<h2>Importing Data<a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#importing-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="prepare-data" class="section level3 unnumbered hasAnchor">
+<h3>Prepare Data<a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#prepare-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>R is capable of reading data from most formats. The most common file types are…</p>
+<ul>
+<li>Excel (.xlsx)</li>
+<li>CSV (.csv)</li>
+<li>Text (.txt)</li>
+<li>JSON (.json)</li>
+<li>Other formats: SAS, Stata, SPSS, and others.</li>
+</ul>
+<p>If you are unsure between certain file types on your computer, you can right-click on your file and click “Properties”. This should spell out what type of file your data is.</p>
+<p>Below, are some useful tips for whenever you work with data files (for .csv and .xlsx files):</p>
+<ul>
+<li>Reserve the first row for headers (variable/column names)</li>
+<li>First column is often used to identify sampling units (ID or something else)</li>
+<li>Avoid variable names or fields with blank spaces; put an underscore <code>_</code> instead.</li>
+<li>Delete comments and notes from Excel</li>
+<li>Denote any missing values as <code>"."</code> or <code>NA</code></li>
+<li>Avoid symbols such as <code>$, #, *, &lt;, /, -</code></li>
+</ul>
+</div>
+<div id="set-your-working-directory" class="section level3 unnumbered hasAnchor">
+<h3>Set Your Working Directory<a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#set-your-working-directory" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Before reading any data, it is good practice to set the R working directory to the location of the data or project. “Setting” the working directory essentially allows you to instruct RStudio to gain access to a certain folder on your computer and be able to grab various files from there.</p>
+<ul>
+<li>A <strong>working directory</strong> is a folder where you store your data, R code, etc.
+<ul>
+<li>You can set a different directory for each project.</li>
+</ul></li>
+</ul>
+<p>One way to set the working directory is through RStudio, where you can click <code>Session</code> and then to <code>Set Working Directory</code>. This should provide you a way to manually select your working directory.</p>
+<p><img src="Images/set_wd.png" width="100%" /></p>
+<p>If you use this method, it is good practice to note somewhere in your R code file (via comment) of where you set your working directory for that code file.</p>
+<p>An alternative way to set your working directory is to do it through R code. This requires an element called the <strong>path</strong>.</p>
+<ul>
+<li>A <strong>path</strong> is the full name that spells out the location of the working directory.
+<ul>
+<li>The way this is written is different between Mac and Windows devices.
+<ul>
+<li>Mac: <code>"Users/*username*/*folder name*"</code></li>
+<li>Windows: <code>"C:\\Users\\*username*\\*folder name*"</code>
+<ul>
+<li>Recently, RStudio in Windows can also read <code>/</code> the same way as <code>\\</code> for directory paths. So the following will also work in Windows: <code>C:/Users/*username*/*folder name*</code></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+<p>In order to declare the path, you can use the following code:</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">getwd</span>()                           <span class="co"># Print out your current working directory</span></span>
+<span id="cb35-2"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">&quot;path to your folder&quot;</span>)      <span class="co"># Set your working directory.    </span></span></code></pre></div>
+<p>The current working directory is also depicted in the console location in RStudio and within the panel that contains the “File” tab.</p>
+<style type="text/css">
+img {vertical-align: top;}
+</style>
+<p><img src="Images/working_directory_console.png" width="49%" height="49%" /><img src="Images/wd_panel.png" width="49%" height="49%" /></p>
+<p>From the “Files” tab, you can go through the various folders in your computer. Navigate to the folder you want to set as your working directory from that panel. Once you have done so, click on a button that looks like a “cog”. This should open a drop-down menu that you can see multiple options. Some of these options are the following:</p>
+<ul>
+<li>“Copy Folder Path to Clipboard”</li>
+<li>“Set as Working Directory”</li>
+<li>“Go to Working Directory”</li>
+</ul>
+<p><img src="Images/set_wd_quick.png" width="70%" style="display: block; margin: auto;" /></p>
+<p>These are quick and easy ways to either get your folder path, or to set your working directory without code. However, it is highly suggested to code your working directory so that you know where all your files for that R code would have saved.</p>
+<p>If you are done using a code file, you have the option to remove all objects from the current workspace (R memory) through the following code:</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list =</span> <span class="fu">ls</span>())</span></code></pre></div>
+<p>The <code>rm()</code> function is one that “removes” objects from the working environment. Or the “environment” tab in RStudio. The <code>ls()</code> function returns a vector of character strings with the names of the objects in the working environment. Altogether, all objects in the “Environment” tab in RStudio are removed.</p>
+<p>An alternative way to do this is to click on the “broom” icon on the “Environment” tab as depicted below:
+<img src="Images/rm_ls.png" width="70%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="read-data-into-r" class="section level3 unnumbered hasAnchor">
+<h3>Read Data into R<a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#read-data-into-r" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>To read or upload/import data into R, the data must be someplace on the computer where you can access. For this course, the data exists in the “Datasets” folder of the course OneDrive. Please either download the datasets or copy them to your own OneDrive. There are multiple ways to read data into R. One method is to do it through R Code, and the other method is to do it manually under the Files tab.</p>
+<div id="read-.csv-files" class="section level4 unnumbered hasAnchor">
+<h4>Read .CSV Files<a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#read-.csv-files" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><code>.CSV</code> files are also known as comma-separated files. They can be read through various different functions provided by various packages.</p>
+<ul>
+<li><code>read.csv()</code>: This function comes from the <code>base</code> package and is already installed in R.</li>
+<li><code>read_csv()</code>: This function comes from the <code>readr</code> package.
+<ul>
+<li>This function runs faster for data files of size <span class="math inline">\(\ge\)</span> 1 MB.</li>
+</ul></li>
+<li><code>fread()</code>: This function comes from the <code>data.table</code> package.
+<ul>
+<li>Reads data faster than <code>read.csv()</code> and <code>read_csv()</code>.</li>
+<li>More efficient for large data files.</li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Reading .CSV files with read.csv()</span></span>
+<span id="cb37-2"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb37-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;path to file here/my_data_filename.csv&quot;</span>)</span>
+<span id="cb37-3"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb37-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-4"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb37-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Reading .CSV files with read_csv()</span></span>
+<span id="cb37-5"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb37-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb37-6"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb37-6" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;path to file here/my_data_filename.csv&quot;</span>)</span>
+<span id="cb37-7"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb37-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-8"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb37-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Reading .CSV files with fread()</span></span>
+<span id="cb37-9"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb37-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data.table)</span>
+<span id="cb37-10"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb37-10" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">fread</span>(<span class="st">&quot;path to file here/my_data_filename.csv&quot;</span>)</span></code></pre></div>
+<p>If you have already set your working directory, you don’t need to type the full path name. You can type just the file name and it should be able to read in the data from that location.</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">&quot;path to folder&quot;</span>)</span>
+<span id="cb38-2"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="fu">read.csv</span>(<span class="st">&quot;mydata.csv&quot;</span>)</span></code></pre></div>
+<p>The functions listed above have various other options that have pre-set default values that you do not need to input. For more example, read the documentation for this by running <code>?read.csv()</code>.</p>
+<p>For this R course series, the function that you will be using is <code>read.csv()</code> provided from the <code>base</code> package. If you want try your hand at using the other functions, make sure you have installed and loaded the package tied with the respective function.</p>
+</div>
+<div id="read-excel-files" class="section level4 unnumbered hasAnchor">
+<h4>Read Excel Files<a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#read-excel-files" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ul>
+<li><code>read_excel()</code>: This function comes from the <code>readxl</code> package.
+<ul>
+<li>Good to use with the libraries <code>dplyr</code> and <code>tidyverse</code>.</li>
+<li>Calls the <code>excel_format()</code> to determine if the path to the file is <code>.xls</code> or <code>.xlsx</code>.</li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb39-2"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb39-2" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">&quot;mydata.xls&quot;</span>)   <span class="co"># for xls files</span></span>
+<span id="cb39-3"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb39-3" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">&quot;mydata.xlsx&quot;</span>)  <span class="co"># for xlsx files</span></span></code></pre></div>
+</div>
+<div id="read-.txt-files" class="section level4 unnumbered hasAnchor">
+<h4>Read .TXT Files<a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#read-.txt-files" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><code>.txt</code> files, or tab-delimited text files, can be read using the <code>read.table()</code> function, which automatically comes with R. This function works similarly to <code>read.csv()</code> but starts with <code>header = FALSE</code>, indicating that there are no column names in the file. If the data does have a header, specify this with <code>header = TRUE</code> in your code like that demonstrated below:</p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb40-1" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;mydata.txt&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+</div>
+<div id="readimport-data-manually" class="section level4 unnumbered hasAnchor">
+<h4>Read/Import Data Manually<a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#readimport-data-manually" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>For the manual method, go to the “Files” tab and to the folder that contains your datasets. Once there, you can click on the dataset, which opens up a few options, one of them being “Import Dataset…”.</p>
+<p><img src="Images/import_df.png" width="70%" style="display: block; margin: auto;" /></p>
+<p>Clicking on the “Import Dataset…” button as shown above should open up a new window within RStudio like that of below. It also gives you a preview of what the data will look like and what kind of data type the data values are. If this is the data file that you would like to import/read, then click on the “Import” button at the bottom of that window. Typically, this method will try to automatically determine which library and function to use to read the data file based on file type (such as .xlsx, .csv, and more).</p>
+<p><img src="Images/import_df2.png" width="70%" style="display: block; margin: auto;" /></p>
+<p>This method works if you are not entirely confident with code, but it is better practice to write and run your code so that you can replicate your own work from a single R Script file.</p>
+</div>
+</div>
+<div id="load-data-from-r-packages" class="section level3 unnumbered hasAnchor">
+<h3>Load Data from R Packages<a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#load-data-from-r-packages" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>There are more than 100 datasets supplied with R (in package <code>dataset</code>). To see the list of datasets currently available, use the function <code>data()</code>.</p>
+<p>If a package containing data has been already been loaded by <code>library()</code>, its datasets are automatically included in the search (e.g. <code>esoph</code>).</p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load data &quot;esoph&quot; from the R package &quot;datasets&quot;</span></span>
+<span id="cb41-2"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(esoph, <span class="at">package =</span> <span class="st">&quot;datasets&quot;</span>) </span>
+<span id="cb41-3"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb41-3" aria-hidden="true" tabindex="-1"></a>esoph</span></code></pre></div>
+Here is what you will see from running the code above:
+<style type="text/css">
+img {vertical-align: top;}
+</style>
+<p><img src="Images/esoph.png" width="49%" height="49%" /><img src="Images/esoph_env.png" width="49%" height="49%" /></p>
+</div>
+</div>
+<div id="data-description" class="section level2 unnumbered hasAnchor">
+<h2>Data Description<a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#data-description" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Before running any analysis, it is crucial to examine the data. For instance, you can look to see how many different variables/features are in the data, the variable data types, number of observations, etc.</p>
+<p>To see what kind of variables are in the dataset, you can use either of the <code>names()</code> or <code>colnames()</code> functions.</p>
+<ul>
+<li>The difference between the two functions is that <code>colnames()</code> can get column names of both data frames and matrices.
+<ul>
+<li><code>names()</code> can only grab column names from data frames.</li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co"># colnames(esoph) # Using the colnames() function</span></span>
+<span id="cb42-2"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(esoph)      <span class="co"># Using the names() function</span></span></code></pre></div>
+<pre><code>[1] &quot;agegp&quot;     &quot;alcgp&quot;     &quot;tobgp&quot;     &quot;ncases&quot;    &quot;ncontrols&quot;</code></pre>
+<p>To determine the shape or dimension of the data, you can use the following functions:</p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Get dimension of a matrix, array, or data frame.</span></span>
+<span id="cb44-2"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(esoph)  </span></code></pre></div>
+<pre><code>[1] 88  5</code></pre>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Get number of rows inside a vector, array, or data frame. </span></span>
+<span id="cb46-2"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(esoph) </span></code></pre></div>
+<pre><code>[1] 88</code></pre>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Get number of columns inside a vector, array, or data frame.</span></span>
+<span id="cb48-2"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ncol</span>(esoph) </span></code></pre></div>
+<pre><code>[1] 5</code></pre>
+<p>If you want to preview your data that you read, but the data size is big, you can use either the <code>head()</code> or <code>tail()</code> functions to see just <code>n</code> number of rows of your data. Both functions display 6 rows of data if the <code>n</code> value is not specified.</p>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Look at the first 6 rows</span></span>
+<span id="cb50-2"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb50-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(esoph)</span></code></pre></div>
+<pre><code>  agegp     alcgp    tobgp ncases ncontrols
+1 25-34 0-39g/day 0-9g/day      0        40
+2 25-34 0-39g/day    10-19      0        10
+3 25-34 0-39g/day    20-29      0         6
+4 25-34 0-39g/day      30+      0         5
+5 25-34     40-79 0-9g/day      0        27
+6 25-34     40-79    10-19      0         7</code></pre>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Look at the last 6 rows</span></span>
+<span id="cb52-2"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb52-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span>(esoph)</span></code></pre></div>
+<pre><code>   agegp  alcgp    tobgp ncases ncontrols
+83   75+  40-79    20-29      0         3
+84   75+  40-79      30+      1         0
+85   75+ 80-119 0-9g/day      1         0
+86   75+ 80-119    10-19      1         0
+87   75+   120+ 0-9g/day      2         0
+88   75+   120+    10-19      1         0</code></pre>
+<p>If you want to access specific rows and/or columns of your data, you can use the syntax <code>data[row, col]</code>.</p>
+<ul>
+<li><code>row</code> can be a singular number, or a list of numbers to represent the row index.
+<ul>
+<li>The row number is from 1 to the total number of rows in the dataset.</li>
+</ul></li>
+<li><code>col</code> can be a singular number, or a list of numbers to represent the column index.
+<ul>
+<li>The column number is from 1 to the total number of columns in the dataset.</li>
+</ul></li>
+<li>If a list of numbers are used to represent the row or column indices, they can be written in the following ways:
+<ul>
+<li>If the list is a series of consecutive numbers, it can be written as <code>x:y</code> where the <code>:</code> represents the word “to”.</li>
+<li>If the list is not a series, you can put it inside a vector of <code>c(x, y)</code>.</li>
+</ul></li>
+</ul>
+<p>Instead, if you wanted to look at specific rows/columns of your data, you can use the syntax of <code>data[row, col]</code>.</p>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Get specific rows of the esoph data</span></span>
+<span id="cb54-2"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb54-2" aria-hidden="true" tabindex="-1"></a>esoph[<span class="dv">4</span>,]</span>
+<span id="cb54-3"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb54-3" aria-hidden="true" tabindex="-1"></a>esoph[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,]</span>
+<span id="cb54-4"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb54-4" aria-hidden="true" tabindex="-1"></a>esoph[<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">7</span>),]</span>
+<span id="cb54-5"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb54-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-6"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb54-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Get specific columns of the esoph data</span></span>
+<span id="cb54-7"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb54-7" aria-hidden="true" tabindex="-1"></a>esoph[,<span class="dv">1</span>]</span>
+<span id="cb54-8"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb54-8" aria-hidden="true" tabindex="-1"></a>esoph[,<span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>]</span>
+<span id="cb54-9"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb54-9" aria-hidden="true" tabindex="-1"></a>esoph[,<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">3</span>)]</span>
+<span id="cb54-10"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb54-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-11"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb54-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Get specific rows and columns of the esoph data</span></span>
+<span id="cb54-12"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb54-12" aria-hidden="true" tabindex="-1"></a>esoph[<span class="dv">4</span>,<span class="dv">3</span>]</span>
+<span id="cb54-13"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb54-13" aria-hidden="true" tabindex="-1"></a>esoph[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>]</span></code></pre></div>
+<p>For columns, there is an alternative way to access them. If you use the <code>$</code> symbol, it selects that specific column for ease of use.</p>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Using $ to access a certain column</span></span>
+<span id="cb55-2"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb55-2" aria-hidden="true" tabindex="-1"></a>age <span class="ot">&lt;-</span> esoph<span class="sc">$</span>agegp</span></code></pre></div>
+<div id="missing-data" class="section level3 unnumbered hasAnchor">
+<h3>Missing Data<a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#missing-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Datasets can sometimes have little to a lot of missing data. Typically, these are represented in many ways, but the most common type in R are:</p>
+<ul>
+<li><code>NA</code></li>
+<li><code>""</code></li>
+</ul>
+<p>To check if you have any missing data in your data frame you can use,</p>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anyNA</span>(esoph) <span class="co"># check for any missing values</span></span></code></pre></div>
+<pre><code>[1] FALSE</code></pre>
+<p>The code above will return <code>TRUE</code> if there is any missing data or <code>FALSE</code> if you do not. If there is any missing data, you can determine where/how frequently missing data occurred:</p>
+<ul>
+<li><code>is.na()</code>: returns the data frame as a matrix of whether the data in a certain row and column is a <code>NA</code> value.<br />
+</li>
+<li><code>rowSums(is.na())</code>: returns the total number of <code>NA</code> values in each row.</li>
+<li><code>colSums(is.na())</code>: returns the total number of <code>NA</code> values in each column.</li>
+<li><code>which(is.na())</code>: returns the vector index of interest for <code>NA</code> values.</li>
+</ul>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Making random dataset</span></span>
+<span id="cb58-2"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb58-2" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x1 =</span> <span class="fu">rnorm</span>(<span class="dv">5</span>), </span>
+<span id="cb58-3"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb58-3" aria-hidden="true" tabindex="-1"></a>                  <span class="at">x2 =</span> <span class="fu">c</span>(<span class="cn">NA</span>, <span class="fu">rnorm</span>(<span class="dv">2</span>), <span class="cn">NA</span>, <span class="cn">NA</span>),</span>
+<span id="cb58-4"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb58-4" aria-hidden="true" tabindex="-1"></a>                  <span class="at">x3 =</span> <span class="fu">c</span>(<span class="cn">NA</span>, <span class="fu">rnorm</span>(<span class="dv">4</span>)))</span>
+<span id="cb58-5"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb58-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-6"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb58-6" aria-hidden="true" tabindex="-1"></a>dat</span>
+<span id="cb58-7"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb58-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-8"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb58-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Check where and how frequently missing observed</span></span>
+<span id="cb58-9"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb58-9" aria-hidden="true" tabindex="-1"></a><span class="fu">is.na</span>(dat)            </span>
+<span id="cb58-10"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb58-10" aria-hidden="true" tabindex="-1"></a><span class="fu">rowSums</span>(<span class="fu">is.na</span>(dat))</span>
+<span id="cb58-11"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb58-11" aria-hidden="true" tabindex="-1"></a><span class="fu">colSums</span>(<span class="fu">is.na</span>(dat))</span>
+<span id="cb58-12"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb58-12" aria-hidden="true" tabindex="-1"></a><span class="fu">which</span>(<span class="fu">is.na</span>(dat<span class="sc">$</span>x2))   <span class="co"># Return row index where NA values are located</span></span>
+<span id="cb58-13"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb58-13" aria-hidden="true" tabindex="-1"></a><span class="fu">which</span>(<span class="fu">is.na</span>(dat[<span class="dv">1</span>,]))  <span class="co"># Return column index where NA values are located</span></span></code></pre></div>
+<p>The codes above will generate the following output:</p>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb59-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(<span class="fu">rep</span>(<span class="st">&quot;Images/na_idx.png&quot;</span>))</span></code></pre></div>
+<p><img src="Images/na_idx.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="data-class" class="section level3 unnumbered hasAnchor">
+<h3>Data Class<a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#data-class" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>To further explore and “describe” your dataset, you can see what kind of data “class” your data consists of. This “class” refers to what kind of data type certain column values are. If you are unfamiliar with the data type that exist in R, please go to the section “Introduction to R” in this webpage to read a summary of this information.</p>
+<p>To examine what data types exist for all columns you can use the <code>str()</code> function. Here is an example using an example dataset:</p>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb60-1" aria-hidden="true" tabindex="-1"></a>low_birth_all <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;Lowbwt_ALL.csv&quot;</span>)</span>
+<span id="cb60-2"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb60-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(low_birth_all)</span></code></pre></div>
+<pre><code>&#39;data.frame&#39;:   3671 obs. of  12 variables:
+ $ id            : int  3599133 3226096 1198044 2214416 116196 2764777 2194359 870149 3020763 1030014 ...
+ $ low           : int  0 0 0 0 0 0 0 0 0 0 ...
+ $ birthYear     : int  2018 2018 2018 2018 2018 2018 2018 2018 2018 2018 ...
+ $ birthMonth    : int  1 9 1 5 3 9 2 6 2 5 ...
+ $ age           : int  19 28 31 26 27 38 31 35 41 23 ...
+ $ race          : chr  &quot;white&quot; &quot;white&quot; &quot;white&quot; &quot;white&quot; ...
+ $ prenatalVisits: int  12 15 10 6 11 11 6 15 10 9 ...
+ $ smoke         : int  1 0 0 0 0 0 0 0 0 0 ...
+ $ height        : int  67 69 60 64 60 66 63 63 64 61 ...
+ $ ht            : int  0 0 0 0 0 0 0 0 0 0 ...
+ $ ptl           : int  0 0 0 0 0 0 0 0 0 0 ...
+ $ bwt           : int  3345 3730 4090 3200 3600 3255 3577 3374 3005 3245 ...</code></pre>
+<ul>
+<li>From this example, the data has 3,671 rows (observations) and 12 columns (variables).</li>
+<li>All columns, except race (chr = character), contain numeric values (int = integer)</li>
+</ul>
+<p>If, by any chance, you wanted to look at only one column’s data type, then you can use the <code>class()</code> function (as demonstrated in the “Introduction to R” chapter). Here is an example using the data above:</p>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(low_birth_all<span class="sc">$</span>age)</span></code></pre></div>
+<pre><code>[1] &quot;integer&quot;</code></pre>
+</div>
+<div id="count-and-proportions-of-data" class="section level3 unnumbered hasAnchor">
+<h3>Count and Proportions of Data<a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#count-and-proportions-of-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In R, there is a way to tabulate your data with the count/proportion information using the <code>table()</code> and <code>prop.table()</code> functions respectively.</p>
+<ul>
+<li>Generally, used for categorical/binary variables, not for continuous variables.
+<ul>
+<li>But even for continuous variables, this might be useful.</li>
+<li>The <code>table()</code> function provides the count for each unique value in a column.</li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example: tabulate variable smoke from data low_birth_all:</span></span>
+<span id="cb64-2"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb64-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(low_birth_all<span class="sc">$</span>smoke)</span></code></pre></div>
+<pre><code>
+   0    1 
+3427  244 </code></pre>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example: tabulate variable race from data low_birth_all:</span></span>
+<span id="cb66-2"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb66-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(low_birth_all<span class="sc">$</span>race)</span></code></pre></div>
+<pre><code>
+black other white 
+  573   390  2708 </code></pre>
+<p>If you wanted to tabulate the data across two columns, you are able to do this using the <code>table()</code> function as well:</p>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(low_birth_all<span class="sc">$</span>smoke, low_birth_all<span class="sc">$</span>race)</span></code></pre></div>
+<pre><code>   
+    black other white
+  0   540   372  2515
+  1    33    18   193</code></pre>
+<p>But if you wanted to get the proportion of the count information, you can use the <code>prop.table()</code> function after running the <code>table()</code> function.</p>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example: tabulate variable smoke from data low_birth_all:</span></span>
+<span id="cb70-2"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb70-2" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.table</span>(<span class="fu">table</span>(low_birth_all<span class="sc">$</span>smoke))       <span class="co"># Decimal Version</span></span></code></pre></div>
+<pre><code>
+        0         1 
+0.9335331 0.0664669 </code></pre>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.table</span>(<span class="fu">table</span>(low_birth_all<span class="sc">$</span>smoke)) <span class="sc">*</span> <span class="dv">100</span> <span class="co"># Percent Version</span></span></code></pre></div>
+<pre><code>
+       0        1 
+93.35331  6.64669 </code></pre>
+</div>
+<div id="summary-statistics" class="section level3 unnumbered hasAnchor">
+<h3>Summary Statistics<a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#summary-statistics" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>For continuous variables, you can use the function <code>summary()</code> to get the summary statistics (distribution) of the data. This function returns the following values:</p>
+<ul>
+<li>Minimum</li>
+<li>1st Quartile</li>
+<li>Median</li>
+<li>Mean</li>
+<li>3rd Quartile</li>
+<li>Maximum</li>
+</ul>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example: summarize variable prenatalVisits</span></span>
+<span id="cb74-2"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb74-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(low_birth_all<span class="sc">$</span>prenatalVisits)</span></code></pre></div>
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+   0.00    9.00   12.00   11.36   14.00   49.00 </code></pre>
+<p>If you were to call this function on a categorical column, the number of observations, and column class are returned. Here is what happens when you call <code>summary()</code> on the entire data frame.</p>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(low_birth_all)</span></code></pre></div>
+<pre><code>       id               low           birthYear      birthMonth          age            race           prenatalVisits      smoke        
+ Min.   :   1189   Min.   :0.0000   Min.   :2018   Min.   : 1.000   Min.   :14.00   Length:3671        Min.   : 0.00   Min.   :0.00000  
+ 1st Qu.: 980184   1st Qu.:0.0000   1st Qu.:2018   1st Qu.: 4.000   1st Qu.:25.00   Class :character   1st Qu.: 9.00   1st Qu.:0.00000  
+ Median :1965753   Median :0.0000   Median :2018   Median : 7.000   Median :29.00   Mode  :character   Median :12.00   Median :0.00000  
+ Mean   :1934350   Mean   :0.0918   Mean   :2018   Mean   : 6.654   Mean   :29.17                      Mean   :11.36   Mean   :0.06647  
+ 3rd Qu.:2871162   3rd Qu.:0.0000   3rd Qu.:2018   3rd Qu.:10.000   3rd Qu.:33.00                      3rd Qu.:14.00   3rd Qu.:0.00000  
+ Max.   :3799040   Max.   :1.0000   Max.   :2018   Max.   :12.000   Max.   :50.00                      Max.   :49.00   Max.   :1.00000  
+     height            ht               ptl               bwt      
+ Min.   :50.00   Min.   :0.00000   Min.   :0.00000   Min.   : 280  
+ 1st Qu.:62.00   1st Qu.:0.00000   1st Qu.:0.00000   1st Qu.:2950  
+ Median :64.00   Median :0.00000   Median :0.00000   Median :3315  
+ Mean   :64.21   Mean   :0.02179   Mean   :0.03133   Mean   :3257  
+ 3rd Qu.:66.00   3rd Qu.:0.00000   3rd Qu.:0.00000   3rd Qu.:3628  
+ Max.   :78.00   Max.   :1.00000   Max.   :1.00000   Max.   :5530  </code></pre>
+</div>
+</div>
+<div id="data-manipulation" class="section level2 unnumbered hasAnchor">
+<h2>Data Manipulation<a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#data-manipulation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="subset-data" class="section level3 unnumbered hasAnchor">
+<h3>Subset Data<a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#subset-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>For this section the library <code>dplyr</code> is used for data selection and manipulation.</p>
+<ul>
+<li>If this library is not already installed, please do so.</li>
+</ul>
+<p><code>dplyr</code> is a tool to help work with data frame like object for multiple purposes, but mainly for data manipulation.</p>
+<p>To subset the data by columns, you can select variable(s) that you want using the following functions:</p>
+<ul>
+<li><code>select(mydata, colname)</code>: In the data table <code>mydata</code>, take out the <code>colname</code> column.</li>
+<li><code>select(mydata, colname1, colname2, ...)</code>: In the data table <code>mydata</code>, take only the columns <code>colname1, colname2, ...</code>.</li>
+</ul>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb78-2"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb78-2" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(airquality, Ozone)</span>
+<span id="cb78-3"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb78-3" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(airquality, Ozone, Wind, Temp)</span></code></pre></div>
+<p><img src="Images/select_dplyr.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>The fun thing about <code>dplyr</code> is that you can pass the functions through the <code>%&gt;%</code> symbol. This notation is called the <strong>pipeline operator</strong> and essentially sends along the input value from the left to the next expression/function(s). Typically, that value is the data frame.</p>
+<p>Here is the same code as above, but written differently:</p>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb79-1" aria-hidden="true" tabindex="-1"></a>airquality <span class="sc">%&gt;%</span></span>
+<span id="cb79-2"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb79-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Ozone, Wind, Temp)</span></code></pre></div>
+<pre><code>  Ozone Wind Temp
+1    41  7.4   67
+2    36  8.0   72
+3    12 12.6   74
+4    18 11.5   62
+5    NA 14.3   56
+6    28 14.9   66</code></pre>
+<p>When you want to subset the data by columns, but want to see all columns but a specific column(s), you can use the <code>-</code> symbol within the <code>select()</code> function:</p>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(airquality, <span class="sc">-</span>Month, <span class="sc">-</span>Day)</span></code></pre></div>
+<pre><code>  Ozone Solar.R Wind Temp
+1    41     190  7.4   67
+2    36     118  8.0   72
+3    12     149 12.6   74
+4    18     313 11.5   62
+5    NA      NA 14.3   56
+6    28      NA 14.9   66</code></pre>
+<p>If you wanted to select only certain rows of the data to subset, you can use the <code>slice()</code> function instead.</p>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example: select rows 1 to 5 from airquality</span></span>
+<span id="cb83-2"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb83-2" aria-hidden="true" tabindex="-1"></a><span class="fu">slice</span>(airquality, <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>)</span>
+<span id="cb83-3"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb83-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb83-4"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb83-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Example: select rows 4, 7, and 18 from airquality</span></span>
+<span id="cb83-5"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb83-5" aria-hidden="true" tabindex="-1"></a><span class="fu">slice</span>(airquality, <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">7</span>, <span class="dv">18</span>))</span></code></pre></div>
+<p><img src="Images/slice_dplyr.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>An alternative method is to use the <code>filter()</code> function to do the same thing as well. For this function, you want to put in the <em>condition</em> or a <em>criteria</em> using the operators for logical comparisons.</p>
+<p>Here is a review of operators in R:</p>
+<p><strong>Logical Operators</strong></p>
+<ul>
+<li><code>&amp;</code>: element-wise AND operator.</li>
+<li><code>|</code>: element-wise OR operator</li>
+<li><code>!</code>: NOT operator</li>
+</ul>
+<p><strong>Logical Comparisons</strong></p>
+<ul>
+<li><code>&lt;</code>: Less than</li>
+<li><code>&gt;</code>: Greater than</li>
+<li><code>&lt;=</code>: Less than or equal to</li>
+<li><code>&gt;=</code>: Greater than or equal to</li>
+<li><code>==</code>: Equal to</li>
+<li><code>!=</code>: Not equal to</li>
+<li><code>is.na()</code> is NA</li>
+<li><code>!is.na()</code> is not NA</li>
+</ul>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb84-1" aria-hidden="true" tabindex="-1"></a><span class="co"># filter(airquality, Month==7 &amp; Wind &lt; 6) # the same function different way to write it.</span></span>
+<span id="cb84-2"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb84-2" aria-hidden="true" tabindex="-1"></a>airquality <span class="sc">%&gt;%</span></span>
+<span id="cb84-3"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb84-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Month <span class="sc">==</span> <span class="dv">7</span> <span class="sc">&amp;</span> Wind <span class="sc">&lt;</span> <span class="dv">6</span>)</span></code></pre></div>
+<pre><code>  Ozone Solar.R Wind Temp Month Day
+1   135     269  4.1   84     7   1
+2    64     175  4.6   83     7   5
+3    77     276  5.1   88     7   7
+4    97     272  5.7   92     7   9
+5    79     187  5.1   87     7  19</code></pre>
+<p>In <code>dplyr</code> using the <code>%&gt;%</code> also allows to combine multiple <code>dplyr</code> functions for a single code run. You can write multiple lines of code with multiple functions in each new line, followed up with %&gt;% after the function.</p>
+<p>For example, if you wanted to use both <code>select()</code> and <code>filter()</code> functions, then you can write it like the following:</p>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb86-1" aria-hidden="true" tabindex="-1"></a>low_birth_all <span class="sc">%&gt;%</span></span>
+<span id="cb86-2"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb86-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>birthYear, <span class="sc">-</span>birthMonth) <span class="sc">%&gt;%</span></span>
+<span id="cb86-3"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb86-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(race <span class="sc">==</span> <span class="st">&quot;black&quot;</span> <span class="sc">&amp;</span> age <span class="sc">&gt;</span> <span class="dv">41</span> <span class="sc">&amp;</span> smoke <span class="sc">==</span> <span class="dv">0</span>)</span></code></pre></div>
+<pre><code>       id low age  race prenatalVisits smoke height ht ptl  bwt
+1 3189399   0  43 black              5     0     67  0   0 3527
+2  741026   0  42 black             16     0     66  0   0 2760
+3 1653090   0  42 black             11     0     68  1   0 3515
+4  798266   0  43 black              5     0     64  0   0 3657
+5 1350086   0  42 black             23     0     64  0   1 3220
+6 3151450   0  45 black             11     0     66  0   0 3170
+7  471085   1  50 black             10     0     67  0   1 1830</code></pre>
+</div>
+<div id="order-data" class="section level3 unnumbered hasAnchor">
+<h3>Order Data<a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#order-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>To order rows of data according to one of the variables, you can use the function <code>arrange(mydata, ordering_var)</code>. By default, it sorts the row from smallest to largest numerically, or alphabetically if it’s sorting a character-type column.</p>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb88-1" aria-hidden="true" tabindex="-1"></a><span class="fu">arrange</span>(low_birth_all, id)</span></code></pre></div>
+<pre><code>    id low birthYear birthMonth age  race prenatalVisits smoke height ht ptl  bwt
+1 1189   0      2018          2  35 other             18     0     67  0   0 3040
+2 1834   0      2018          3  26 white              8     0     62  0   0 2744
+3 3244   0      2018          4  29 white             12     0     62  0   0 3816
+4 5640   0      2018          8  24 white             13     0     61  0   0 3465
+5 5886   0      2018          8  30 white              4     0     67  0   0 3459
+6 6128   0      2018          8  26 black             11     0     63  0   0 3540</code></pre>
+<p>It is possible to sort the rows in the opposite direction (descending order) using the <code>desc()</code> function inside <code>arrange()</code>.</p>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb90-1" aria-hidden="true" tabindex="-1"></a><span class="fu">arrange</span>(low_birth_all, <span class="fu">desc</span>(id))</span></code></pre></div>
+<p>You can also sort rows by multiple columns by putting all column names into <code>arrange()</code>.</p>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="fu">arrange</span>(low_birth_all, smoke, <span class="fu">desc</span>(age))</span></code></pre></div>
+</div>
+<div id="rename-variables" class="section level3 unnumbered hasAnchor">
+<h3>Rename Variables<a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#rename-variables" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In R, there are multiple ways to rename columns. Without dplyr, you can use <code>colnames()</code> and rename the columns like below:</p>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb92-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Rename all columns</span></span>
+<span id="cb92-2"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb92-2" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(low_birth_all) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;ID&quot;</span>, <span class="st">&quot;Low&quot;</span>, <span class="st">&quot;Birth_Year&quot;</span>, <span class="st">&quot;Birth_Month&quot;</span>, <span class="st">&quot;Age&quot;</span>, <span class="st">&quot;Race&quot;</span>, <span class="st">&quot;Prenatal_Visits&quot;</span>, <span class="st">&quot;Smoke&quot;</span>, <span class="st">&quot;Height&quot;</span>, </span>
+<span id="cb92-3"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb92-3" aria-hidden="true" tabindex="-1"></a>                             <span class="st">&quot;HT&quot;</span>, <span class="st">&quot;PTL&quot;</span>, <span class="st">&quot;BWT&quot;</span>)</span>
+<span id="cb92-4"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb92-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb92-5"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb92-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Rename only the third column </span></span>
+<span id="cb92-6"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb92-6" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(low_birth_all)[<span class="dv">3</span>] <span class="ot">&lt;-</span> <span class="st">&quot;Birth_Year&quot;</span></span></code></pre></div>
+<p>You can also rename columns through <code>dplyr</code> function <code>rename()</code> using the following syntax: <code>rename(mydata, new_name_var = old_name_var)</code></p>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb93-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rename</span>(low_birth_all, <span class="at">smoking_status =</span> smoke)</span></code></pre></div>
+<p><img src="Images/rename_dplyr.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>You can also rename multiple columns at once through this function by listing out the new column names:</p>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb94-1" aria-hidden="true" tabindex="-1"></a>low_birth_all <span class="sc">%&gt;%</span></span>
+<span id="cb94-2"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb94-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">smoking_status =</span> smoke, </span>
+<span id="cb94-3"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb94-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">patientID =</span> id, </span>
+<span id="cb94-4"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb94-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">low_binary =</span> low)</span></code></pre></div>
+</div>
+<div id="data-transformation" class="section level3 unnumbered hasAnchor">
+<h3>Data Transformation<a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#data-transformation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Sometimes, you want to create new variable(s) derived from existing ones for your analysis purposes (e.g. apply a log transformation to a skewed variable). To do so, you can use the <code>mutate(mydata, new_name_var = transform_old_var)</code> syntax:</p>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb95-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mutate</span>(low_birth_all, <span class="at">log_age =</span> <span class="fu">log</span>(age))</span></code></pre></div>
+<p><img src="Images/mutate_dplyr.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>Here are some other operations that you can do within mutate. The options in the lists are only a handful of the many different ways you can transform the data:</p>
+<ul>
+<li>Basic Operations:
+<ul>
+<li><code>log()</code>: natural logarithm</li>
+<li><code>sqrt()</code>: square root</li>
+<li><code>x^n</code>: exponent</li>
+<li><code>exp()</code>: exponential</li>
+</ul></li>
+<li>Matrix Operations:
+<ul>
+<li><code>A%*%B</code>: matrix multiplication</li>
+<li><code>t(A)</code>: matrix transpose</li>
+<li><code>det(A)</code>: determinant of A</li>
+<li><code>diag(A)</code>: diagonal of A</li>
+<li><code>solve(A)</code>: matrix inverse</li>
+</ul></li>
+</ul>
+</div>
+<div id="if-else-function" class="section level3 unnumbered hasAnchor">
+<h3>If-Else Function<a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#if-else-function" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>An if-else function is used if you want the assignment statement to apply to some observations and not to all. You need to specify,</p>
+<ul>
+<li>The logical condition we want to test</li>
+<li>What should happen in case the logical condition is TRUE</li>
+<li>What should happen in case the logical condition is FALSE</li>
+</ul>
+<p>The R function for the if-else function can be written as <code>ifelse(condition, yes, no)</code>.</p>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb96-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example: Create a binary category (1 if &lt; 30; 0 otherwise) in data low_birth_all</span></span>
+<span id="cb96-2"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb96-2" aria-hidden="true" tabindex="-1"></a>low_birth_all<span class="sc">$</span>binary_age <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(low_birth_all<span class="sc">$</span>age <span class="sc">&lt;</span> <span class="dv">30</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span>
+<span id="cb96-3"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb96-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(low_birth_all)</span></code></pre></div>
+<p><img src="Images/ifelse_dplyr.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>It is possible to use this function to create multiple categories. This will be calling an <code>ifelse()</code> function inside a different <code>ifelse()</code> function. Here is an example:</p>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb97-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example: Create three age categories (&lt;20, 20-29, 30+) in data low_birth_all</span></span>
+<span id="cb97-2"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb97-2" aria-hidden="true" tabindex="-1"></a>low_birth_all<span class="sc">$</span>age_category <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(low_birth_all<span class="sc">$</span>age <span class="sc">&lt;</span> <span class="dv">20</span>, <span class="st">&quot;&lt;20&quot;</span>, </span>
+<span id="cb97-3"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb97-3" aria-hidden="true" tabindex="-1"></a>                                     <span class="fu">ifelse</span>(low_birth_all<span class="sc">$</span>age <span class="sc">&gt;=</span> <span class="dv">20</span> <span class="sc">&amp;</span> low_birth_all<span class="sc">$</span>age <span class="sc">&lt;</span> <span class="dv">30</span>, <span class="st">&quot;20-29&quot;</span>, <span class="st">&quot;30+&quot;</span>))</span>
+<span id="cb97-4"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb97-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(low_birth_all)</span></code></pre></div>
+<p><img src="Images/ifelse_dplyr2.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="combine-data-sets-stacking" class="section level3 unnumbered hasAnchor">
+<h3>Combine Data Sets (Stacking)<a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#combine-data-sets-stacking" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In R, there are ways to combine multiple data sets that have the same variables but different observations.</p>
+<ul>
+<li>Combine by rows</li>
+<li>Combine by columns</li>
+</ul>
+<p><img src="Images/combine_Data.png" width="60%" style="display: block; margin: auto;" /></p>
+<p>To <strong>combine by rows</strong>, you can use the function <code>rbind(mydata1, mydata2)</code>. The <code>rbind()</code> function takes in two different data types with the same variables. One thing to note is that the column names must match, otherwise, the stacking will not work.</p>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb98-1" aria-hidden="true" tabindex="-1"></a>df1 <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">var1 =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">2</span>),</span>
+<span id="cb98-2"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb98-2" aria-hidden="true" tabindex="-1"></a>                 <span class="at">var2 =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>), </span>
+<span id="cb98-3"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb98-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">var3 =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">9</span>, <span class="dv">0</span>, <span class="dv">0</span>))</span>
+<span id="cb98-4"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb98-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb98-5"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb98-5" aria-hidden="true" tabindex="-1"></a>df2 <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">var1 =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">4</span>), </span>
+<span id="cb98-6"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb98-6" aria-hidden="true" tabindex="-1"></a>                 <span class="at">var2 =</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">9</span>),</span>
+<span id="cb98-7"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb98-7" aria-hidden="true" tabindex="-1"></a>                 <span class="at">var3 =</span> <span class="fu">c</span>(<span class="dv">7</span>, <span class="dv">3</span>, <span class="dv">5</span>))</span>
+<span id="cb98-8"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb98-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb98-9"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb98-9" aria-hidden="true" tabindex="-1"></a><span class="fu">rbind</span>(df1, df2)</span></code></pre></div>
+<p><img src="Images/rbind_match.png" width="60%" style="display: block; margin: auto;" /></p>
+<p>Here is what happens when the column names if the column names of the two data frames do not match:</p>
+<p><img src="Images/rbind_nomatch.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="merge-data-sets" class="section level3 unnumbered hasAnchor">
+<h3>Merge Data Sets<a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#merge-data-sets" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Merging is a concept similar to the combining of dataframes, but works differently. Typically, a “merge” joins two data frames from different sources or at different times.</p>
+<p>Here are some requirements to merge two data sets:</p>
+<ul>
+<li>Both data frames must have at least one variable in common (either character or numeric)
+<ul>
+<li>If character, make sure the categories have the same spelling (i.e., country names, etc.)</li>
+<li>If numeric, make sure the units are the same (i.e., kg vs lbs)</li>
+</ul></li>
+</ul>
+<p><strong>Example:</strong> A study was conducted to identify risk factors for low infant birth weight using data frame 189 live births at Bay State Medical Center in Massachusetts. Low birthweight was defined as a &lt;2500 grams.</p>
+<ul>
+<li>We have one data set for low birthweight-babies (<code>bwt_Low_2018.csv</code>) and another for normal birthweight babies (<code>bwt_Normal_2018.csv</code>).
+<ul>
+<li><code>id</code>= ID number of infant</li>
+<li><code>smoke</code>= smoking during pregnancy = 1, if yes; 0 if no</li>
+<li><code>age</code> = mother’s age in years</li>
+</ul></li>
+<li>We have a separate data set with data on number of visits (<code>bwt_Admin_2018.csv</code>).
+<ul>
+<li><code>id</code> = ID number of infant</li>
+<li><code>visits</code> = number of physician visits during 1st trimester = 0 if none; 1 if one; 2 if two or more</li>
+</ul></li>
+</ul>
+<details>
+<summary>
+<strong>Here is the solution:</strong>
+</summary>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb99-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Combine the low birthweight babies (bwt_Low_2018.csv) with the normal birthweight babies (bwt_Normal_2018.csv).</span></span>
+<span id="cb99-2"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb99-2" aria-hidden="true" tabindex="-1"></a><span class="co"># This is the combo_row data from above</span></span>
+<span id="cb99-3"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb99-3" aria-hidden="true" tabindex="-1"></a>low_birth <span class="ot">=</span> <span class="fu">read.csv</span>(<span class="st">&quot;bwt_Low_2018.csv&quot;</span>)</span>
+<span id="cb99-4"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb99-4" aria-hidden="true" tabindex="-1"></a>norm_birth <span class="ot">=</span> <span class="fu">read.csv</span>(<span class="st">&quot;bwt_Normal_2018.csv&quot;</span>)</span>
+<span id="cb99-5"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb99-5" aria-hidden="true" tabindex="-1"></a>combo_row <span class="ot">=</span> <span class="fu">rbind</span>(low_birth, norm_birth)</span>
+<span id="cb99-6"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb99-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb99-7"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb99-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Merge the combo_row data with data on # of visits (bwt_Admin_2018.csv).</span></span>
+<span id="cb99-8"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb99-8" aria-hidden="true" tabindex="-1"></a><span class="co"># id  = ID number of infant</span></span>
+<span id="cb99-9"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb99-9" aria-hidden="true" tabindex="-1"></a><span class="co"># visits = number of physician visits during 1st trimester = 0 if none; 1 if one; 2 if two or more</span></span>
+<span id="cb99-10"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb99-10" aria-hidden="true" tabindex="-1"></a>admin_birth <span class="ot">=</span> <span class="fu">read.csv</span>(<span class="st">&quot;bwt_Admin_2018.csv&quot;</span>)               <span class="co"># Read admin data</span></span>
+<span id="cb99-11"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb99-11" aria-hidden="true" tabindex="-1"></a>birth_final <span class="ot">=</span> <span class="fu">merge</span>(combo_row, admin_birth, <span class="at">by=</span><span class="st">&quot;id&quot;</span>)       <span class="co"># merge the combo and admin data by common &quot;id&quot; column</span></span>
+<span id="cb99-12"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb99-12" aria-hidden="true" tabindex="-1"></a>birth_final <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(id)                                <span class="co"># sort by id </span></span>
+<span id="cb99-13"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb99-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb99-14"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb99-14" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(birth_final)  <span class="co"># Provide column names</span></span>
+<span id="cb99-15"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#cb99-15" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(birth_final)   <span class="co"># Display first 6 rows of merged data frame</span></span></code></pre></div>
+</details>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="introduction-to-r.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="descriptive-statistics-hypothesis-testing.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
