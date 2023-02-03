@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>4 Resources | Introduction to Statistical Computing: R</title>
+  <meta name="description" content="4 Resources | Introduction to Statistical Computing: R" />
+  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="4 Resources | Introduction to Statistical Computing: R" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="4 Resources | Introduction to Statistical Computing: R" />
+  
+  
+  
+
+<meta name="author" content="Heejoon Ahn, MS; Eun Jeung Oh, PhD; and Codruta Chiuzan, PhD" />
+
+
+<meta name="date" content="2023-02-03" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="data-visualization.html"/>
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.10.0/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-2.5.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-2.5.1/plotly-latest.min.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Before getting started…</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#why-r"><i class="fa fa-check"></i>Why R?</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#what-is-rstudio"><i class="fa fa-check"></i>What is RStudio?</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#install-r-and-rstudio"><i class="fa fa-check"></i>Install R and RStudio</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#install-r"><i class="fa fa-check"></i>Install R</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#install-rstudio"><i class="fa fa-check"></i>Install RStudio</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#coding-in-r"><i class="fa fa-check"></i>Coding in R</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#create-r-script"><i class="fa fa-check"></i>Create R Script</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#r-packages"><i class="fa fa-check"></i>R Packages</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#r-syntax"><i class="fa fa-check"></i>R Syntax</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#r-errors"><i class="fa fa-check"></i>R Errors</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="introduction-to-r.html"><a href="introduction-to-r.html"><i class="fa fa-check"></i>Introduction to R</a>
+<ul>
+<li class="chapter" data-level="" data-path="introduction-to-r.html"><a href="introduction-to-r.html#understanding-basic-data-types-and-data-structures"><i class="fa fa-check"></i>Understanding Basic Data Types and Data Structures</a>
+<ul>
+<li class="chapter" data-level="" data-path="introduction-to-r.html"><a href="introduction-to-r.html#variables"><i class="fa fa-check"></i>Variables</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="introduction-to-r.html"><a href="introduction-to-r.html#fundamentals-of-r"><i class="fa fa-check"></i>Fundamentals of R</a>
+<ul>
+<li class="chapter" data-level="" data-path="introduction-to-r.html"><a href="introduction-to-r.html#operators"><i class="fa fa-check"></i>Operators</a></li>
+<li class="chapter" data-level="" data-path="introduction-to-r.html"><a href="introduction-to-r.html#keywords"><i class="fa fa-check"></i>Keywords</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="introduction-to-r.html"><a href="introduction-to-r.html#data-structures"><i class="fa fa-check"></i>Data Structures</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html"><i class="fa fa-check"></i><b>1</b> Overview of R/R Studio, Examining Data Attributes, and Data Manipulation</a>
+<ul>
+<li class="chapter" data-level="" data-path="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#importing-data"><i class="fa fa-check"></i>Importing Data</a>
+<ul>
+<li class="chapter" data-level="" data-path="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#prepare-data"><i class="fa fa-check"></i>Prepare Data</a></li>
+<li class="chapter" data-level="" data-path="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#set-your-working-directory"><i class="fa fa-check"></i>Set Your Working Directory</a></li>
+<li class="chapter" data-level="" data-path="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#read-data-into-r"><i class="fa fa-check"></i>Read Data into R</a></li>
+<li class="chapter" data-level="" data-path="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#load-data-from-r-packages"><i class="fa fa-check"></i>Load Data from R Packages</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#data-description"><i class="fa fa-check"></i>Data Description</a>
+<ul>
+<li class="chapter" data-level="" data-path="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#missing-data"><i class="fa fa-check"></i>Missing Data</a></li>
+<li class="chapter" data-level="" data-path="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#data-class"><i class="fa fa-check"></i>Data Class</a></li>
+<li class="chapter" data-level="" data-path="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#count-and-proportions-of-data"><i class="fa fa-check"></i>Count and Proportions of Data</a></li>
+<li class="chapter" data-level="" data-path="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#summary-statistics"><i class="fa fa-check"></i>Summary Statistics</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#data-manipulation"><i class="fa fa-check"></i>Data Manipulation</a>
+<ul>
+<li class="chapter" data-level="" data-path="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#subset-data"><i class="fa fa-check"></i>Subset Data</a></li>
+<li class="chapter" data-level="" data-path="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#order-data"><i class="fa fa-check"></i>Order Data</a></li>
+<li class="chapter" data-level="" data-path="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#rename-variables"><i class="fa fa-check"></i>Rename Variables</a></li>
+<li class="chapter" data-level="" data-path="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#data-transformation"><i class="fa fa-check"></i>Data Transformation</a></li>
+<li class="chapter" data-level="" data-path="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#if-else-function"><i class="fa fa-check"></i>If-Else Function</a></li>
+<li class="chapter" data-level="" data-path="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#combine-data-sets-stacking"><i class="fa fa-check"></i>Combine Data Sets (Stacking)</a></li>
+<li class="chapter" data-level="" data-path="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#merge-data-sets"><i class="fa fa-check"></i>Merge Data Sets</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="descriptive-statistics-hypothesis-testing.html"><a href="descriptive-statistics-hypothesis-testing.html"><i class="fa fa-check"></i><b>2</b> Descriptive Statistics &amp; Hypothesis Testing</a>
+<ul>
+<li class="chapter" data-level="" data-path="descriptive-statistics-hypothesis-testing.html"><a href="descriptive-statistics-hypothesis-testing.html#descriptive-statistics"><i class="fa fa-check"></i>Descriptive Statistics</a>
+<ul>
+<li class="chapter" data-level="" data-path="descriptive-statistics-hypothesis-testing.html"><a href="descriptive-statistics-hypothesis-testing.html#continuous-vs.-categorical-variables"><i class="fa fa-check"></i>Continuous vs. Categorical Variables</a></li>
+<li class="chapter" data-level="" data-path="descriptive-statistics-hypothesis-testing.html"><a href="descriptive-statistics-hypothesis-testing.html#continuous-variables"><i class="fa fa-check"></i>Continuous Variables</a></li>
+<li class="chapter" data-level="" data-path="descriptive-statistics-hypothesis-testing.html"><a href="descriptive-statistics-hypothesis-testing.html#categorical-variables"><i class="fa fa-check"></i>Categorical Variables</a></li>
+<li class="chapter" data-level="" data-path="descriptive-statistics-hypothesis-testing.html"><a href="descriptive-statistics-hypothesis-testing.html#how-to-create-table-1-with-gtsummary"><i class="fa fa-check"></i>How to Create ‘Table 1’ with <code>gtsummary</code></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="descriptive-statistics-hypothesis-testing.html"><a href="descriptive-statistics-hypothesis-testing.html#basic-hypothesis-testing"><i class="fa fa-check"></i>Basic Hypothesis Testing</a>
+<ul>
+<li class="chapter" data-level="" data-path="descriptive-statistics-hypothesis-testing.html"><a href="descriptive-statistics-hypothesis-testing.html#students-t-test"><i class="fa fa-check"></i>Student’s T-test</a></li>
+<li class="chapter" data-level="" data-path="descriptive-statistics-hypothesis-testing.html"><a href="descriptive-statistics-hypothesis-testing.html#analysis-of-variance-anova"><i class="fa fa-check"></i>Analysis of Variance (ANOVA)</a></li>
+<li class="chapter" data-level="" data-path="descriptive-statistics-hypothesis-testing.html"><a href="descriptive-statistics-hypothesis-testing.html#categorical-data-analysis"><i class="fa fa-check"></i>Categorical Data Analysis</a></li>
+<li class="chapter" data-level="" data-path="descriptive-statistics-hypothesis-testing.html"><a href="descriptive-statistics-hypothesis-testing.html#multiple-comparisons"><i class="fa fa-check"></i>Multiple Comparisons</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="data-visualization.html"><a href="data-visualization.html"><i class="fa fa-check"></i><b>3</b> Data Visualization</a>
+<ul>
+<li class="chapter" data-level="" data-path="data-visualization.html"><a href="data-visualization.html#basic-plots"><i class="fa fa-check"></i>Basic Plots</a>
+<ul>
+<li class="chapter" data-level="" data-path="data-visualization.html"><a href="data-visualization.html#scatterplots"><i class="fa fa-check"></i>Scatterplots</a></li>
+<li class="chapter" data-level="" data-path="data-visualization.html"><a href="data-visualization.html#line-plots"><i class="fa fa-check"></i>Line Plots</a></li>
+<li class="chapter" data-level="" data-path="data-visualization.html"><a href="data-visualization.html#bar-plots"><i class="fa fa-check"></i>Bar Plots</a></li>
+<li class="chapter" data-level="" data-path="data-visualization.html"><a href="data-visualization.html#histogram-and-density-plots"><i class="fa fa-check"></i>Histogram and Density Plots</a></li>
+<li class="chapter" data-level="" data-path="data-visualization.html"><a href="data-visualization.html#boxplots"><i class="fa fa-check"></i>Boxplots</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="data-visualization.html"><a href="data-visualization.html#ggplot2-plots"><i class="fa fa-check"></i><code>ggplot2</code> Plots</a>
+<ul>
+<li class="chapter" data-level="" data-path="data-visualization.html"><a href="data-visualization.html#scatterplots-1"><i class="fa fa-check"></i>Scatterplots</a></li>
+<li class="chapter" data-level="" data-path="data-visualization.html"><a href="data-visualization.html#barplots"><i class="fa fa-check"></i>Barplots</a></li>
+<li class="chapter" data-level="" data-path="data-visualization.html"><a href="data-visualization.html#histogram"><i class="fa fa-check"></i>Histogram</a></li>
+<li class="chapter" data-level="" data-path="data-visualization.html"><a href="data-visualization.html#boxplots-1"><i class="fa fa-check"></i>Boxplots</a></li>
+<li class="chapter" data-level="" data-path="data-visualization.html"><a href="data-visualization.html#formatting-plots"><i class="fa fa-check"></i>Formatting Plots</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="data-visualization.html"><a href="data-visualization.html#other-plots"><i class="fa fa-check"></i>Other Plots</a>
+<ul>
+<li class="chapter" data-level="" data-path="data-visualization.html"><a href="data-visualization.html#forest-plot"><i class="fa fa-check"></i>Forest Plot</a></li>
+<li class="chapter" data-level="" data-path="data-visualization.html"><a href="data-visualization.html#correlation-matrix"><i class="fa fa-check"></i>Correlation Matrix</a></li>
+<li class="chapter" data-level="" data-path="data-visualization.html"><a href="data-visualization.html#interactive-plots-plotly"><i class="fa fa-check"></i>Interactive Plots: Plotly</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="data-visualization.html"><a href="data-visualization.html#saving-the-plot"><i class="fa fa-check"></i>Saving the Plot</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="resources.html"><a href="resources.html"><i class="fa fa-check"></i><b>4</b> Resources</a>
+<ul>
+<li class="chapter" data-level="" data-path="resources.html"><a href="resources.html#cran-repository"><i class="fa fa-check"></i>CRAN repository</a></li>
+<li class="chapter" data-level="" data-path="resources.html"><a href="resources.html#r-and-rstudio-guides"><i class="fa fa-check"></i>R and RStudio Guides</a></li>
+<li class="chapter" data-level="" data-path="resources.html"><a href="resources.html#other-r-package-guides"><i class="fa fa-check"></i>Other R Package Guides</a></li>
+<li class="chapter" data-level="" data-path="resources.html"><a href="resources.html#data-visualization-1"><i class="fa fa-check"></i>Data Visualization</a></li>
+<li class="chapter" data-level="" data-path="resources.html"><a href="resources.html#example-datasets"><i class="fa fa-check"></i>Example Datasets</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introduction to Statistical Computing: R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="resources" class="section level1 hasAnchor" number="4">
+<h1><span class="header-section-number">4</span> Resources<a href="resources.html#resources" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="cran-repository" class="section level2 unnumbered hasAnchor">
+<h2>CRAN repository<a href="resources.html#cran-repository" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li>Website: <a href="https://cran.r-project.org/" class="uri">https://cran.r-project.org/</a></li>
+<li>Current R Version: “Innocent and Trusting” 4.2.2
+<ul>
+<li>Released 10/31/2022</li>
+</ul></li>
+</ul>
+</div>
+<div id="r-and-rstudio-guides" class="section level2 unnumbered hasAnchor">
+<h2>R and RStudio Guides<a href="resources.html#r-and-rstudio-guides" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li>Downloading RStudio:
+<ul>
+<li>Website: <a href="https://posit.co/download/rstudio-desktop/" class="uri">https://posit.co/download/rstudio-desktop/</a></li>
+</ul></li>
+<li>Downloading RTools:
+<ul>
+<li>Website: <a href="https://cran.r-project.org/bin/windows/Rtools/" class="uri">https://cran.r-project.org/bin/windows/Rtools/</a></li>
+</ul></li>
+<li>Posit Guides:
+<ul>
+<li>Keyboard Shortcut: <a href="https://support.posit.co/hc/en-us/articles/200711853-Keyboard-Shortcuts-in-the-RStudio-IDE" class="uri">https://support.posit.co/hc/en-us/articles/200711853-Keyboard-Shortcuts-in-the-RStudio-IDE</a></li>
+<li>Cheatsheets: <a href="https://posit.co/resources/cheatsheets/" class="uri">https://posit.co/resources/cheatsheets/</a></li>
+</ul></li>
+</ul>
+</div>
+<div id="other-r-package-guides" class="section level2 unnumbered hasAnchor">
+<h2>Other R Package Guides<a href="resources.html#other-r-package-guides" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li>gtsummary Documentation:
+<ul>
+<li>Tutorial: <a href="https://www.danieldsjoberg.com/gtsummary/articles/tbl_summary.html" class="uri">https://www.danieldsjoberg.com/gtsummary/articles/tbl_summary.html</a></li>
+</ul></li>
+</ul>
+</div>
+<div id="data-visualization-1" class="section level2 unnumbered hasAnchor">
+<h2>Data Visualization<a href="resources.html#data-visualization-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li><code>ggplot2</code> Guide: <a href="https://r-graph-gallery.com/ggplot2-package.html" class="uri">https://r-graph-gallery.com/ggplot2-package.html</a></li>
+<li><code>plotly</code> R Gallery (tutorials and documentation): <a href="https://plotly.com/r/" class="uri">https://plotly.com/r/</a></li>
+<li>R Colors:
+<ul>
+<li>Colors in R Cheat Sheet: <a href="http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf" class="uri">http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf</a></li>
+<li><code>ggplot2</code> color names: <a href="http://sape.inf.usi.ch/quick-reference/ggplot2/colour" class="uri">http://sape.inf.usi.ch/quick-reference/ggplot2/colour</a></li>
+<li>Color Palettes: <a href="https://www.datanovia.com/en/blog/top-r-color-palettes-to-know-for-great-data-visualization/" class="uri">https://www.datanovia.com/en/blog/top-r-color-palettes-to-know-for-great-data-visualization/</a></li>
+</ul></li>
+</ul>
+</div>
+<div id="example-datasets" class="section level2 unnumbered hasAnchor">
+<h2>Example Datasets<a href="resources.html#example-datasets" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The following list of data files are those retrieved from publicly available databases. The data files from CDC and WHO were contain only a sample of much larger datasets that are publicly available.</p>
+<ul>
+<li><code>Lowbwt_ALL.csv</code> is a dataset retrieved from CDC’s public 2018 natality cohort dataset.</li>
+<li><code>IHD_WHO_Mortality.csv</code> is a dataset retrieved from WHO’s (World Health Organization) public mortality database.
+<ul>
+<li>The data is for Ischemic Heart Disease (IHD) mortality data across all ages and all sexes for several countries.</li>
+</ul></li>
+<li><code>Odds_Ratio.csv</code> is a self-generated, random dataset used to help visualize Odds Ratio.</li>
+</ul>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="data-visualization.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

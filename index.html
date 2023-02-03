@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Introduction to Statistical Computing: R</title>
+  <meta name="description" content="Introduction to Statistical Computing: R" />
+  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Introduction to Statistical Computing: R" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Introduction to Statistical Computing: R" />
+  
+  
+  
+
+<meta name="author" content="Heejoon Ahn, MS; Eun Jeung Oh, PhD; and Codruta Chiuzan, PhD" />
+
+
+<meta name="date" content="2023-02-03" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+
+<link rel="next" href="introduction-to-r.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.10.0/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-2.5.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-2.5.1/plotly-latest.min.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Before getting started…</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#why-r"><i class="fa fa-check"></i>Why R?</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#what-is-rstudio"><i class="fa fa-check"></i>What is RStudio?</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#install-r-and-rstudio"><i class="fa fa-check"></i>Install R and RStudio</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#install-r"><i class="fa fa-check"></i>Install R</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#install-rstudio"><i class="fa fa-check"></i>Install RStudio</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#coding-in-r"><i class="fa fa-check"></i>Coding in R</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#create-r-script"><i class="fa fa-check"></i>Create R Script</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#r-packages"><i class="fa fa-check"></i>R Packages</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#r-syntax"><i class="fa fa-check"></i>R Syntax</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#r-errors"><i class="fa fa-check"></i>R Errors</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="introduction-to-r.html"><a href="introduction-to-r.html"><i class="fa fa-check"></i>Introduction to R</a>
+<ul>
+<li class="chapter" data-level="" data-path="introduction-to-r.html"><a href="introduction-to-r.html#understanding-basic-data-types-and-data-structures"><i class="fa fa-check"></i>Understanding Basic Data Types and Data Structures</a>
+<ul>
+<li class="chapter" data-level="" data-path="introduction-to-r.html"><a href="introduction-to-r.html#variables"><i class="fa fa-check"></i>Variables</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="introduction-to-r.html"><a href="introduction-to-r.html#fundamentals-of-r"><i class="fa fa-check"></i>Fundamentals of R</a>
+<ul>
+<li class="chapter" data-level="" data-path="introduction-to-r.html"><a href="introduction-to-r.html#operators"><i class="fa fa-check"></i>Operators</a></li>
+<li class="chapter" data-level="" data-path="introduction-to-r.html"><a href="introduction-to-r.html#keywords"><i class="fa fa-check"></i>Keywords</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="introduction-to-r.html"><a href="introduction-to-r.html#data-structures"><i class="fa fa-check"></i>Data Structures</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html"><i class="fa fa-check"></i><b>1</b> Overview of R/R Studio, Examining Data Attributes, and Data Manipulation</a>
+<ul>
+<li class="chapter" data-level="" data-path="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#importing-data"><i class="fa fa-check"></i>Importing Data</a>
+<ul>
+<li class="chapter" data-level="" data-path="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#prepare-data"><i class="fa fa-check"></i>Prepare Data</a></li>
+<li class="chapter" data-level="" data-path="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#set-your-working-directory"><i class="fa fa-check"></i>Set Your Working Directory</a></li>
+<li class="chapter" data-level="" data-path="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#read-data-into-r"><i class="fa fa-check"></i>Read Data into R</a></li>
+<li class="chapter" data-level="" data-path="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#load-data-from-r-packages"><i class="fa fa-check"></i>Load Data from R Packages</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#data-description"><i class="fa fa-check"></i>Data Description</a>
+<ul>
+<li class="chapter" data-level="" data-path="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#missing-data"><i class="fa fa-check"></i>Missing Data</a></li>
+<li class="chapter" data-level="" data-path="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#data-class"><i class="fa fa-check"></i>Data Class</a></li>
+<li class="chapter" data-level="" data-path="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#count-and-proportions-of-data"><i class="fa fa-check"></i>Count and Proportions of Data</a></li>
+<li class="chapter" data-level="" data-path="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#summary-statistics"><i class="fa fa-check"></i>Summary Statistics</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#data-manipulation"><i class="fa fa-check"></i>Data Manipulation</a>
+<ul>
+<li class="chapter" data-level="" data-path="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#subset-data"><i class="fa fa-check"></i>Subset Data</a></li>
+<li class="chapter" data-level="" data-path="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#order-data"><i class="fa fa-check"></i>Order Data</a></li>
+<li class="chapter" data-level="" data-path="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#rename-variables"><i class="fa fa-check"></i>Rename Variables</a></li>
+<li class="chapter" data-level="" data-path="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#data-transformation"><i class="fa fa-check"></i>Data Transformation</a></li>
+<li class="chapter" data-level="" data-path="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#if-else-function"><i class="fa fa-check"></i>If-Else Function</a></li>
+<li class="chapter" data-level="" data-path="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#combine-data-sets-stacking"><i class="fa fa-check"></i>Combine Data Sets (Stacking)</a></li>
+<li class="chapter" data-level="" data-path="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#merge-data-sets"><i class="fa fa-check"></i>Merge Data Sets</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="descriptive-statistics-hypothesis-testing.html"><a href="descriptive-statistics-hypothesis-testing.html"><i class="fa fa-check"></i><b>2</b> Descriptive Statistics &amp; Hypothesis Testing</a>
+<ul>
+<li class="chapter" data-level="" data-path="descriptive-statistics-hypothesis-testing.html"><a href="descriptive-statistics-hypothesis-testing.html#descriptive-statistics"><i class="fa fa-check"></i>Descriptive Statistics</a>
+<ul>
+<li class="chapter" data-level="" data-path="descriptive-statistics-hypothesis-testing.html"><a href="descriptive-statistics-hypothesis-testing.html#continuous-vs.-categorical-variables"><i class="fa fa-check"></i>Continuous vs. Categorical Variables</a></li>
+<li class="chapter" data-level="" data-path="descriptive-statistics-hypothesis-testing.html"><a href="descriptive-statistics-hypothesis-testing.html#continuous-variables"><i class="fa fa-check"></i>Continuous Variables</a></li>
+<li class="chapter" data-level="" data-path="descriptive-statistics-hypothesis-testing.html"><a href="descriptive-statistics-hypothesis-testing.html#categorical-variables"><i class="fa fa-check"></i>Categorical Variables</a></li>
+<li class="chapter" data-level="" data-path="descriptive-statistics-hypothesis-testing.html"><a href="descriptive-statistics-hypothesis-testing.html#how-to-create-table-1-with-gtsummary"><i class="fa fa-check"></i>How to Create ‘Table 1’ with <code>gtsummary</code></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="descriptive-statistics-hypothesis-testing.html"><a href="descriptive-statistics-hypothesis-testing.html#basic-hypothesis-testing"><i class="fa fa-check"></i>Basic Hypothesis Testing</a>
+<ul>
+<li class="chapter" data-level="" data-path="descriptive-statistics-hypothesis-testing.html"><a href="descriptive-statistics-hypothesis-testing.html#students-t-test"><i class="fa fa-check"></i>Student’s T-test</a></li>
+<li class="chapter" data-level="" data-path="descriptive-statistics-hypothesis-testing.html"><a href="descriptive-statistics-hypothesis-testing.html#analysis-of-variance-anova"><i class="fa fa-check"></i>Analysis of Variance (ANOVA)</a></li>
+<li class="chapter" data-level="" data-path="descriptive-statistics-hypothesis-testing.html"><a href="descriptive-statistics-hypothesis-testing.html#categorical-data-analysis"><i class="fa fa-check"></i>Categorical Data Analysis</a></li>
+<li class="chapter" data-level="" data-path="descriptive-statistics-hypothesis-testing.html"><a href="descriptive-statistics-hypothesis-testing.html#multiple-comparisons"><i class="fa fa-check"></i>Multiple Comparisons</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="data-visualization.html"><a href="data-visualization.html"><i class="fa fa-check"></i><b>3</b> Data Visualization</a>
+<ul>
+<li class="chapter" data-level="" data-path="data-visualization.html"><a href="data-visualization.html#basic-plots"><i class="fa fa-check"></i>Basic Plots</a>
+<ul>
+<li class="chapter" data-level="" data-path="data-visualization.html"><a href="data-visualization.html#scatterplots"><i class="fa fa-check"></i>Scatterplots</a></li>
+<li class="chapter" data-level="" data-path="data-visualization.html"><a href="data-visualization.html#line-plots"><i class="fa fa-check"></i>Line Plots</a></li>
+<li class="chapter" data-level="" data-path="data-visualization.html"><a href="data-visualization.html#bar-plots"><i class="fa fa-check"></i>Bar Plots</a></li>
+<li class="chapter" data-level="" data-path="data-visualization.html"><a href="data-visualization.html#histogram-and-density-plots"><i class="fa fa-check"></i>Histogram and Density Plots</a></li>
+<li class="chapter" data-level="" data-path="data-visualization.html"><a href="data-visualization.html#boxplots"><i class="fa fa-check"></i>Boxplots</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="data-visualization.html"><a href="data-visualization.html#ggplot2-plots"><i class="fa fa-check"></i><code>ggplot2</code> Plots</a>
+<ul>
+<li class="chapter" data-level="" data-path="data-visualization.html"><a href="data-visualization.html#scatterplots-1"><i class="fa fa-check"></i>Scatterplots</a></li>
+<li class="chapter" data-level="" data-path="data-visualization.html"><a href="data-visualization.html#barplots"><i class="fa fa-check"></i>Barplots</a></li>
+<li class="chapter" data-level="" data-path="data-visualization.html"><a href="data-visualization.html#histogram"><i class="fa fa-check"></i>Histogram</a></li>
+<li class="chapter" data-level="" data-path="data-visualization.html"><a href="data-visualization.html#boxplots-1"><i class="fa fa-check"></i>Boxplots</a></li>
+<li class="chapter" data-level="" data-path="data-visualization.html"><a href="data-visualization.html#formatting-plots"><i class="fa fa-check"></i>Formatting Plots</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="data-visualization.html"><a href="data-visualization.html#other-plots"><i class="fa fa-check"></i>Other Plots</a>
+<ul>
+<li class="chapter" data-level="" data-path="data-visualization.html"><a href="data-visualization.html#forest-plot"><i class="fa fa-check"></i>Forest Plot</a></li>
+<li class="chapter" data-level="" data-path="data-visualization.html"><a href="data-visualization.html#correlation-matrix"><i class="fa fa-check"></i>Correlation Matrix</a></li>
+<li class="chapter" data-level="" data-path="data-visualization.html"><a href="data-visualization.html#interactive-plots-plotly"><i class="fa fa-check"></i>Interactive Plots: Plotly</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="data-visualization.html"><a href="data-visualization.html#saving-the-plot"><i class="fa fa-check"></i>Saving the Plot</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="resources.html"><a href="resources.html"><i class="fa fa-check"></i><b>4</b> Resources</a>
+<ul>
+<li class="chapter" data-level="" data-path="resources.html"><a href="resources.html#cran-repository"><i class="fa fa-check"></i>CRAN repository</a></li>
+<li class="chapter" data-level="" data-path="resources.html"><a href="resources.html#r-and-rstudio-guides"><i class="fa fa-check"></i>R and RStudio Guides</a></li>
+<li class="chapter" data-level="" data-path="resources.html"><a href="resources.html#other-r-package-guides"><i class="fa fa-check"></i>Other R Package Guides</a></li>
+<li class="chapter" data-level="" data-path="resources.html"><a href="resources.html#data-visualization-1"><i class="fa fa-check"></i>Data Visualization</a></li>
+<li class="chapter" data-level="" data-path="resources.html"><a href="resources.html#example-datasets"><i class="fa fa-check"></i>Example Datasets</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introduction to Statistical Computing: R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="header">
+<h1 class="title">Introduction to Statistical Computing: R</h1>
+<p class="author"><em>Heejoon Ahn, MS; Eun Jeung Oh, PhD; and Codruta Chiuzan, PhD</em></p>
+<p class="date"><em>February 03, 2023</em></p>
+</div>
+<div id="before-getting-started" class="section level1 unnumbered hasAnchor">
+<h1>Before getting started…<a href="index.html#before-getting-started" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="why-r" class="section level2 unnumbered hasAnchor">
+<h2>Why R?<a href="index.html#why-r" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li>R is a FREE, open-source, statistical software</li>
+<li>R is one of the widely used programming languages
+<ul>
+<li>A go-to language for Statistics</li>
+<li>Conventionally, R was mostly used in academia but with the emergence of Data Science, the need for R in industries became evident.</li>
+</ul></li>
+</ul>
+</div>
+<div id="what-is-rstudio" class="section level2 unnumbered hasAnchor">
+<h2>What is RStudio?<a href="index.html#what-is-rstudio" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li>Free, open-source IDE (integrated development environment) for R</li>
+<li>User-friendly</li>
+<li>Provided by Posit: <a href="https://posit.co" class="uri">https://posit.co</a>
+<ul>
+<li>Note: RStudio has been rebranded to Posit and launched their website in October 2022.
+<ul>
+<li>The rebranding allowed users of the open source software for R, Python, and other coding languages.
+<ul>
+<li>They have also provided more machine and deep learning packages for users!</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+<p>The following image below demonstrates what RStudio is consisted of:</p>
+<p><img src="Images/rstudio_demo.jpg" width="100%" /></p>
+<ul>
+<li>RStudio has recently rebranded itself as Posit.
+<ul>
+<li>They advertised as providing a multi-lingual data science, open-source and commercial software for R, Python, and beyond.</li>
+<li>Because of this rebranding, we will be using the products that they have just recently released.</li>
+</ul></li>
+</ul>
+</div>
+<div id="install-r-and-rstudio" class="section level2 unnumbered hasAnchor">
+<h2>Install R and RStudio<a href="index.html#install-r-and-rstudio" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="install-r" class="section level3 unnumbered hasAnchor">
+<h3>Install R<a href="index.html#install-r" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The first thing to download and install is R through this link: <a href="https://cran.r-project.org/" class="uri">https://cran.r-project.org/</a> (for Windows, Mac, Linux).</p>
+<p>From the website, click on the “Download R for…” for your computer type.</p>
+<ul>
+<li>If you are using a Windows computer for this course series, click on the “base” version if you don’t have R installed already.</li>
+<li>If you are using a Linux computer for this course series, click on the proper version of the Linux device you have.</li>
+<li>If you are using a Mac computer for this course series, scroll down to <strong>“Latest release:”</strong> section and on the left-hand side, click on the most recent version of R (R-4.2.2 pkg)
+<ul>
+<li><strong>NOTE:</strong> Due to Mac’s new conversion from Intel to their M1 (and higher) devices, R now provides two separate versions of the R language based on the device type. The messages under <strong>Latest release:</strong> should be read as follows:
+<ul>
+<li><p>For those using the M1 (or higher) devices:</p>
+<blockquote>
+<p><strong>R 4.2.2</strong> binary for macOS 11 (<strong>Big Sur</strong>) and higher, <strong>Apple silicon arm64</strong> build, signed and notarized package.
+Contains R 4.2.2 framework, R.app GUI 1.79 for Apple silicon Macs (M1 and higher), Tcl/Tk 8.6.12 X11 libraries and Texinfo 6.8.
+<strong>Important: this version does NOT work on older Intel-based Macs</strong> - see below for Intel version.</p>
+</blockquote></li>
+<li><p>For those using the Intel 64-bit devices:</p>
+<blockquote>
+<p><strong>R 4.2.2</strong> binary for macOS 10.13 (<strong>High Sierra</strong>) and higher, <strong>Intel 64-bit</strong> (older Macs) build, signed and notarized package.
+Contains R 4.2.2 framework, R.app GUI 1.79 in 64-bit for Intel Macs, Tcl/Tk 8.6.6 X11 libraries and Texinfo 6.7.</p>
+</blockquote></li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+<div id="install-rstudio" class="section level3 unnumbered hasAnchor">
+<h3>Install RStudio<a href="index.html#install-rstudio" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>Downloading RStudio Desktop: <a href="https://posit.co/download/rstudio-desktop/" class="uri">https://posit.co/download/rstudio-desktop/</a>
+<ul>
+<li>RStudio Desktop is free to download on the posit website.
+<ul>
+<li>There are more options available for purchase.</li>
+</ul></li>
+<li>Go to “Step 2: Install Rstudio Desktop” button. It should automatically update the button based on your computer type.</li>
+<li>If you would like to learn more about other options Posit provides, please click on the “Explore More” tab at the top.</li>
+</ul></li>
+</ul>
+<p>Within RStudio, you will write code in the panel on the left-hand top side. To code in R, users mainly code within the RStudio software. Open up RStudio on your device. If it is your first time ever using R or RStudio, the IDE might open up with three panels, instead of four.</p>
+<ul>
+<li>Console</li>
+<li>Environment/History</li>
+<li>Files/Plots/Packages/…</li>
+</ul>
+<p>Here is an example of what it may look like for you if you are opening up RStudio for the very first time:</p>
+<p><img src="Images/rstudio_first.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>There are multiple ways to open up the “R Script” panel or otherwise known as the <strong>Source</strong> panel by RStudio. The simplest way is to go to the icon that looks like a sheet of paper with a green plus sign on the top-lefthand corner. This button is a shortcut to help open “New File” based on the type of file you want to create. Once the list of options opens up, click on the “R Script” (this is the first option). This is illustrated below for you as a demonstration:</p>
+<p><img src="Images/open_rscript.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>An alternative way to open up a new R Script file is to go to “File” tab, and then scroll to “New File”. Then, click on “R Script”. This should open a <code>Untitled.R</code> file for you that you can save onto your computer or OneDrive (if synced to your device). If you don’t have a code type file like the “R Script” file open, you may not see the <code>Run</code> button in RStudio, make sure you have this open. This file document will help you write and run R code within RStudio.</p>
+</div>
+</div>
+<div id="coding-in-r" class="section level2 unnumbered hasAnchor">
+<h2>Coding in R<a href="index.html#coding-in-r" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li>How to run/execute the code…
+<ul>
+<li>Highlight the code and hit the ‘Run’ button</li>
+<li>Highlight the lines of code or put the cursor on the line and press:
+<ul>
+<li>Windows &amp; Linux: <code>CTRL + ENTER</code></li>
+<li>Mac: <code>Command + Return</code></li>
+</ul></li>
+</ul></li>
+</ul>
+<p><img src="Images/run_code.png" width="100%" /></p>
+<p>More keyboard shortcuts <a href="https://support.posit.co/hc/en-us/articles/200711853-Keyboard-Shortcuts-in-the-RStudio-IDE">here</a>.</p>
+<div id="create-r-script" class="section level3 unnumbered hasAnchor">
+<h3>Create R Script<a href="index.html#create-r-script" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<style type="text/css">
+img {vertical-align: top;}
+</style>
+<p><img src="Images/create_script.jpg" width="49%" height="49%" /><img src="Images/create_script_file.png" width="49%" height="49%" /></p>
+</div>
+<div id="r-packages" class="section level3 unnumbered hasAnchor">
+<h3>R Packages<a href="index.html#r-packages" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>Packages are collections of R functions, data, and compiled code in a well-defined format.</li>
+<li>The directory where packages are stored is called the library.</li>
+<li>R comes with a standard set of packages. Others are available for download and installation.
+<ul>
+<li>Only need to install the package one time.</li>
+</ul></li>
+<li>Once installed, they have to be loaded into the session to be used.
+<ul>
+<li>Once installed, you need to load package whenever you need to use functions from the package.</li>
+</ul></li>
+</ul>
+<p>How to install new packages through R code:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="index.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages(&quot;PUT THE NAME OF A PACKAGE INSIDE QUOTATION MARKS&quot;)</span></span>
+<span id="cb1-2"><a href="index.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;dplyr&quot;</span>)</span></code></pre></div>
+<p>Alternative way to install packages involves clicking on the “Tools” tab in RStudio, and then on “Install Packages…”</p>
+<p><img src="Images/alt_install.png" width="100%" /></p>
+<p>This opens up a pop-up window where you can type in the various packages you want to install.</p>
+<p><img src="Images/alt_install2.png" width="50%" style="display: block; margin: auto;" /></p>
+<div id="solutions-for-potential-package-installation-issues" class="section level4 unnumbered hasAnchor">
+<h4>Solutions for Potential Package Installation Issues<a href="index.html#solutions-for-potential-package-installation-issues" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Once you have installed R, and then RStudio, you should first try looking into whether you can load certain packages if you are working on a Windows device. One package that works best as a test case is the <code>dplyr</code> package. This package is used commonly among R coders to help with data cleaning and data manipulation. Try testing this following code:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="index.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;dplyr&quot;</span> <span class="sc">%in%</span> <span class="fu">rownames</span>(<span class="fu">installed.packages</span>())  <span class="co"># Check if you already have dplyr (TRUE/FALSE)</span></span>
+<span id="cb2-2"><a href="index.html#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;dplyr&quot;</span>)                    <span class="co"># Install dplyr if you do not already have dplyr</span></span></code></pre></div>
+<p>If you were able to install <code>dplyr</code> without any issue, ignore the instructions and keep reading ahead from the <strong>“Loading R Packages”</strong> section.
+After running the command above, and you get a message like that below, you might have to install RTools using the following link: <a href="https://cran.r-project.org/bin/windows/Rtools/">RTools CRAN repository</a>.</p>
+<blockquote>
+<p>WARNING: Rtools is required to build R packages but is not currently installed. Please download and install the appropriate version of Rtools before proceeding.</p>
+</blockquote>
+<p>After you download and execute the RTools application, you might need to close and re-open RStudio. Once RTools has been properly installed, you will not need to open the application on your device, as it gets integrated into RStudio upon installation.</p>
+<p>Another possible issue that could arise is that your work computer might be blocking package installation due to firewall issues. You may encounter a message along the lines of shown below:</p>
+<blockquote>
+<p>“Installing package into ‘/usr/lib64/R/library’</p>
+<p>(as ‘lib’ is unspecified)</p>
+<p>— Please select a CRAN mirror for use in this session —</p>
+<p>Error in download.file(url, destfile=f, quiet=TRUE) :</p>
+<p>unsupported URL scheme”</p>
+</blockquote>
+<p>If this is the message you are receiving, try running the code below:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="index.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># if working with a different package, replace &quot;dplyr&quot; with your package name inside quotation marks</span></span>
+<span id="cb3-2"><a href="index.html#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;dplyr&quot;</span>, <span class="at">dependencies =</span> <span class="cn">TRUE</span>, <span class="at">repos =</span> <span class="st">&quot;http://cran.rstudio.com/&quot;</span>)</span></code></pre></div>
+<p>Instead of the warning messages above, you might also see the following message:</p>
+<blockquote>
+<p>Warning in install.packages :</p>
+<p>unable to access index for repository <a href="https://cran.rstudio.com/src/contrib" class="uri">https://cran.rstudio.com/src/contrib</a>:</p>
+<p>cannot open URL <a href="https://cran.rstudio.com/src/contrib/PACKAGES%27" class="uri">https://cran.rstudio.com/src/contrib/PACKAGES%27</a></p>
+</blockquote>
+<p>The solution to help with this is to go to “Tools” and then to “Global Options”. This should bring up a window that has a tab called “Packages”. Click on that tab, where it should open up a few checklists. If you see that the item “Use secure download method for HTTP” is checked, un-check that item and then click “Apply” and “OK” to save your preferences.</p>
+<p><img src="Images/package_option.png" width="70%" style="display: block; margin: auto;" /></p>
+<p>Doing so will open up RStudio to access libraries such as <code>gtsummary</code> and others that might have previously been blocked by the firewall when it was selected. Now try the <code>install.package()</code> function again and see if it works. This might prompt you to a window asking you whether you want to restart RStudio:</p>
+<p><img src="Images/install_window.png" width="70%" style="display: block; margin: auto;" /></p>
+<p>Select “No”. This should bring you back to RStudio and you should see that it has started the installation process. A “Stop” sign button should appear in your console next to the “broom” icon. This means that it is currently running the <code>install.packages()</code> code for you and that you should wait until it has finished executing the code. Once finished, you should notice that the “Stop” button has disappeared.</p>
+</div>
+<div id="loading-r-packages" class="section level4 unnumbered hasAnchor">
+<h4>Loading R Packages<a href="index.html#loading-r-packages" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>How to load packages through R code:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="index.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># library(&quot;PUT THE NAME OF A PACKAGE (NO NEED FOR QUOTATION MARKS)&quot;)</span></span>
+<span id="cb4-2"><a href="index.html#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb4-3"><a href="index.html#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mutate</span>()           <span class="co"># Using the function from the package &quot;dplyr&quot;</span></span>
+<span id="cb4-4"><a href="index.html#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="index.html#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Using one function from a specific package, but without loading the entire package via library()</span></span>
+<span id="cb4-6"><a href="index.html#cb4-6" aria-hidden="true" tabindex="-1"></a>dplyr<span class="sc">::</span><span class="fu">mutate</span>()</span></code></pre></div>
+<p>You might have noticed that in the last line of code above, the function from a package was called using the <code>::</code> notation. This is optional and mostly suggested for when you have loaded multiple packages that may have functions with the same function name. R is open-source and people can upload and publish a package they created, leading to potential overlaps as such. To make sure you are using a specific function from a specific package, this is a useful method to call a function. You also don’t have to call <code>library()</code> if you use the <code>::</code> notation.</p>
+<p>If you require assistance with certain packages and functions, please go to the “Help” tab as shown below:</p>
+<p><img src="Images/help_r.png" width="100%" /></p>
+</div>
+</div>
+<div id="r-syntax" class="section level3 unnumbered hasAnchor">
+<h3>R Syntax<a href="index.html#r-syntax" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The word “syntax” can be defined as the way how a code is written through combinations of symbols (much like grammar). Each coding language has a unique syntax to differentiate themselves from other languages. Here is a list of descriptions about R’s syntax:</p>
+<ul>
+<li>R is an object-oriented programming language.
+<ul>
+<li>Users can define not only the type of the data structure, but also the type of functions to be applied to the data.</li>
+</ul></li>
+<li>R is case sensitive: <code>'A'</code> and <code>'a'</code> are different symbols according to R.</li>
+<li>Commands are separated by a new line (commonly by a new line).
+<ul>
+<li>Commands can be grouped together (in functions) by { and }.</li>
+</ul></li>
+<li>Comments can be inserted almost anywhere.
+<ul>
+<li>Comments are essentially notes you write for yourself and others. This is to help document your work.</li>
+<li>Starts with a <code>#</code>, until the end of the line (single-line comment).</li>
+<li>A quick way to comment multiple lines instead of just one, select all the lines of interest and then press:
+<ul>
+<li>Windows &amp; Linux: <code>CTRL + Shift + C</code></li>
+<li>Mac: <code>Command + Shift + C</code></li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+<div id="r-errors" class="section level3 unnumbered hasAnchor">
+<h3>R Errors<a href="index.html#r-errors" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Occasionally, while you run code, you may run into various types of error messages. This is typically normal, and a way for the R program to notify you that there is something in your code that prevents it from finishing to run the code. It will stop running at the source of the error in your code. The following are some of the most common error messages R users have seen:</p>
+<ul>
+<li>Syntax Errors: generated by misspelling, and extra comma, or forgetting to close a bracket.</li>
+<li>Semantic Errors: correct code, but the outcome is NOT what you expected.</li>
+<li>Logic Errors: this is the worst type of error you can see. The mistake is not in the code, but the logic of execution.</li>
+</ul>
+<p>To resolve this, read the error message carefully, since R provides the line the error occurred in, and RStudio displays the line numbers in the R Script file.</p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+<a href="introduction-to-r.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
