@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>3 Data Visualization | Introduction to Statistical Computing: R</title>
+  <meta name="description" content="3 Data Visualization | Introduction to Statistical Computing: R" />
+  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="3 Data Visualization | Introduction to Statistical Computing: R" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="3 Data Visualization | Introduction to Statistical Computing: R" />
+  
+  
+  
+
+<meta name="author" content="Heejoon Ahn, MS; Eun Jeung Oh, PhD; and Codruta Chiuzan, PhD" />
+
+
+<meta name="date" content="2023-02-03" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="descriptive-statistics-hypothesis-testing.html"/>
+<link rel="next" href="resources.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.10.0/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-2.5.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-2.5.1/plotly-latest.min.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Before getting started…</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#why-r"><i class="fa fa-check"></i>Why R?</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#what-is-rstudio"><i class="fa fa-check"></i>What is RStudio?</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#install-r-and-rstudio"><i class="fa fa-check"></i>Install R and RStudio</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#install-r"><i class="fa fa-check"></i>Install R</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#install-rstudio"><i class="fa fa-check"></i>Install RStudio</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#coding-in-r"><i class="fa fa-check"></i>Coding in R</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#create-r-script"><i class="fa fa-check"></i>Create R Script</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#r-packages"><i class="fa fa-check"></i>R Packages</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#r-syntax"><i class="fa fa-check"></i>R Syntax</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#r-errors"><i class="fa fa-check"></i>R Errors</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="introduction-to-r.html"><a href="introduction-to-r.html"><i class="fa fa-check"></i>Introduction to R</a>
+<ul>
+<li class="chapter" data-level="" data-path="introduction-to-r.html"><a href="introduction-to-r.html#understanding-basic-data-types-and-data-structures"><i class="fa fa-check"></i>Understanding Basic Data Types and Data Structures</a>
+<ul>
+<li class="chapter" data-level="" data-path="introduction-to-r.html"><a href="introduction-to-r.html#variables"><i class="fa fa-check"></i>Variables</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="introduction-to-r.html"><a href="introduction-to-r.html#fundamentals-of-r"><i class="fa fa-check"></i>Fundamentals of R</a>
+<ul>
+<li class="chapter" data-level="" data-path="introduction-to-r.html"><a href="introduction-to-r.html#operators"><i class="fa fa-check"></i>Operators</a></li>
+<li class="chapter" data-level="" data-path="introduction-to-r.html"><a href="introduction-to-r.html#keywords"><i class="fa fa-check"></i>Keywords</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="introduction-to-r.html"><a href="introduction-to-r.html#data-structures"><i class="fa fa-check"></i>Data Structures</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html"><i class="fa fa-check"></i><b>1</b> Overview of R/R Studio, Examining Data Attributes, and Data Manipulation</a>
+<ul>
+<li class="chapter" data-level="" data-path="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#importing-data"><i class="fa fa-check"></i>Importing Data</a>
+<ul>
+<li class="chapter" data-level="" data-path="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#prepare-data"><i class="fa fa-check"></i>Prepare Data</a></li>
+<li class="chapter" data-level="" data-path="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#set-your-working-directory"><i class="fa fa-check"></i>Set Your Working Directory</a></li>
+<li class="chapter" data-level="" data-path="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#read-data-into-r"><i class="fa fa-check"></i>Read Data into R</a></li>
+<li class="chapter" data-level="" data-path="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#load-data-from-r-packages"><i class="fa fa-check"></i>Load Data from R Packages</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#data-description"><i class="fa fa-check"></i>Data Description</a>
+<ul>
+<li class="chapter" data-level="" data-path="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#missing-data"><i class="fa fa-check"></i>Missing Data</a></li>
+<li class="chapter" data-level="" data-path="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#data-class"><i class="fa fa-check"></i>Data Class</a></li>
+<li class="chapter" data-level="" data-path="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#count-and-proportions-of-data"><i class="fa fa-check"></i>Count and Proportions of Data</a></li>
+<li class="chapter" data-level="" data-path="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#summary-statistics"><i class="fa fa-check"></i>Summary Statistics</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#data-manipulation"><i class="fa fa-check"></i>Data Manipulation</a>
+<ul>
+<li class="chapter" data-level="" data-path="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#subset-data"><i class="fa fa-check"></i>Subset Data</a></li>
+<li class="chapter" data-level="" data-path="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#order-data"><i class="fa fa-check"></i>Order Data</a></li>
+<li class="chapter" data-level="" data-path="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#rename-variables"><i class="fa fa-check"></i>Rename Variables</a></li>
+<li class="chapter" data-level="" data-path="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#data-transformation"><i class="fa fa-check"></i>Data Transformation</a></li>
+<li class="chapter" data-level="" data-path="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#if-else-function"><i class="fa fa-check"></i>If-Else Function</a></li>
+<li class="chapter" data-level="" data-path="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#combine-data-sets-stacking"><i class="fa fa-check"></i>Combine Data Sets (Stacking)</a></li>
+<li class="chapter" data-level="" data-path="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#merge-data-sets"><i class="fa fa-check"></i>Merge Data Sets</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="descriptive-statistics-hypothesis-testing.html"><a href="descriptive-statistics-hypothesis-testing.html"><i class="fa fa-check"></i><b>2</b> Descriptive Statistics &amp; Hypothesis Testing</a>
+<ul>
+<li class="chapter" data-level="" data-path="descriptive-statistics-hypothesis-testing.html"><a href="descriptive-statistics-hypothesis-testing.html#descriptive-statistics"><i class="fa fa-check"></i>Descriptive Statistics</a>
+<ul>
+<li class="chapter" data-level="" data-path="descriptive-statistics-hypothesis-testing.html"><a href="descriptive-statistics-hypothesis-testing.html#continuous-vs.-categorical-variables"><i class="fa fa-check"></i>Continuous vs. Categorical Variables</a></li>
+<li class="chapter" data-level="" data-path="descriptive-statistics-hypothesis-testing.html"><a href="descriptive-statistics-hypothesis-testing.html#continuous-variables"><i class="fa fa-check"></i>Continuous Variables</a></li>
+<li class="chapter" data-level="" data-path="descriptive-statistics-hypothesis-testing.html"><a href="descriptive-statistics-hypothesis-testing.html#categorical-variables"><i class="fa fa-check"></i>Categorical Variables</a></li>
+<li class="chapter" data-level="" data-path="descriptive-statistics-hypothesis-testing.html"><a href="descriptive-statistics-hypothesis-testing.html#how-to-create-table-1-with-gtsummary"><i class="fa fa-check"></i>How to Create ‘Table 1’ with <code>gtsummary</code></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="descriptive-statistics-hypothesis-testing.html"><a href="descriptive-statistics-hypothesis-testing.html#basic-hypothesis-testing"><i class="fa fa-check"></i>Basic Hypothesis Testing</a>
+<ul>
+<li class="chapter" data-level="" data-path="descriptive-statistics-hypothesis-testing.html"><a href="descriptive-statistics-hypothesis-testing.html#students-t-test"><i class="fa fa-check"></i>Student’s T-test</a></li>
+<li class="chapter" data-level="" data-path="descriptive-statistics-hypothesis-testing.html"><a href="descriptive-statistics-hypothesis-testing.html#analysis-of-variance-anova"><i class="fa fa-check"></i>Analysis of Variance (ANOVA)</a></li>
+<li class="chapter" data-level="" data-path="descriptive-statistics-hypothesis-testing.html"><a href="descriptive-statistics-hypothesis-testing.html#categorical-data-analysis"><i class="fa fa-check"></i>Categorical Data Analysis</a></li>
+<li class="chapter" data-level="" data-path="descriptive-statistics-hypothesis-testing.html"><a href="descriptive-statistics-hypothesis-testing.html#multiple-comparisons"><i class="fa fa-check"></i>Multiple Comparisons</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="data-visualization.html"><a href="data-visualization.html"><i class="fa fa-check"></i><b>3</b> Data Visualization</a>
+<ul>
+<li class="chapter" data-level="" data-path="data-visualization.html"><a href="data-visualization.html#basic-plots"><i class="fa fa-check"></i>Basic Plots</a>
+<ul>
+<li class="chapter" data-level="" data-path="data-visualization.html"><a href="data-visualization.html#scatterplots"><i class="fa fa-check"></i>Scatterplots</a></li>
+<li class="chapter" data-level="" data-path="data-visualization.html"><a href="data-visualization.html#line-plots"><i class="fa fa-check"></i>Line Plots</a></li>
+<li class="chapter" data-level="" data-path="data-visualization.html"><a href="data-visualization.html#bar-plots"><i class="fa fa-check"></i>Bar Plots</a></li>
+<li class="chapter" data-level="" data-path="data-visualization.html"><a href="data-visualization.html#histogram-and-density-plots"><i class="fa fa-check"></i>Histogram and Density Plots</a></li>
+<li class="chapter" data-level="" data-path="data-visualization.html"><a href="data-visualization.html#boxplots"><i class="fa fa-check"></i>Boxplots</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="data-visualization.html"><a href="data-visualization.html#ggplot2-plots"><i class="fa fa-check"></i><code>ggplot2</code> Plots</a>
+<ul>
+<li class="chapter" data-level="" data-path="data-visualization.html"><a href="data-visualization.html#scatterplots-1"><i class="fa fa-check"></i>Scatterplots</a></li>
+<li class="chapter" data-level="" data-path="data-visualization.html"><a href="data-visualization.html#barplots"><i class="fa fa-check"></i>Barplots</a></li>
+<li class="chapter" data-level="" data-path="data-visualization.html"><a href="data-visualization.html#histogram"><i class="fa fa-check"></i>Histogram</a></li>
+<li class="chapter" data-level="" data-path="data-visualization.html"><a href="data-visualization.html#boxplots-1"><i class="fa fa-check"></i>Boxplots</a></li>
+<li class="chapter" data-level="" data-path="data-visualization.html"><a href="data-visualization.html#formatting-plots"><i class="fa fa-check"></i>Formatting Plots</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="data-visualization.html"><a href="data-visualization.html#other-plots"><i class="fa fa-check"></i>Other Plots</a>
+<ul>
+<li class="chapter" data-level="" data-path="data-visualization.html"><a href="data-visualization.html#forest-plot"><i class="fa fa-check"></i>Forest Plot</a></li>
+<li class="chapter" data-level="" data-path="data-visualization.html"><a href="data-visualization.html#correlation-matrix"><i class="fa fa-check"></i>Correlation Matrix</a></li>
+<li class="chapter" data-level="" data-path="data-visualization.html"><a href="data-visualization.html#interactive-plots-plotly"><i class="fa fa-check"></i>Interactive Plots: Plotly</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="data-visualization.html"><a href="data-visualization.html#saving-the-plot"><i class="fa fa-check"></i>Saving the Plot</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="resources.html"><a href="resources.html"><i class="fa fa-check"></i><b>4</b> Resources</a>
+<ul>
+<li class="chapter" data-level="" data-path="resources.html"><a href="resources.html#cran-repository"><i class="fa fa-check"></i>CRAN repository</a></li>
+<li class="chapter" data-level="" data-path="resources.html"><a href="resources.html#r-and-rstudio-guides"><i class="fa fa-check"></i>R and RStudio Guides</a></li>
+<li class="chapter" data-level="" data-path="resources.html"><a href="resources.html#other-r-package-guides"><i class="fa fa-check"></i>Other R Package Guides</a></li>
+<li class="chapter" data-level="" data-path="resources.html"><a href="resources.html#data-visualization-1"><i class="fa fa-check"></i>Data Visualization</a></li>
+<li class="chapter" data-level="" data-path="resources.html"><a href="resources.html#example-datasets"><i class="fa fa-check"></i>Example Datasets</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introduction to Statistical Computing: R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="data-visualization" class="section level1 hasAnchor" number="3">
+<h1><span class="header-section-number">3</span> Data Visualization<a href="data-visualization.html#data-visualization" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>R is a great tool for data visualization. In a lot of situations, it is highly commended for having the tools to provide good looking plots over other coding languages.</p>
+<div id="basic-plots" class="section level2 unnumbered hasAnchor">
+<h2>Basic Plots<a href="data-visualization.html#basic-plots" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>R provides functions from the <code>base</code> package to allow visualizing some data. To draw some plots, you can use the <code>plot()</code> function and takes in the parameters for the x-axis and y-axis. These will be briefly explained or provided a brief code example since there are stronger, and more visually pleasing visualization options available!</p>
+<div id="scatterplots" class="section level3 unnumbered hasAnchor">
+<h3>Scatterplots<a href="data-visualization.html#scatterplots" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Another argument that the function <code>plot</code> can take in is for the <code>type</code> argument. The <code>type</code> can be one of the following:</p>
+<ul>
+<li><code>p</code> = Points (this is the default type for plots)</li>
+<li><code>l</code> = Lines</li>
+<li><code>b</code> = For both; points are connected by a line</li>
+<li><code>o</code> = For both “overplotted”</li>
+<li><code>h</code> = For histogram like vertical lines</li>
+<li><code>s</code> = For stair steps</li>
+<li><code>n</code> = For no plotting</li>
+</ul>
+<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="data-visualization.html#cb127-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)</span>
+<span id="cb127-2"><a href="data-visualization.html#cb127-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">*</span> x</span>
+<span id="cb127-3"><a href="data-visualization.html#cb127-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb127-4"><a href="data-visualization.html#cb127-4" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))  <span class="co"># Function to output side-by-side plots 1 row and 2 columns format</span></span>
+<span id="cb127-5"><a href="data-visualization.html#cb127-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x, y)</span>
+<span id="cb127-6"><a href="data-visualization.html#cb127-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x, y, <span class="at">type =</span> <span class="st">&quot;l&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/base_plot_1-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="data-visualization.html#cb128-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x, y, <span class="at">type =</span> <span class="st">&quot;b&quot;</span>)</span>
+<span id="cb128-2"><a href="data-visualization.html#cb128-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x, y, <span class="at">type =</span> <span class="st">&quot;h&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/base_plot_1-2.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>The <code>plot()</code> function can take in further arguments for various features of drawing a plot in R. Some of the important ones are:</p>
+<ul>
+<li><code>main</code> = Main Title / Title of the Plot</li>
+<li><code>xlab</code> = X-axis title</li>
+<li><code>ylab</code> = Y-axis title</li>
+<li><code>pch</code> = Marker Style (shape and fill or no fill)</li>
+<li><code>frame</code> = Border around the plot</li>
+<li><code>col</code> = Change the color fo the markers</li>
+</ul>
+<p><code>pch</code> is the option for various marker styles. Here is a list of the various marker types that you can use. These numbers can also be used with the <code>ggplot2</code> plots as well.</p>
+<center>
+<img src = "http://www.sthda.com/sthda/RDoc/figure/graphs/r-plot-pch-symbols-points-in-r.png" width = "400">
+</center>
+<p>And to plot from one of the data columns read into R, the column(s) of interest can be called using the appropriate notation.</p>
+<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="data-visualization.html#cb129-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="at">x =</span> low_birth_all<span class="sc">$</span>birthMonth, <span class="at">y =</span> low_birth_all<span class="sc">$</span>prenatalVisits, </span>
+<span id="cb129-2"><a href="data-visualization.html#cb129-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">&quot;Number of Prenatal Visits by Month&quot;</span>,</span>
+<span id="cb129-3"><a href="data-visualization.html#cb129-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Month&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Number of Prenatal Visits&quot;</span>, <span class="at">pch =</span> <span class="dv">19</span>, <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/base_plot_2-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="line-plots" class="section level3 unnumbered hasAnchor">
+<h3>Line Plots<a href="data-visualization.html#line-plots" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Using the <code>plot()</code> function, the <code>type=l</code> argument or <code>type=b</code> can be used to draw line plots.</p>
+<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="data-visualization.html#cb130-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Want to plot just the non-smokers</span></span>
+<span id="cb130-2"><a href="data-visualization.html#cb130-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)</span>
+<span id="cb130-3"><a href="data-visualization.html#cb130-3" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> x<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb130-4"><a href="data-visualization.html#cb130-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb130-5"><a href="data-visualization.html#cb130-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="at">x =</span> x, <span class="at">y =</span> y, <span class="at">type =</span> <span class="st">&quot;b&quot;</span>, <span class="at">pch =</span> <span class="dv">19</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-97-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="bar-plots" class="section level3 unnumbered hasAnchor">
+<h3>Bar Plots<a href="data-visualization.html#bar-plots" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>To draw the barplots using the <code>base</code> R package, the following can be done:</p>
+<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb131-1"><a href="data-visualization.html#cb131-1" aria-hidden="true" tabindex="-1"></a>low_bwt_table <span class="ot">&lt;-</span> low_birth_all <span class="sc">%&gt;%</span></span>
+<span id="cb131-2"><a href="data-visualization.html#cb131-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(birthMonth) <span class="sc">%&gt;%</span></span>
+<span id="cb131-3"><a href="data-visualization.html#cb131-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">prenatalVisits =</span> <span class="fu">n</span>())</span>
+<span id="cb131-4"><a href="data-visualization.html#cb131-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb131-5"><a href="data-visualization.html#cb131-5" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(<span class="at">height =</span> low_bwt_table<span class="sc">$</span>prenatalVisits, <span class="at">names.arg =</span> <span class="fu">unique</span>(low_bwt_table<span class="sc">$</span>birthMonth))</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-98-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>Notice that the height is for the y-axis and the width stands for the x-axis here.</p>
+</div>
+<div id="histogram-and-density-plots" class="section level3 unnumbered hasAnchor">
+<h3>Histogram and Density Plots<a href="data-visualization.html#histogram-and-density-plots" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>To look at the distribution of the data for certain values, histograms and density plots are also useful. The following is an example of the basic method to do so:</p>
+<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="data-visualization.html#cb132-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
+<span id="cb132-2"><a href="data-visualization.html#cb132-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rnorm</span>(<span class="dv">400</span>, <span class="at">mean=</span><span class="dv">50</span>, <span class="at">sd=</span><span class="dv">5</span>), <span class="fu">rnorm</span>(<span class="dv">400</span>, <span class="at">mean=</span><span class="dv">75</span>, <span class="at">sd=</span><span class="dv">5</span>))</span>
+<span id="cb132-3"><a href="data-visualization.html#cb132-3" aria-hidden="true" tabindex="-1"></a>dens <span class="ot">&lt;-</span> <span class="fu">density</span>(x)</span>
+<span id="cb132-4"><a href="data-visualization.html#cb132-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb132-5"><a href="data-visualization.html#cb132-5" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))  </span>
+<span id="cb132-6"><a href="data-visualization.html#cb132-6" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(x, <span class="at">col =</span> <span class="st">&quot;steelblue&quot;</span>, <span class="at">breaks =</span> <span class="dv">30</span>)</span>
+<span id="cb132-7"><a href="data-visualization.html#cb132-7" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(dens, <span class="at">col =</span> <span class="st">&quot;steelblue&quot;</span>, <span class="at">main =</span> <span class="st">&quot;Density Plot Example&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-99-1.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="boxplots" class="section level3 unnumbered hasAnchor">
+<h3>Boxplots<a href="data-visualization.html#boxplots" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>For a different form of distribution visualization, a boxplot is also popular. The following is an example of the basic method to do so:</p>
+<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb133-1"><a href="data-visualization.html#cb133-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(prenatalVisits <span class="sc">~</span> birthMonth, <span class="at">data =</span> low_birth_all)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-100-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>However, although these plots are relatively “simple” to code, they have limited capabilities design-wise. For more design capabilities, you can use <code>ggplot2</code> and <code>plotly</code> packages.</p>
+</div>
+</div>
+<div id="ggplot2-plots" class="section level2 unnumbered hasAnchor">
+<h2><code>ggplot2</code> Plots<a href="data-visualization.html#ggplot2-plots" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The <code>ggplot2</code> package is commonly used for data visualization in R. Although base plots can be visualized in a quick and easy manner, they are not the most aesthetic of plots. The <code>ggplot2</code> package provides more aesthetic options and more flexibility. The ggplot2 plot requires three elements:</p>
+<ul>
+<li>data</li>
+<li>aesthetic mapping using the <code>aes()</code> argument
+<ul>
+<li>This helps to specify x, y variables, alongside the color and fill (these are determined by categorical values).</li>
+</ul></li>
+<li>at least one layer created with the <code>geom</code> function
+<ul>
+<li>This specifies the type of plot that gets generated.
+<ul>
+<li><code>geom_point</code> = Scatter Plot</li>
+<li><code>geom_density</code> = Density Plot</li>
+<li><code>geom_line</code> = Line Plot</li>
+<li><code>geom_histogram</code> = Histogram</li>
+<li><code>geom_bar</code> = Bar plot</li>
+<li><code>geom_smooth</code> = Smooth line such as regression line</li>
+<li><code>geom_text</code> = Text annotations</li>
+<li><code>geom_boxplot</code> = Box plot</li>
+<li><code>geom_violin</code> = Violin plot</li>
+<li><code>geom_dotplot</code> = Dot plot</li>
+</ul></li>
+</ul></li>
+</ul>
+<p>There are several more <code>geom</code> layers available in ggplot2 that has not been listed above. These can be explored further online. For this guide, the most commonly plotted <code>geom</code> layers will be demonstrated.</p>
+<p>In <code>ggplot2</code>, to draw a plot, the first line of code always starts with the <code>ggplot()</code>. This function requires two of the three components mentioned before: data and the aesthetic mapping. In the aesthetic mapping, you can type in the column names for the x and y-axes. These column names do not require quotation marks. There are two more key other features of <strong>aesthetic mapping</strong> available: <code>color</code> and <code>fill</code>.</p>
+<p>The options for color and fill are optional features, but these are useful when you want to use color to represent unique categorical values. <code>color</code> and <code>fill</code> might sound similar option-wise, but there is a slight difference:</p>
+<ul>
+<li><code>color</code> option colors the plot type for each unique categorical value
+<ul>
+<li>In certain options, the color option is more for the outline color in the geom layer.</li>
+</ul></li>
+<li><code>fill</code> option colors the plot type for each unique categorical value but actually fills in the geom layer.</li>
+</ul>
+<p>Using either <code>color</code> or <code>fill</code> or both, this automatically generates a legend to the right-hand side of the plot in <code>ggplot2</code>. Doing so allows the user to know which color is assigned to which value. To learn more about dealing with <code>color</code> and <code>fill</code> in R, click <a href="https://r-graph-gallery.com/ggplot2-color.html">here</a>.</p>
+<p>The structure of the ggplots typically first call the <code>ggplot()</code> function, which is followed up by the <code>+</code> symbol. After, the <code>geom</code> layer of interest can be added. To add more layers or change the way elements look, keep adding the <code>+</code> symbol after you finish that line of code.</p>
+<p>Here is an example of ggplot code in R:</p>
+<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="data-visualization.html#cb134-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mydata, <span class="fu">aes</span>(<span class="at">x =</span> x_var_name, <span class="at">y =</span> y_var_name)) <span class="sc">+</span></span>
+<span id="cb134-2"><a href="data-visualization.html#cb134-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
+<p>One other thing to note is that there are various other features available for drawing plots through <code>ggplot2</code> package. You are able to manually change colors instead of using the default palettes, change the background design of the plot, or the overall plot theme. This will be highlighted in later sections of this chapter.</p>
+<div id="scatterplots-1" class="section level3 unnumbered hasAnchor">
+<h3>Scatterplots<a href="data-visualization.html#scatterplots-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The scatter plot shows the relationship/trend between two continuous (numerical) variables.</p>
+<p><strong>Example:</strong> Draw the scatter plot of <code>age</code> by birthweight <code>bwt</code>.</p>
+<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="data-visualization.html#cb135-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(low_birth_all, <span class="fu">aes</span>(<span class="at">x =</span> age, <span class="at">y =</span> bwt)) <span class="sc">+</span> </span>
+<span id="cb135-2"><a href="data-visualization.html#cb135-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">&quot;blue&quot;</span>) <span class="sc">+</span>                        <span class="co"># Color the points blue</span></span>
+<span id="cb135-3"><a href="data-visualization.html#cb135-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Scatterplot of age by birthweight&quot;</span>) <span class="sc">+</span> <span class="co"># Add in a title </span></span>
+<span id="cb135-4"><a href="data-visualization.html#cb135-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Age (yrs)&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Birthweight (g)&quot;</span>)        <span class="co"># Relabel the x and y-axes titles</span></span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-102-1.png" width="672" /></p>
+<p>When you plot a scatter plot in R, you also have the option drawing a regression line using the <code>geom_smooth()</code> function. This is typically used to draw a straight line between the x and y-axes.</p>
+<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="data-visualization.html#cb136-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(low_birth_all, <span class="fu">aes</span>(<span class="at">x =</span> age, <span class="at">y =</span> bwt)) <span class="sc">+</span> </span>
+<span id="cb136-2"><a href="data-visualization.html#cb136-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">&quot;blue&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb136-3"><a href="data-visualization.html#cb136-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> T, <span class="at">col =</span> <span class="dv">2</span>) <span class="sc">+</span>      <span class="co"># Draw a straight line and add in the standard error line</span></span>
+<span id="cb136-4"><a href="data-visualization.html#cb136-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Scatterplot of age by birthweight&quot;</span>,  <span class="co"># Add title</span></span>
+<span id="cb136-5"><a href="data-visualization.html#cb136-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Age (yrs)&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Birthweight (g)&quot;</span>)       <span class="co"># Relabel x and y-axes titles</span></span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-103-1.png" width="672" /></p>
+<p>Within the <code>geom_point()</code> function, there are multiple options that you could use to help advance your visualization. Color and fill arguments can be done inside the <code>ggplot()</code> function, and highly suggested. But it can also be done inside the <code>geom_point</code> function if wished. However, the point shape, size, and transparency can be set in the <code>geom_point</code> function.</p>
+<p>This information can help illustrate how different groups within a categorical variable are distributed across the other two features of interest.</p>
+<p><strong>Example:</strong> Overlaid scatterplots and regression lines by <code>smoke</code> status.</p>
+<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="data-visualization.html#cb137-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(low_birth_all, <span class="fu">aes</span>(<span class="at">x=</span>age, <span class="at">y=</span>bwt, <span class="at">color =</span> <span class="fu">factor</span>(smoke))) <span class="sc">+</span>        <span class="co"># Set color to vary on smoking status</span></span>
+<span id="cb137-2"><a href="data-visualization.html#cb137-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span>                                                         <span class="co"># Draw scatter plot</span></span>
+<span id="cb137-3"><a href="data-visualization.html#cb137-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se=</span>F, <span class="fu">aes</span>(<span class="at">group =</span> <span class="fu">factor</span>(smoke))) <span class="sc">+</span>         <span class="co"># Draw regression lines by smoking</span></span>
+<span id="cb137-4"><a href="data-visualization.html#cb137-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Scatterplot of age by birthweight&quot;</span>,                      <span class="co"># Add title and relabel axes titles</span></span>
+<span id="cb137-5"><a href="data-visualization.html#cb137-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Age (yrs)&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Birthweight (g)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb137-6"><a href="data-visualization.html#cb137-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">name =</span> <span class="st">&quot;Smoking Status&quot;</span>,                            <span class="co"># Change the legend title </span></span>
+<span id="cb137-7"><a href="data-visualization.html#cb137-7" aria-hidden="true" tabindex="-1"></a>                     <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;No&quot;</span>, <span class="st">&quot;Yes&quot;</span>),                            <span class="co"># Re-code the values 0=no; 1= yes for smoking status</span></span>
+<span id="cb137-8"><a href="data-visualization.html#cb137-8" aria-hidden="true" tabindex="-1"></a>                     <span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;red&quot;</span>)) <span class="sc">+</span>                        <span class="co"># Specify what colors each value should be.</span></span>
+<span id="cb137-9"><a href="data-visualization.html#cb137-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()                                                        <span class="co"># change theme from default to classic.</span></span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-104-1.png" width="672" /></p>
+<p>To change the shape of the points, use the <code>shape =</code> argument inside the geom_point function. The shape argument takes in numbers from the image above with the various <code>pch</code> options. For colored and fill options, you can use numbers 15 through 25.</p>
+<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="data-visualization.html#cb138-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(low_birth_all, <span class="fu">aes</span>(<span class="at">x=</span>age, <span class="at">y=</span>bwt, <span class="at">color =</span> <span class="fu">factor</span>(smoke))) <span class="sc">+</span>        <span class="co"># Set color to vary on smoking status</span></span>
+<span id="cb138-2"><a href="data-visualization.html#cb138-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">shape =</span> <span class="fu">factor</span>(smoke))) <span class="sc">+</span>                               <span class="co"># Draw scatter plot</span></span>
+<span id="cb138-3"><a href="data-visualization.html#cb138-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Scatterplot of age by birthweight&quot;</span>,                      <span class="co"># Add title and relabel axes titles</span></span>
+<span id="cb138-4"><a href="data-visualization.html#cb138-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Age (yrs)&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Birthweight (g)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb138-5"><a href="data-visualization.html#cb138-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_shape_manual</span>(<span class="at">name =</span> <span class="st">&quot;Smoking Status&quot;</span>,                            <span class="co"># Change the legend title</span></span>
+<span id="cb138-6"><a href="data-visualization.html#cb138-6" aria-hidden="true" tabindex="-1"></a>                     <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;No&quot;</span>, <span class="st">&quot;Yes&quot;</span>),                            <span class="co"># Re-code the values 0 = no; 1 = yes</span></span>
+<span id="cb138-7"><a href="data-visualization.html#cb138-7" aria-hidden="true" tabindex="-1"></a>                     <span class="at">values =</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">19</span>)) <span class="sc">+</span>                                <span class="co"># Specify what shapes each value should be</span></span>
+<span id="cb138-8"><a href="data-visualization.html#cb138-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">name =</span> <span class="st">&quot;Smoking Status&quot;</span>,                            <span class="co"># Change the legend title </span></span>
+<span id="cb138-9"><a href="data-visualization.html#cb138-9" aria-hidden="true" tabindex="-1"></a>                     <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;No&quot;</span>, <span class="st">&quot;Yes&quot;</span>),                            <span class="co"># Re-code the values 0=no; 1= yes for smoking status</span></span>
+<span id="cb138-10"><a href="data-visualization.html#cb138-10" aria-hidden="true" tabindex="-1"></a>                     <span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;red&quot;</span>)) <span class="sc">+</span>                        <span class="co"># Specify what colors each value should be.</span></span>
+<span id="cb138-11"><a href="data-visualization.html#cb138-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()                                                        <span class="co"># change theme from default to classic.</span></span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-105-1.png" width="672" /></p>
+<p>One thing to note is that <code>pch</code> options 15 through 20 for shapes have the same fill color and border color, so you only need to define the <code>color</code> argument. However, <code>pch</code> options 21 through 25 have a separate border color and fill color option and you can set it so that they differ from each other. This can be demonstrated as the following:</p>
+<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="data-visualization.html#cb139-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(low_birth_all, <span class="fu">aes</span>(<span class="at">x =</span> age, <span class="at">y =</span> bwt)) <span class="sc">+</span> </span>
+<span id="cb139-2"><a href="data-visualization.html#cb139-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">&quot;black&quot;</span>, <span class="at">fill =</span> <span class="st">&quot;steelblue&quot;</span>, <span class="at">shape =</span> <span class="dv">21</span>) <span class="sc">+</span>   <span class="co"># Color the points blue but line them black</span></span>
+<span id="cb139-3"><a href="data-visualization.html#cb139-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Scatterplot of age by birthweight&quot;</span>) <span class="sc">+</span>             <span class="co"># Add in a title </span></span>
+<span id="cb139-4"><a href="data-visualization.html#cb139-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Age (yrs)&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Birthweight (g)&quot;</span>)                    <span class="co"># Relabel the x and y-axes titles</span></span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-106-1.png" width="672" /></p>
+<p>Another option that you can use is to change the size of the markers/points of the plots. You can define this using the <code>size =</code> argument in <code>geom_point()</code> as portrayed below:</p>
+<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="data-visualization.html#cb140-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(low_birth_all, <span class="fu">aes</span>(<span class="at">x =</span> age, <span class="at">y =</span> bwt)) <span class="sc">+</span> </span>
+<span id="cb140-2"><a href="data-visualization.html#cb140-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">&quot;black&quot;</span>, <span class="at">fill =</span> <span class="st">&quot;steelblue&quot;</span>, <span class="at">shape =</span> <span class="dv">21</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span>   <span class="co"># Change the size to 3 (bigger)</span></span>
+<span id="cb140-3"><a href="data-visualization.html#cb140-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Scatterplot of age by birthweight&quot;</span>) <span class="sc">+</span>                       <span class="co"># Add in a title </span></span>
+<span id="cb140-4"><a href="data-visualization.html#cb140-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Age (yrs)&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Birthweight (g)&quot;</span>)                              <span class="co"># Relabel the x and y-axes titles</span></span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-107-1.png" width="672" /></p>
+<p>This last option that might be of interest is the <code>alpha</code> argument. This argument deals with the “opacity” of the markers/graph element. The input is a decimal value that determines the transparency of points. If you would like to see points that may be overlapping each other, you can set the alpha to a value of 0.4 to 0.6 (commonly used values) for semi-transparent points.</p>
+<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="data-visualization.html#cb141-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(low_birth_all, <span class="fu">aes</span>(<span class="at">x =</span> age, <span class="at">y =</span> bwt)) <span class="sc">+</span> </span>
+<span id="cb141-2"><a href="data-visualization.html#cb141-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">&quot;black&quot;</span>, <span class="at">fill =</span> <span class="st">&quot;steelblue&quot;</span>, <span class="at">shape =</span> <span class="dv">21</span>, <span class="at">size =</span> <span class="dv">2</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span>   <span class="co"># Set the point transparency to 0.5</span></span>
+<span id="cb141-3"><a href="data-visualization.html#cb141-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Scatterplot of age by birthweight&quot;</span>) <span class="sc">+</span>                                    <span class="co"># Add in a title </span></span>
+<span id="cb141-4"><a href="data-visualization.html#cb141-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Age (yrs)&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Birthweight (g)&quot;</span>)                                           <span class="co"># Relabel the x and y-axes titles</span></span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-108-1.png" width="672" /></p>
+</div>
+<div id="barplots" class="section level3 unnumbered hasAnchor">
+<h3>Barplots<a href="data-visualization.html#barplots" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Bar plots are typically used to display the count information of categorical data. In R, this is mostly done through <code>geom_bar()</code> function. This function makes the “height” of the bar (y-axis) proportional to the number of cases in each group (x-axis values).</p>
+<ul>
+<li>Essentially, this function does a calculation with the function called <code>stat_count()</code> to count the number of cases of each group indicated by the x-axis.</li>
+</ul>
+<p>This function works best if there is no “count” value in the data frame already.</p>
+<p><strong>Example:</strong> Bar plot of total number of participants by <code>race</code>.</p>
+<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="data-visualization.html#cb142-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(low_birth_all, <span class="fu">aes</span>(<span class="at">x =</span> race, <span class="at">fill =</span> race)) <span class="sc">+</span> </span>
+<span id="cb142-2"><a href="data-visualization.html#cb142-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>() <span class="sc">+</span>                                        <span class="co"># Draw Bar plot</span></span>
+<span id="cb142-3"><a href="data-visualization.html#cb142-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Barplot of Number of People by Race&quot;</span>) <span class="sc">+</span>    <span class="co"># Add title</span></span>
+<span id="cb142-4"><a href="data-visualization.html#cb142-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Race&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Number of Participants&quot;</span>) <span class="sc">+</span>    <span class="co"># Relabel the axes titles</span></span>
+<span id="cb142-5"><a href="data-visualization.html#cb142-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()                                     <span class="co"># Change plot theme</span></span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-109-1.png" width="672" /></p>
+<p>However, this is the case only if each row is a unique participant like this data. If we wanted to represent the total value of a continuous variable instead of the count, then we can use the <code>stat = "identity"</code> argument.</p>
+<ul>
+<li>This allows you to not have to manually transform the data.</li>
+<li>All you have to do is specify the y-axis and set the argument to <code>stat = "identity"</code>.</li>
+</ul>
+<p>For bar plots, you can also combine multiple bar plots into one by inputting the <code>fill=</code> argument in the <code>aes()</code> function. The default is set to “stack” the bars on top of each other, but if you wanted them side-by-side, add in the <code>position = "dodge"</code> argument within the geom_bar() function.</p>
+<p><strong>Example:</strong> bar plot of total number of prenatal visits for each race by smoking status</p>
+<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="data-visualization.html#cb143-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(low_birth_all, <span class="fu">aes</span>(<span class="at">x =</span> race, <span class="at">y =</span> prenatalVisits, <span class="at">fill =</span> <span class="fu">factor</span>(smoke))) <span class="sc">+</span>  <span class="co"># Add two different bars by smoke status</span></span>
+<span id="cb143-2"><a href="data-visualization.html#cb143-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>, <span class="at">position =</span> <span class="st">&quot;dodge&quot;</span>) <span class="sc">+</span>                               <span class="co"># Draw total of prenatal Visits for y-axis and side-by-side bars</span></span>
+<span id="cb143-3"><a href="data-visualization.html#cb143-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Barplot of Number of Prenatal Visits by Race&quot;</span>) <span class="sc">+</span>                       <span class="co"># Add title</span></span>
+<span id="cb143-4"><a href="data-visualization.html#cb143-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Race&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Number of Prenatal Visits&quot;</span>) <span class="sc">+</span>                             <span class="co"># Relabel the x and y-axes titles</span></span>
+<span id="cb143-5"><a href="data-visualization.html#cb143-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">name =</span> <span class="st">&quot;Smoking Status&quot;</span>, <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;No&quot;</span>, <span class="st">&quot;Yes&quot;</span>),             <span class="co"># Format the legend for the color of bars</span></span>
+<span id="cb143-6"><a href="data-visualization.html#cb143-6" aria-hidden="true" tabindex="-1"></a>                    <span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;red&quot;</span>)) <span class="sc">+</span> </span>
+<span id="cb143-7"><a href="data-visualization.html#cb143-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()                                                                 <span class="co"># Change the theme of the plot</span></span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-110-1.png" width="672" /></p>
+<p>There is an alternative way to draw plots in <code>ggplot2</code> and that is through the <code>geom_col()</code> function instead of the <code>geom_bar()</code> function.</p>
+<ul>
+<li>This function does not transform the data like <code>geom_bar()</code> does.</li>
+<li>If your data already contains a certain “count” data in a variable already, then this function should work better than the <code>geom_bar()</code> function.
+<ul>
+<li>If it does not contain the count data, then you have to calculate it on your own end.</li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="data-visualization.html#cb144-1" aria-hidden="true" tabindex="-1"></a>count_bwt <span class="ot">&lt;-</span> low_birth_all <span class="sc">%&gt;%</span>                        <span class="co"># Calculating the count of all unique races.</span></span>
+<span id="cb144-2"><a href="data-visualization.html#cb144-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(race) <span class="sc">%&gt;%</span></span>
+<span id="cb144-3"><a href="data-visualization.html#cb144-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">Count =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb144-4"><a href="data-visualization.html#cb144-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.data.frame</span>(.)</span>
+<span id="cb144-5"><a href="data-visualization.html#cb144-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb144-6"><a href="data-visualization.html#cb144-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(count_bwt, <span class="fu">aes</span>(<span class="at">x =</span> race, <span class="at">y =</span> Count, <span class="at">fill =</span> race)) <span class="sc">+</span></span>
+<span id="cb144-7"><a href="data-visualization.html#cb144-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span> </span>
+<span id="cb144-8"><a href="data-visualization.html#cb144-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Barplot of Number of People by Race&quot;</span>) <span class="sc">+</span>    <span class="co"># Add title</span></span>
+<span id="cb144-9"><a href="data-visualization.html#cb144-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Race&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Number of Participants&quot;</span>) <span class="sc">+</span>    <span class="co"># Relabel the axes titles</span></span>
+<span id="cb144-10"><a href="data-visualization.html#cb144-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()                                     <span class="co"># Change plot theme</span></span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-111-1.png" width="672" /></p>
+</div>
+<div id="histogram" class="section level3 unnumbered hasAnchor">
+<h3>Histogram<a href="data-visualization.html#histogram" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Histograms show the underlying frequency distribution of continuous data. In <code>ggplot2</code>, histograms plot with a default “bin” value of 30. To alter this, use the argument <code>binwidth</code>. This will override the <code>bin</code> value and adjust to the value you set. Sometimes, R will advise you to override their default, but it is up to your discretion to adjust this value.</p>
+<p><strong>Example</strong>: Histogram of the continuous variable birthweight <code>bwt</code> with a vertical red reference line added to show the mean birthweight</p>
+<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="data-visualization.html#cb145-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(low_birth_all, <span class="fu">aes</span>(<span class="at">x =</span> bwt)) <span class="sc">+</span> </span>
+<span id="cb145-2"><a href="data-visualization.html#cb145-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">col =</span> <span class="st">&quot;black&quot;</span>, <span class="at">fill =</span> <span class="st">&quot;pink&quot;</span>, <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">200</span>, <span class="dv">5000</span>, <span class="dv">300</span>)) <span class="sc">+</span> </span>
+<span id="cb145-3"><a href="data-visualization.html#cb145-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="fu">aes</span>(<span class="at">xintercept =</span> <span class="fu">mean</span>(bwt, <span class="at">na.rm =</span> T)), </span>
+<span id="cb145-4"><a href="data-visualization.html#cb145-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">color =</span> <span class="st">&quot;red&quot;</span>, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>, <span class="at">size =</span> <span class="fl">1.25</span>) <span class="sc">+</span> </span>
+<span id="cb145-5"><a href="data-visualization.html#cb145-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Histogram of low birthweight&quot;</span>, </span>
+<span id="cb145-6"><a href="data-visualization.html#cb145-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Birthweight (g)&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Count&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-112-1.png" width="672" /></p>
+<p>You can also add multiple histograms in one plot by using the <code>fill</code> argument again. Here is an example:</p>
+<p><strong>Example:</strong> Histogram of the continuous variable birthweight <code>bwt</code> with a vertical red reference line added to show the mean birthweight.</p>
+<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="data-visualization.html#cb146-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(low_birth_all, <span class="fu">aes</span>(<span class="at">x=</span>bwt, <span class="at">fill=</span><span class="fu">factor</span>(smoke))) <span class="sc">+</span>                    <span class="co"># Draw two histograms by smoke status</span></span>
+<span id="cb146-2"><a href="data-visualization.html#cb146-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="fl">0.5</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>, <span class="at">position =</span> <span class="st">&quot;identity&quot;</span>,       <span class="co"># alter binwidth and set transparency level</span></span>
+<span id="cb146-3"><a href="data-visualization.html#cb146-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">col =</span> <span class="st">&quot;black&quot;</span>, <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">200</span>, <span class="dv">5000</span>, <span class="dv">300</span>)) <span class="sc">+</span> </span>
+<span id="cb146-4"><a href="data-visualization.html#cb146-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="fu">aes</span>(<span class="at">xintercept =</span> <span class="fu">mean</span>(bwt, <span class="at">na.rm =</span> T)), <span class="at">color =</span> <span class="st">&quot;red&quot;</span>,        <span class="co"># Add the line at the mean birthweight value</span></span>
+<span id="cb146-5"><a href="data-visualization.html#cb146-5" aria-hidden="true" tabindex="-1"></a>             <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>, <span class="at">size =</span> <span class="fl">1.25</span>) <span class="sc">+</span>  </span>
+<span id="cb146-6"><a href="data-visualization.html#cb146-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Histogram of low birthweight&quot;</span>,                             <span class="co"># Add title and relabel axes titles</span></span>
+<span id="cb146-7"><a href="data-visualization.html#cb146-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Birthweight (g)&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Count&quot;</span>) <span class="sc">+</span>                          </span>
+<span id="cb146-8"><a href="data-visualization.html#cb146-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_discrete</span>(<span class="at">name =</span> <span class="st">&quot;Smoking Status&quot;</span>, <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;No&quot;</span>, <span class="st">&quot;Yes&quot;</span>))    <span class="co"># Format the legend</span></span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-113-1.png" width="672" /></p>
+</div>
+<div id="boxplots-1" class="section level3 unnumbered hasAnchor">
+<h3>Boxplots<a href="data-visualization.html#boxplots-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Boxplots show the underlying distribution of continuous data based on the five number summary statistics: minimum, 1st quartile, median, 3rd quartile, and maximum. This takes in the categorical variable for the x-axis and the continuous variable for the y-axis.</p>
+<p><strong>Example:</strong> boxplots of <code>bwt</code> by smoke status</p>
+<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="data-visualization.html#cb147-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(low_birth_all, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(smoke), <span class="at">y =</span> bwt, <span class="at">fill =</span> <span class="fu">factor</span>(smoke))) <span class="sc">+</span> </span>
+<span id="cb147-2"><a href="data-visualization.html#cb147-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span> </span>
+<span id="cb147-3"><a href="data-visualization.html#cb147-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Boxplot of baby birthweight&quot;</span>,</span>
+<span id="cb147-4"><a href="data-visualization.html#cb147-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Smoking Status&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Count&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb147-5"><a href="data-visualization.html#cb147-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_discrete</span>(<span class="at">name =</span> <span class="st">&quot;Smoking Status&quot;</span>, <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;No&quot;</span>, <span class="st">&quot;Yes&quot;</span>))</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-114-1.png" width="672" /></p>
+<p>In a similar fashion as before, you can plot multiple groups of barplots into one, singular plot by taking advantage of the <code>fill</code> argument.</p>
+<p><strong>Example:</strong> Compare <code>race</code> by <code>smoke</code> status with respect to birthweight <code>bwt</code> variable.</p>
+<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="data-visualization.html#cb148-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(low_birth_all, <span class="fu">aes</span>(<span class="at">x =</span> race, <span class="at">y =</span> bwt, <span class="at">fill =</span> <span class="fu">factor</span>(smoke))) <span class="sc">+</span> </span>
+<span id="cb148-2"><a href="data-visualization.html#cb148-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span> </span>
+<span id="cb148-3"><a href="data-visualization.html#cb148-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;red&quot;</span>), </span>
+<span id="cb148-4"><a href="data-visualization.html#cb148-4" aria-hidden="true" tabindex="-1"></a>                    <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Non-Smokers&quot;</span>, <span class="st">&quot;Smokers&quot;</span>)) <span class="sc">+</span> </span>
+<span id="cb148-5"><a href="data-visualization.html#cb148-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Race&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Birthweight (g)&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb148-6"><a href="data-visualization.html#cb148-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;top&quot;</span>, <span class="at">legend.title =</span> <span class="fu">element_blank</span>())</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-115-1.png" width="672" /></p>
+</div>
+<div id="formatting-plots" class="section level3 unnumbered hasAnchor">
+<h3>Formatting Plots<a href="data-visualization.html#formatting-plots" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Most of the common figure types have been covered. However, there is the issue of formatting <code>ggplot2</code> plots, which can seem daunting with endless resources.</p>
+<p>However, there are functions called <code>facet_wrap()</code> and <code>facet_grid()</code> that can assist you with separating out those combined plots into multiple ones to help visualize the distribution of your data side-by-side.</p>
+<ul>
+<li><code>facet_wrap()</code>: This will generate a grid of plots for the combination of variables that have values.</li>
+<li><code>facet_grid()</code>: This will generate a grid of plots for each combination of values of variables that you specify, even if some plots are empty.</li>
+</ul>
+<p>With this in mind, it is preferable to use <code>facet_wrap()</code> over <code>facet_grid()</code> unless you are doing very preliminary data exploration. Within the function, you can specify certain values, but you must designate the facet through by placing <code>vars(variable_name)</code> as the first element of the function.</p>
+<p>If you want to designate the number of columns and/or rows for the grid of multiple plots, you can change the values by designating <code>nrow=</code> and <code>ncol=</code> inside the <code>facet_wrap()</code> function. Any other editing done within the <code>theme()</code> function you want to do affects all of the plots set in the grid because these are still outputted as a single graphic object in R.</p>
+<p><strong>Example:</strong> Compare <code>race</code> by <code>smoke</code> status with respect to birthweight <code>bwt</code> variable.</p>
+<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="data-visualization.html#cb149-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(low_birth_all, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(smoke), <span class="at">y =</span> bwt, <span class="at">fill =</span> <span class="fu">factor</span>(smoke))) <span class="sc">+</span> </span>
+<span id="cb149-2"><a href="data-visualization.html#cb149-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span> </span>
+<span id="cb149-3"><a href="data-visualization.html#cb149-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;red&quot;</span>), </span>
+<span id="cb149-4"><a href="data-visualization.html#cb149-4" aria-hidden="true" tabindex="-1"></a>                    <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Non-Smokers&quot;</span>, <span class="st">&quot;Smokers&quot;</span>),</span>
+<span id="cb149-5"><a href="data-visualization.html#cb149-5" aria-hidden="true" tabindex="-1"></a>                    <span class="at">name =</span> <span class="st">&quot;Smoking Status&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb149-6"><a href="data-visualization.html#cb149-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Smoking Status&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Birthweight (g)&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb149-7"><a href="data-visualization.html#cb149-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(race))</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-116-1.png" width="672" /></p>
+<div id="theme-function" class="section level4 unnumbered hasAnchor">
+<h4><code>theme()</code> function<a href="data-visualization.html#theme-function" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><em>This section is not covered in the course series, but here to help clarify any confusion that you may run into while coding in R.</em></p>
+<p>In <code>ggplot2</code>, there is a function called <code>theme()</code> that you can use to do some additional plot formatting. For instance, you can adjust the spacing between the axes titles with the plot, align the title to the center of the plot, remove grid lines in the plot, and much more.</p>
+<p>Below is some code that might help you as you write your own code to do data visualizations from one of the previous examples:</p>
+<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="data-visualization.html#cb150-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(low_birth_all, <span class="fu">aes</span>(<span class="at">x =</span> age, <span class="at">y =</span> bwt)) <span class="sc">+</span> </span>
+<span id="cb150-2"><a href="data-visualization.html#cb150-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">&quot;blue&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb150-3"><a href="data-visualization.html#cb150-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> T, <span class="at">col =</span> <span class="dv">2</span>) <span class="sc">+</span>      </span>
+<span id="cb150-4"><a href="data-visualization.html#cb150-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Scatterplot of age by birthweight&quot;</span>,  </span>
+<span id="cb150-5"><a href="data-visualization.html#cb150-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Age (yrs)&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Birthweight (g)&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb150-6"><a href="data-visualization.html#cb150-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">face =</span> <span class="st">&quot;bold&quot;</span>, <span class="at">size =</span> <span class="dv">11</span>),    <span class="co"># Center-align, bold font, and set font size to 11 for title</span></span>
+<span id="cb150-7"><a href="data-visualization.html#cb150-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title.x =</span> <span class="fu">element_text</span>(<span class="at">margin =</span> <span class="fu">margin</span>(<span class="at">t =</span> <span class="dv">10</span>, <span class="at">r=</span><span class="dv">0</span>, <span class="at">b=</span><span class="dv">0</span>, <span class="at">l=</span><span class="dv">0</span>)), <span class="co"># Add some space between the x-axis and its title</span></span>
+<span id="cb150-8"><a href="data-visualization.html#cb150-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title.y =</span> <span class="fu">element_text</span>(<span class="at">margin =</span> <span class="fu">margin</span>(<span class="at">t=</span><span class="dv">0</span>, <span class="at">r =</span> <span class="dv">10</span>, <span class="at">b=</span><span class="dv">0</span>, <span class="at">l=</span><span class="dv">0</span>)), <span class="co"># Add some space between the y-axis and its title</span></span>
+<span id="cb150-9"><a href="data-visualization.html#cb150-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>(),                                  <span class="co"># Hide the minor grid lines </span></span>
+<span id="cb150-10"><a href="data-visualization.html#cb150-10" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>,                                            <span class="co"># Hide the legend</span></span>
+<span id="cb150-11"><a href="data-visualization.html#cb150-11" aria-hidden="true" tabindex="-1"></a>        )</span></code></pre></div>
+<p>To learn more about the various elements that you can personally modify in ggplot2, read <a href="https://ggplot2.tidyverse.org/reference/theme.html">this documentation</a>.</p>
+</div>
+</div>
+</div>
+<div id="other-plots" class="section level2 unnumbered hasAnchor">
+<h2>Other Plots<a href="data-visualization.html#other-plots" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="forest-plot" class="section level3 unnumbered hasAnchor">
+<h3>Forest Plot<a href="data-visualization.html#forest-plot" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Forest plots are visual representations of effect sizes and 95% confidence intervals (CI). It can be used to plot several variables of the same study or across studies (meta-analysis).</p>
+<p>To draw this, there are various methods in R. But there is a way to manually do it in R through <code>ggplot2</code>. First, make sure to have a data that contains a list of items that you want to plot with their names, a column of Odds Ratio, and two separate columns with the lower and upper 95% confidence interval values for each one.</p>
+<p>Once you have your data set, then you can draw your forest plot using these column values. The key point here is to take advantage of the <code>geom_errorbarh()</code> function, which lets you draw the confidence interval bounds. Another key function is the <code>theme()</code> function explained before, where you format how the figure looks.</p>
+<p>Here is an example code of a sample data file:</p>
+<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="data-visualization.html#cb151-1" aria-hidden="true" tabindex="-1"></a>forest_plot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(or.df, <span class="fu">aes</span>(<span class="at">x =</span> OR, <span class="at">y =</span> Index)) <span class="sc">+</span></span>
+<span id="cb151-2"><a href="data-visualization.html#cb151-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">shape =</span> <span class="dv">18</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb151-3"><a href="data-visualization.html#cb151-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbarh</span>(<span class="fu">aes</span>(<span class="at">xmin =</span> Lower, <span class="at">xmax =</span> Upper), <span class="at">height =</span> <span class="fl">0.25</span>) <span class="sc">+</span></span>
+<span id="cb151-4"><a href="data-visualization.html#cb151-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">1</span>, <span class="at">color =</span> <span class="st">&quot;gray29&quot;</span>, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>, <span class="at">cex =</span> <span class="dv">1</span>, <span class="at">alpha  =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb151-5"><a href="data-visualization.html#cb151-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">name =</span> <span class="st">&quot;&quot;</span>, <span class="at">breaks =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="at">labels =</span> or.df<span class="sc">$</span>Symptom, <span class="at">trans =</span> <span class="st">&quot;reverse&quot;</span>) <span class="sc">+</span></span>
+<span id="cb151-6"><a href="data-visualization.html#cb151-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Odds Ratio (95% CI)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb151-7"><a href="data-visualization.html#cb151-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot; &quot;</span>) <span class="sc">+</span></span>
+<span id="cb151-8"><a href="data-visualization.html#cb151-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot; &quot;</span>) <span class="sc">+</span></span>
+<span id="cb151-9"><a href="data-visualization.html#cb151-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb151-10"><a href="data-visualization.html#cb151-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">3</span>)) <span class="sc">+</span> </span>
+<span id="cb151-11"><a href="data-visualization.html#cb151-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.border =</span> <span class="fu">element_blank</span>(), </span>
+<span id="cb151-12"><a href="data-visualization.html#cb151-12" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.background =</span> <span class="fu">element_blank</span>(), </span>
+<span id="cb151-13"><a href="data-visualization.html#cb151-13" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.grid.major =</span> <span class="fu">element_blank</span>(), </span>
+<span id="cb151-14"><a href="data-visualization.html#cb151-14" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>(), </span>
+<span id="cb151-15"><a href="data-visualization.html#cb151-15" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">face =</span> <span class="st">&quot;bold&quot;</span>, <span class="at">size =</span> <span class="dv">11</span>),</span>
+<span id="cb151-16"><a href="data-visualization.html#cb151-16" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.line =</span> <span class="fu">element_line</span>(<span class="at">colour =</span> <span class="st">&quot;black&quot;</span>),</span>
+<span id="cb151-17"><a href="data-visualization.html#cb151-17" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">10</span>, <span class="at">colour =</span> <span class="st">&quot;black&quot;</span>),</span>
+<span id="cb151-18"><a href="data-visualization.html#cb151-18" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.x.bottom =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">10</span>, <span class="at">colour =</span> <span class="st">&quot;black&quot;</span>),</span>
+<span id="cb151-19"><a href="data-visualization.html#cb151-19" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title.x =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">10</span>, <span class="at">colour =</span> <span class="st">&quot;black&quot;</span>, <span class="at">margin =</span> <span class="fu">margin</span>(<span class="at">t =</span> <span class="dv">10</span>, <span class="at">r =</span> <span class="dv">0</span>, <span class="at">b =</span> <span class="dv">0</span>, <span class="at">l =</span> <span class="dv">0</span>)))</span>
+<span id="cb151-20"><a href="data-visualization.html#cb151-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb151-21"><a href="data-visualization.html#cb151-21" aria-hidden="true" tabindex="-1"></a>forest_plot</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-119-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="correlation-matrix" class="section level3 unnumbered hasAnchor">
+<h3>Correlation Matrix<a href="data-visualization.html#correlation-matrix" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>Correlation measures the strength of a (linear) association between two continuous variables.</li>
+<li>Correlation values range from -1 to +1:
+<ul>
+<li>A correlation of -1 indicates a perfect negative correlation between two continuous variables.</li>
+<li>A correlation of +1 indicates a perfect positive correlation between two continuous variables.</li>
+</ul></li>
+</ul>
+<p>You can calculate the correlations using the <code>cor()</code> function which comes with R. However, to plot a correlation matrix, you must use the function <code>corrplot()</code> from the package <code>corrplot</code>.</p>
+<p><strong>Example:</strong> use R built-in data <code>mtcars</code> to show linear correlations between several continuous car characteristics.</p>
+<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="data-visualization.html#cb152-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(mtcars[,<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span><span class="sc">:</span><span class="dv">7</span>)]) <span class="sc">%&gt;%</span></span>
+<span id="cb152-2"><a href="data-visualization.html#cb152-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">corrplot</span>(<span class="at">method =</span> <span class="st">&quot;circle&quot;</span>, <span class="at">type =</span> <span class="st">&quot;upper&quot;</span>, <span class="at">diag =</span> F)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-120-1.png" width="672" /></p>
+</div>
+<div id="interactive-plots-plotly" class="section level3 unnumbered hasAnchor">
+<h3>Interactive Plots: Plotly<a href="data-visualization.html#interactive-plots-plotly" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Recently interactive plots have started to surface in the realm of both Python and R. One such tool is the <code>plotly</code> package. The library allows you to either write a <code>plot_ly()</code> figure from scratch, or to transform your <code>ggplot()</code> into a plotly-like figure.</p>
+<p>In plotly, the <code>plot_ly()</code> function requires the following elements:</p>
+<ul>
+<li>data</li>
+<li>x and y variable names</li>
+<li>plot type</li>
+<li>marker/trace
+<ul>
+<li>This is similar to what we call the “geom” layer in ggplot.</li>
+</ul></li>
+</ul>
+<p>But let’s say that you already wrote a figure using ggplot. No worries, just assign this to a variable name, and then put it inside the function <code>ggplotly()</code>. Doing so, you will see the interactive features pop up just like the <code>plot_ly()</code> function does.</p>
+<p>There are additional features available for plotly figures:</p>
+<ul>
+<li>Hover (information from hover)</li>
+<li>Zoom in/out</li>
+<li>Download button</li>
+<li>Click/drag features</li>
+</ul>
+<p>Although the two functions both generate an interactive plot, <code>ggplotly()</code> requires a ggplot figure as an input and builds that into an interactive one. To format the ggplot further, you must use the <code>layout()</code> function the way it is demonstrated from the plotly documentation.</p>
+<p><strong>Example:</strong> Draw a scatterplot of the iris dataset with Sepal.Length as the x-axis and the Petal.Length as the y-axis.</p>
+<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="data-visualization.html#cb153-1" aria-hidden="true" tabindex="-1"></a>fig <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(iris, <span class="fu">aes</span>(<span class="at">x =</span> Sepal.Length, <span class="at">y =</span> Petal.Length)) <span class="sc">+</span> </span>
+<span id="cb153-2"><a href="data-visualization.html#cb153-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">&quot;blue&quot;</span>)</span>
+<span id="cb153-3"><a href="data-visualization.html#cb153-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb153-4"><a href="data-visualization.html#cb153-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplotly</span>(fig)</span></code></pre></div>
+<div id="htmlwidget-284d0b91060f8bab0592" style="width:672px;height:480px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-284d0b91060f8bab0592">{"x":{"data":[{"x":[5.1,4.9,4.7,4.6,5,5.4,4.6,5,4.4,4.9,5.4,4.8,4.8,4.3,5.8,5.7,5.4,5.1,5.7,5.1,5.4,5.1,4.6,5.1,4.8,5,5,5.2,5.2,4.7,4.8,5.4,5.2,5.5,4.9,5,5.5,4.9,4.4,5.1,5,4.5,4.4,5,5.1,4.8,5.1,4.6,5.3,5,7,6.4,6.9,5.5,6.5,5.7,6.3,4.9,6.6,5.2,5,5.9,6,6.1,5.6,6.7,5.6,5.8,6.2,5.6,5.9,6.1,6.3,6.1,6.4,6.6,6.8,6.7,6,5.7,5.5,5.5,5.8,6,5.4,6,6.7,6.3,5.6,5.5,5.5,6.1,5.8,5,5.6,5.7,5.7,6.2,5.1,5.7,6.3,5.8,7.1,6.3,6.5,7.6,4.9,7.3,6.7,7.2,6.5,6.4,6.8,5.7,5.8,6.4,6.5,7.7,7.7,6,6.9,5.6,7.7,6.3,6.7,7.2,6.2,6.1,6.4,7.2,7.4,7.9,6.4,6.3,6.1,7.7,6.3,6.4,6,6.9,6.7,6.9,5.8,6.8,6.7,6.7,6.3,6.5,6.2,5.9],"y":[1.4,1.4,1.3,1.5,1.4,1.7,1.4,1.5,1.4,1.5,1.5,1.6,1.4,1.1,1.2,1.5,1.3,1.4,1.7,1.5,1.7,1.5,1,1.7,1.9,1.6,1.6,1.5,1.4,1.6,1.6,1.5,1.5,1.4,1.5,1.2,1.3,1.4,1.3,1.5,1.3,1.3,1.3,1.6,1.9,1.4,1.6,1.4,1.5,1.4,4.7,4.5,4.9,4,4.6,4.5,4.7,3.3,4.6,3.9,3.5,4.2,4,4.7,3.6,4.4,4.5,4.1,4.5,3.9,4.8,4,4.9,4.7,4.3,4.4,4.8,5,4.5,3.5,3.8,3.7,3.9,5.1,4.5,4.5,4.7,4.4,4.1,4,4.4,4.6,4,3.3,4.2,4.2,4.2,4.3,3,4.1,6,5.1,5.9,5.6,5.8,6.6,4.5,6.3,5.8,6.1,5.1,5.3,5.5,5,5.1,5.3,5.5,6.7,6.9,5,5.7,4.9,6.7,4.9,5.7,6,4.8,4.9,5.6,5.8,6.1,6.4,5.6,5.1,5.6,6.1,5.6,5.5,4.8,5.4,5.6,5.1,5.1,5.9,5.7,5.2,5,5.2,5.4,5.1],"text":["Sepal.Length: 5.1<br />Petal.Length: 1.4","Sepal.Length: 4.9<br />Petal.Length: 1.4","Sepal.Length: 4.7<br />Petal.Length: 1.3","Sepal.Length: 4.6<br />Petal.Length: 1.5","Sepal.Length: 5.0<br />Petal.Length: 1.4","Sepal.Length: 5.4<br />Petal.Length: 1.7","Sepal.Length: 4.6<br />Petal.Length: 1.4","Sepal.Length: 5.0<br />Petal.Length: 1.5","Sepal.Length: 4.4<br />Petal.Length: 1.4","Sepal.Length: 4.9<br />Petal.Length: 1.5","Sepal.Length: 5.4<br />Petal.Length: 1.5","Sepal.Length: 4.8<br />Petal.Length: 1.6","Sepal.Length: 4.8<br />Petal.Length: 1.4","Sepal.Length: 4.3<br />Petal.Length: 1.1","Sepal.Length: 5.8<br />Petal.Length: 1.2","Sepal.Length: 5.7<br />Petal.Length: 1.5","Sepal.Length: 5.4<br />Petal.Length: 1.3","Sepal.Length: 5.1<br />Petal.Length: 1.4","Sepal.Length: 5.7<br />Petal.Length: 1.7","Sepal.Length: 5.1<br />Petal.Length: 1.5","Sepal.Length: 5.4<br />Petal.Length: 1.7","Sepal.Length: 5.1<br />Petal.Length: 1.5","Sepal.Length: 4.6<br />Petal.Length: 1.0","Sepal.Length: 5.1<br />Petal.Length: 1.7","Sepal.Length: 4.8<br />Petal.Length: 1.9","Sepal.Length: 5.0<br />Petal.Length: 1.6","Sepal.Length: 5.0<br />Petal.Length: 1.6","Sepal.Length: 5.2<br />Petal.Length: 1.5","Sepal.Length: 5.2<br />Petal.Length: 1.4","Sepal.Length: 4.7<br />Petal.Length: 1.6","Sepal.Length: 4.8<br />Petal.Length: 1.6","Sepal.Length: 5.4<br />Petal.Length: 1.5","Sepal.Length: 5.2<br />Petal.Length: 1.5","Sepal.Length: 5.5<br />Petal.Length: 1.4","Sepal.Length: 4.9<br />Petal.Length: 1.5","Sepal.Length: 5.0<br />Petal.Length: 1.2","Sepal.Length: 5.5<br />Petal.Length: 1.3","Sepal.Length: 4.9<br />Petal.Length: 1.4","Sepal.Length: 4.4<br />Petal.Length: 1.3","Sepal.Length: 5.1<br />Petal.Length: 1.5","Sepal.Length: 5.0<br />Petal.Length: 1.3","Sepal.Length: 4.5<br />Petal.Length: 1.3","Sepal.Length: 4.4<br />Petal.Length: 1.3","Sepal.Length: 5.0<br />Petal.Length: 1.6","Sepal.Length: 5.1<br />Petal.Length: 1.9","Sepal.Length: 4.8<br />Petal.Length: 1.4","Sepal.Length: 5.1<br />Petal.Length: 1.6","Sepal.Length: 4.6<br />Petal.Length: 1.4","Sepal.Length: 5.3<br />Petal.Length: 1.5","Sepal.Length: 5.0<br />Petal.Length: 1.4","Sepal.Length: 7.0<br />Petal.Length: 4.7","Sepal.Length: 6.4<br />Petal.Length: 4.5","Sepal.Length: 6.9<br />Petal.Length: 4.9","Sepal.Length: 5.5<br />Petal.Length: 4.0","Sepal.Length: 6.5<br />Petal.Length: 4.6","Sepal.Length: 5.7<br />Petal.Length: 4.5","Sepal.Length: 6.3<br />Petal.Length: 4.7","Sepal.Length: 4.9<br />Petal.Length: 3.3","Sepal.Length: 6.6<br />Petal.Length: 4.6","Sepal.Length: 5.2<br />Petal.Length: 3.9","Sepal.Length: 5.0<br />Petal.Length: 3.5","Sepal.Length: 5.9<br />Petal.Length: 4.2","Sepal.Length: 6.0<br />Petal.Length: 4.0","Sepal.Length: 6.1<br />Petal.Length: 4.7","Sepal.Length: 5.6<br />Petal.Length: 3.6","Sepal.Length: 6.7<br />Petal.Length: 4.4","Sepal.Length: 5.6<br />Petal.Length: 4.5","Sepal.Length: 5.8<br />Petal.Length: 4.1","Sepal.Length: 6.2<br />Petal.Length: 4.5","Sepal.Length: 5.6<br />Petal.Length: 3.9","Sepal.Length: 5.9<br />Petal.Length: 4.8","Sepal.Length: 6.1<br />Petal.Length: 4.0","Sepal.Length: 6.3<br />Petal.Length: 4.9","Sepal.Length: 6.1<br />Petal.Length: 4.7","Sepal.Length: 6.4<br />Petal.Length: 4.3","Sepal.Length: 6.6<br />Petal.Length: 4.4","Sepal.Length: 6.8<br />Petal.Length: 4.8","Sepal.Length: 6.7<br />Petal.Length: 5.0","Sepal.Length: 6.0<br />Petal.Length: 4.5","Sepal.Length: 5.7<br />Petal.Length: 3.5","Sepal.Length: 5.5<br />Petal.Length: 3.8","Sepal.Length: 5.5<br />Petal.Length: 3.7","Sepal.Length: 5.8<br />Petal.Length: 3.9","Sepal.Length: 6.0<br />Petal.Length: 5.1","Sepal.Length: 5.4<br />Petal.Length: 4.5","Sepal.Length: 6.0<br />Petal.Length: 4.5","Sepal.Length: 6.7<br />Petal.Length: 4.7","Sepal.Length: 6.3<br />Petal.Length: 4.4","Sepal.Length: 5.6<br />Petal.Length: 4.1","Sepal.Length: 5.5<br />Petal.Length: 4.0","Sepal.Length: 5.5<br />Petal.Length: 4.4","Sepal.Length: 6.1<br />Petal.Length: 4.6","Sepal.Length: 5.8<br />Petal.Length: 4.0","Sepal.Length: 5.0<br />Petal.Length: 3.3","Sepal.Length: 5.6<br />Petal.Length: 4.2","Sepal.Length: 5.7<br />Petal.Length: 4.2","Sepal.Length: 5.7<br />Petal.Length: 4.2","Sepal.Length: 6.2<br />Petal.Length: 4.3","Sepal.Length: 5.1<br />Petal.Length: 3.0","Sepal.Length: 5.7<br />Petal.Length: 4.1","Sepal.Length: 6.3<br />Petal.Length: 6.0","Sepal.Length: 5.8<br />Petal.Length: 5.1","Sepal.Length: 7.1<br />Petal.Length: 5.9","Sepal.Length: 6.3<br />Petal.Length: 5.6","Sepal.Length: 6.5<br />Petal.Length: 5.8","Sepal.Length: 7.6<br />Petal.Length: 6.6","Sepal.Length: 4.9<br />Petal.Length: 4.5","Sepal.Length: 7.3<br />Petal.Length: 6.3","Sepal.Length: 6.7<br />Petal.Length: 5.8","Sepal.Length: 7.2<br />Petal.Length: 6.1","Sepal.Length: 6.5<br />Petal.Length: 5.1","Sepal.Length: 6.4<br />Petal.Length: 5.3","Sepal.Length: 6.8<br />Petal.Length: 5.5","Sepal.Length: 5.7<br />Petal.Length: 5.0","Sepal.Length: 5.8<br />Petal.Length: 5.1","Sepal.Length: 6.4<br />Petal.Length: 5.3","Sepal.Length: 6.5<br />Petal.Length: 5.5","Sepal.Length: 7.7<br />Petal.Length: 6.7","Sepal.Length: 7.7<br />Petal.Length: 6.9","Sepal.Length: 6.0<br />Petal.Length: 5.0","Sepal.Length: 6.9<br />Petal.Length: 5.7","Sepal.Length: 5.6<br />Petal.Length: 4.9","Sepal.Length: 7.7<br />Petal.Length: 6.7","Sepal.Length: 6.3<br />Petal.Length: 4.9","Sepal.Length: 6.7<br />Petal.Length: 5.7","Sepal.Length: 7.2<br />Petal.Length: 6.0","Sepal.Length: 6.2<br />Petal.Length: 4.8","Sepal.Length: 6.1<br />Petal.Length: 4.9","Sepal.Length: 6.4<br />Petal.Length: 5.6","Sepal.Length: 7.2<br />Petal.Length: 5.8","Sepal.Length: 7.4<br />Petal.Length: 6.1","Sepal.Length: 7.9<br />Petal.Length: 6.4","Sepal.Length: 6.4<br />Petal.Length: 5.6","Sepal.Length: 6.3<br />Petal.Length: 5.1","Sepal.Length: 6.1<br />Petal.Length: 5.6","Sepal.Length: 7.7<br />Petal.Length: 6.1","Sepal.Length: 6.3<br />Petal.Length: 5.6","Sepal.Length: 6.4<br />Petal.Length: 5.5","Sepal.Length: 6.0<br />Petal.Length: 4.8","Sepal.Length: 6.9<br />Petal.Length: 5.4","Sepal.Length: 6.7<br />Petal.Length: 5.6","Sepal.Length: 6.9<br />Petal.Length: 5.1","Sepal.Length: 5.8<br />Petal.Length: 5.1","Sepal.Length: 6.8<br />Petal.Length: 5.9","Sepal.Length: 6.7<br />Petal.Length: 5.7","Sepal.Length: 6.7<br />Petal.Length: 5.2","Sepal.Length: 6.3<br />Petal.Length: 5.0","Sepal.Length: 6.5<br />Petal.Length: 5.2","Sepal.Length: 6.2<br />Petal.Length: 5.4","Sepal.Length: 5.9<br />Petal.Length: 5.1"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,0,255,1)","opacity":1,"size":5.66929133858268,"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(0,0,255,1)"}},"hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":26.2283105022831,"r":7.30593607305936,"b":40.1826484018265,"l":31.4155251141553},"plot_bgcolor":"rgba(235,235,235,1)","paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[4.12,8.08],"tickmode":"array","ticktext":["5","6","7","8"],"tickvals":[5,6,7,8],"categoryorder":"array","categoryarray":["5","6","7","8"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.65296803652968,"tickwidth":0.66417600664176,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176,"zeroline":false,"anchor":"y","title":{"text":"Sepal.Length","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[0.705,7.195],"tickmode":"array","ticktext":["2","4","6"],"tickvals":[2,4,6],"categoryorder":"array","categoryarray":["2","4","6"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.65296803652968,"tickwidth":0.66417600664176,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176,"zeroline":false,"anchor":"x","title":{"text":"Petal.Length","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":false,"legend":{"bgcolor":"rgba(255,255,255,1)","bordercolor":"transparent","borderwidth":1.88976377952756,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.689497716895}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"247c28e067d1":{"x":{},"y":{},"type":"scatter"}},"cur_data":"247c28e067d1","visdat":{"247c28e067d1":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="data-visualization.html#cb154-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_ly</span>(<span class="at">data =</span> iris, <span class="at">x =</span> <span class="sc">~</span>Sepal.Length, <span class="at">y =</span> <span class="sc">~</span>Petal.Length, <span class="at">type =</span> <span class="st">&quot;scatter&quot;</span>, <span class="at">mode =</span> <span class="st">&quot;markers&quot;</span>)</span></code></pre></div>
+<div id="htmlwidget-f141471714a098ae1b31" style="width:672px;height:480px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-f141471714a098ae1b31">{"x":{"visdat":{"247c342f6b47":["function () ","plotlyVisDat"]},"cur_data":"247c342f6b47","attrs":{"247c342f6b47":{"x":{},"y":{},"mode":"markers","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"xaxis":{"domain":[0,1],"automargin":true,"title":"Sepal.Length"},"yaxis":{"domain":[0,1],"automargin":true,"title":"Petal.Length"},"hovermode":"closest","showlegend":false},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":[5.1,4.9,4.7,4.6,5,5.4,4.6,5,4.4,4.9,5.4,4.8,4.8,4.3,5.8,5.7,5.4,5.1,5.7,5.1,5.4,5.1,4.6,5.1,4.8,5,5,5.2,5.2,4.7,4.8,5.4,5.2,5.5,4.9,5,5.5,4.9,4.4,5.1,5,4.5,4.4,5,5.1,4.8,5.1,4.6,5.3,5,7,6.4,6.9,5.5,6.5,5.7,6.3,4.9,6.6,5.2,5,5.9,6,6.1,5.6,6.7,5.6,5.8,6.2,5.6,5.9,6.1,6.3,6.1,6.4,6.6,6.8,6.7,6,5.7,5.5,5.5,5.8,6,5.4,6,6.7,6.3,5.6,5.5,5.5,6.1,5.8,5,5.6,5.7,5.7,6.2,5.1,5.7,6.3,5.8,7.1,6.3,6.5,7.6,4.9,7.3,6.7,7.2,6.5,6.4,6.8,5.7,5.8,6.4,6.5,7.7,7.7,6,6.9,5.6,7.7,6.3,6.7,7.2,6.2,6.1,6.4,7.2,7.4,7.9,6.4,6.3,6.1,7.7,6.3,6.4,6,6.9,6.7,6.9,5.8,6.8,6.7,6.7,6.3,6.5,6.2,5.9],"y":[1.4,1.4,1.3,1.5,1.4,1.7,1.4,1.5,1.4,1.5,1.5,1.6,1.4,1.1,1.2,1.5,1.3,1.4,1.7,1.5,1.7,1.5,1,1.7,1.9,1.6,1.6,1.5,1.4,1.6,1.6,1.5,1.5,1.4,1.5,1.2,1.3,1.4,1.3,1.5,1.3,1.3,1.3,1.6,1.9,1.4,1.6,1.4,1.5,1.4,4.7,4.5,4.9,4,4.6,4.5,4.7,3.3,4.6,3.9,3.5,4.2,4,4.7,3.6,4.4,4.5,4.1,4.5,3.9,4.8,4,4.9,4.7,4.3,4.4,4.8,5,4.5,3.5,3.8,3.7,3.9,5.1,4.5,4.5,4.7,4.4,4.1,4,4.4,4.6,4,3.3,4.2,4.2,4.2,4.3,3,4.1,6,5.1,5.9,5.6,5.8,6.6,4.5,6.3,5.8,6.1,5.1,5.3,5.5,5,5.1,5.3,5.5,6.7,6.9,5,5.7,4.9,6.7,4.9,5.7,6,4.8,4.9,5.6,5.8,6.1,6.4,5.6,5.1,5.6,6.1,5.6,5.5,4.8,5.4,5.6,5.1,5.1,5.9,5.7,5.2,5,5.2,5.4,5.1],"mode":"markers","type":"scatter","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(31,119,180,1)"}},"error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"line":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<p><strong>Example:</strong> Draw a scatter and line plot of World Health Organization’s dataset with Year as the x-axis and the Percent of Cause-Related Death Percent as the y-axis (color by country optional).</p>
+<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="data-visualization.html#cb155-1" aria-hidden="true" tabindex="-1"></a>fig <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(ihd.df, <span class="fu">aes</span>(<span class="at">x =</span> Year, <span class="at">y =</span> Cause_Percent, <span class="at">color =</span> Country)) <span class="sc">+</span></span>
+<span id="cb155-2"><a href="data-visualization.html#cb155-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span> </span>
+<span id="cb155-3"><a href="data-visualization.html#cb155-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">fill =</span> Country, </span>
+<span id="cb155-4"><a href="data-visualization.html#cb155-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">text =</span> <span class="fu">paste</span>(<span class="st">&quot;&lt;b&gt;Year:&lt;/b&gt; &quot;</span>, Year, <span class="st">&quot;&lt;br&gt;&quot;</span>, </span>
+<span id="cb155-5"><a href="data-visualization.html#cb155-5" aria-hidden="true" tabindex="-1"></a>                              <span class="st">&quot;&lt;b&gt;Country:&lt;/b&gt; &quot;</span>, Country, <span class="st">&quot;&lt;br&gt;&quot;</span>, </span>
+<span id="cb155-6"><a href="data-visualization.html#cb155-6" aria-hidden="true" tabindex="-1"></a>                              <span class="st">&quot;&lt;b&gt;Percent:&lt;/b&gt; &quot;</span>, <span class="fu">round</span>(Cause_Percent, <span class="dv">2</span>), <span class="st">&quot;%&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;&quot;</span>)), </span>
+<span id="cb155-7"><a href="data-visualization.html#cb155-7" aria-hidden="true" tabindex="-1"></a>             <span class="at">shape =</span> <span class="dv">21</span>, <span class="at">color =</span> <span class="st">&quot;grey50&quot;</span>, <span class="at">size =</span> <span class="dv">3</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span> </span>
+<span id="cb155-8"><a href="data-visualization.html#cb155-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> ihd.df<span class="sc">$</span>Year, <span class="at">labels =</span> ihd.df<span class="sc">$</span>Year) <span class="sc">+</span> </span>
+<span id="cb155-9"><a href="data-visualization.html#cb155-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Percent of IHD Related Deaths (%)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb155-10"><a href="data-visualization.html#cb155-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Percent of IHD Related Deaths per Year by Country&quot;</span>) <span class="sc">+</span></span>
+<span id="cb155-11"><a href="data-visualization.html#cb155-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span> </span>
+<span id="cb155-12"><a href="data-visualization.html#cb155-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>, </span>
+<span id="cb155-13"><a href="data-visualization.html#cb155-13" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>))</span>
+<span id="cb155-14"><a href="data-visualization.html#cb155-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb155-15"><a href="data-visualization.html#cb155-15" aria-hidden="true" tabindex="-1"></a>fig <span class="ot">&lt;-</span> <span class="fu">ggplotly</span>(fig, <span class="at">tooltip =</span> <span class="st">&quot;text&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb155-16"><a href="data-visualization.html#cb155-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">layout</span>(<span class="at">yaxis =</span> <span class="fu">list</span>(<span class="at">title =</span> <span class="fu">list</span>(<span class="at">standoff =</span> 20L)),                                              </span>
+<span id="cb155-17"><a href="data-visualization.html#cb155-17" aria-hidden="true" tabindex="-1"></a>         <span class="at">xaxis =</span> <span class="fu">list</span>(<span class="at">title =</span> <span class="fu">list</span>(<span class="at">standoff =</span> 20L)))</span>
+<span id="cb155-18"><a href="data-visualization.html#cb155-18" aria-hidden="true" tabindex="-1"></a>fig</span></code></pre></div>
+<div id="htmlwidget-2d58e07d05d2a31480bc" style="width:672px;height:480px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-2d58e07d05d2a31480bc">{"x":{"data":[{"x":[2011,2012,2013,2014,2015,2016,2017,2018,2019],"y":[22.08709065,21.45273209,20.49807685,19.72371158,19.51933004,18.8699874,18.37339296,17.33763733,15.99273563],"text":"","type":"scatter","mode":"lines","line":{"width":1.88976377952756,"color":"rgba(248,118,109,1)","dash":"solid"},"hoveron":"points","name":"(Finland,1)","legendgroup":"(Finland,1)","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[2011,2012,2013,2014,2015,2016],"y":[6.43630224,6.21879768,6.01207487,6.00916606,5.76366938,5.60322215],"text":"","type":"scatter","mode":"lines","line":{"width":1.88976377952756,"color":"rgba(205,150,0,1)","dash":"solid"},"hoveron":"points","name":"(France,1)","legendgroup":"(France,1)","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[2011,2012,2013,2014,2015,2016,2017,2018,2019,2020],"y":[14.91221689,14.73938053,14.41087461,13.95349373,13.85970601,13.42344212,13.47396468,12.98338838,12.6747701,12.32401083],"text":"","type":"scatter","mode":"lines","line":{"width":1.88976377952756,"color":"rgba(124,174,0,1)","dash":"solid"},"hoveron":"points","name":"(Germany,1)","legendgroup":"(Germany,1)","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[2011,2012,2013,2014,2015,2016,2017],"y":[12.57453888,12.24051376,11.93467379,11.63462342,11.32609342,10.81861174,10.41923475],"text":"","type":"scatter","mode":"lines","line":{"width":1.88976377952756,"color":"rgba(0,190,103,1)","dash":"solid"},"hoveron":"points","name":"(Italy,1)","legendgroup":"(Italy,1)","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[2011,2012,2013,2014,2015,2016,2017,2018,2019],"y":[5.28096785,5.45241579,5.09808193,5.29862678,5.33681292,5.21815922,4.99310065,4.85241952,4.6419979],"text":"","type":"scatter","mode":"lines","line":{"width":1.88976377952756,"color":"rgba(0,191,196,1)","dash":"solid"},"hoveron":"points","name":"(Republic of Korea,1)","legendgroup":"(Republic of Korea,1)","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[2011,2012,2013,2014,2015,2016,2017,2018,2019,2020],"y":[8.98066825,8.62414692,8.55824127,8.22676401,7.99137654,7.8069024,7.61442843,7.2832524,6.98514221,6.00555718],"text":"","type":"scatter","mode":"lines","line":{"width":1.88976377952756,"color":"rgba(0,169,255,1)","dash":"solid"},"hoveron":"points","name":"(Spain,1)","legendgroup":"(Spain,1)","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[2011,2012,2013,2014,2015,2016,2017,2018,2019],"y":[13.40668415,12.94901445,12.66770519,12.12660496,11.57684134,11.06422596,10.90522384,10.3915795,10.42393428],"text":"","type":"scatter","mode":"lines","line":{"width":1.88976377952756,"color":"rgba(199,124,255,1)","dash":"solid"},"hoveron":"points","name":"(United Kingdom,1)","legendgroup":"(United Kingdom,1)","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[2011,2012,2013,2014,2015,2016,2017,2018,2019,2020],"y":[14.91954944,14.60590836,14.25544851,13.88175835,13.52196945,13.24413828,13.00563746,12.88191589,12.64169806,11.31355377],"text":"","type":"scatter","mode":"lines","line":{"width":1.88976377952756,"color":"rgba(255,97,204,1)","dash":"solid"},"hoveron":"points","name":"(United States of America,1)","legendgroup":"(United States of America,1)","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[2011,2012,2013,2014,2015,2016,2017,2018,2019],"y":[22.08709065,21.45273209,20.49807685,19.72371158,19.51933004,18.8699874,18.37339296,17.33763733,15.99273563],"text":["<b>Year:<\/b> 2011<br><b>Country:<\/b> Finland<br><b>Percent:<\/b> 22.09%","<b>Year:<\/b> 2012<br><b>Country:<\/b> Finland<br><b>Percent:<\/b> 21.45%","<b>Year:<\/b> 2013<br><b>Country:<\/b> Finland<br><b>Percent:<\/b> 20.5%","<b>Year:<\/b> 2014<br><b>Country:<\/b> Finland<br><b>Percent:<\/b> 19.72%","<b>Year:<\/b> 2015<br><b>Country:<\/b> Finland<br><b>Percent:<\/b> 19.52%","<b>Year:<\/b> 2016<br><b>Country:<\/b> Finland<br><b>Percent:<\/b> 18.87%","<b>Year:<\/b> 2017<br><b>Country:<\/b> Finland<br><b>Percent:<\/b> 18.37%","<b>Year:<\/b> 2018<br><b>Country:<\/b> Finland<br><b>Percent:<\/b> 17.34%","<b>Year:<\/b> 2019<br><b>Country:<\/b> Finland<br><b>Percent:<\/b> 15.99%"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(248,118,109,1)","opacity":0.5,"size":11.3385826771654,"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(127,127,127,1)"}},"hoveron":"points","name":"(Finland,1)","legendgroup":"(Finland,1)","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[2011,2012,2013,2014,2015,2016],"y":[6.43630224,6.21879768,6.01207487,6.00916606,5.76366938,5.60322215],"text":["<b>Year:<\/b> 2011<br><b>Country:<\/b> France<br><b>Percent:<\/b> 6.44%","<b>Year:<\/b> 2012<br><b>Country:<\/b> France<br><b>Percent:<\/b> 6.22%","<b>Year:<\/b> 2013<br><b>Country:<\/b> France<br><b>Percent:<\/b> 6.01%","<b>Year:<\/b> 2014<br><b>Country:<\/b> France<br><b>Percent:<\/b> 6.01%","<b>Year:<\/b> 2015<br><b>Country:<\/b> France<br><b>Percent:<\/b> 5.76%","<b>Year:<\/b> 2016<br><b>Country:<\/b> France<br><b>Percent:<\/b> 5.6%"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(205,150,0,1)","opacity":0.5,"size":11.3385826771654,"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(127,127,127,1)"}},"hoveron":"points","name":"(France,1)","legendgroup":"(France,1)","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[2011,2012,2013,2014,2015,2016,2017,2018,2019,2020],"y":[14.91221689,14.73938053,14.41087461,13.95349373,13.85970601,13.42344212,13.47396468,12.98338838,12.6747701,12.32401083],"text":["<b>Year:<\/b> 2011<br><b>Country:<\/b> Germany<br><b>Percent:<\/b> 14.91%","<b>Year:<\/b> 2012<br><b>Country:<\/b> Germany<br><b>Percent:<\/b> 14.74%","<b>Year:<\/b> 2013<br><b>Country:<\/b> Germany<br><b>Percent:<\/b> 14.41%","<b>Year:<\/b> 2014<br><b>Country:<\/b> Germany<br><b>Percent:<\/b> 13.95%","<b>Year:<\/b> 2015<br><b>Country:<\/b> Germany<br><b>Percent:<\/b> 13.86%","<b>Year:<\/b> 2016<br><b>Country:<\/b> Germany<br><b>Percent:<\/b> 13.42%","<b>Year:<\/b> 2017<br><b>Country:<\/b> Germany<br><b>Percent:<\/b> 13.47%","<b>Year:<\/b> 2018<br><b>Country:<\/b> Germany<br><b>Percent:<\/b> 12.98%","<b>Year:<\/b> 2019<br><b>Country:<\/b> Germany<br><b>Percent:<\/b> 12.67%","<b>Year:<\/b> 2020<br><b>Country:<\/b> Germany<br><b>Percent:<\/b> 12.32%"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(124,174,0,1)","opacity":0.5,"size":11.3385826771654,"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(127,127,127,1)"}},"hoveron":"points","name":"(Germany,1)","legendgroup":"(Germany,1)","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[2011,2012,2013,2014,2015,2016,2017],"y":[12.57453888,12.24051376,11.93467379,11.63462342,11.32609342,10.81861174,10.41923475],"text":["<b>Year:<\/b> 2011<br><b>Country:<\/b> Italy<br><b>Percent:<\/b> 12.57%","<b>Year:<\/b> 2012<br><b>Country:<\/b> Italy<br><b>Percent:<\/b> 12.24%","<b>Year:<\/b> 2013<br><b>Country:<\/b> Italy<br><b>Percent:<\/b> 11.93%","<b>Year:<\/b> 2014<br><b>Country:<\/b> Italy<br><b>Percent:<\/b> 11.63%","<b>Year:<\/b> 2015<br><b>Country:<\/b> Italy<br><b>Percent:<\/b> 11.33%","<b>Year:<\/b> 2016<br><b>Country:<\/b> Italy<br><b>Percent:<\/b> 10.82%","<b>Year:<\/b> 2017<br><b>Country:<\/b> Italy<br><b>Percent:<\/b> 10.42%"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,190,103,1)","opacity":0.5,"size":11.3385826771654,"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(127,127,127,1)"}},"hoveron":"points","name":"(Italy,1)","legendgroup":"(Italy,1)","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[2011,2012,2013,2014,2015,2016,2017,2018,2019],"y":[5.28096785,5.45241579,5.09808193,5.29862678,5.33681292,5.21815922,4.99310065,4.85241952,4.6419979],"text":["<b>Year:<\/b> 2011<br><b>Country:<\/b> Republic of Korea<br><b>Percent:<\/b> 5.28%","<b>Year:<\/b> 2012<br><b>Country:<\/b> Republic of Korea<br><b>Percent:<\/b> 5.45%","<b>Year:<\/b> 2013<br><b>Country:<\/b> Republic of Korea<br><b>Percent:<\/b> 5.1%","<b>Year:<\/b> 2014<br><b>Country:<\/b> Republic of Korea<br><b>Percent:<\/b> 5.3%","<b>Year:<\/b> 2015<br><b>Country:<\/b> Republic of Korea<br><b>Percent:<\/b> 5.34%","<b>Year:<\/b> 2016<br><b>Country:<\/b> Republic of Korea<br><b>Percent:<\/b> 5.22%","<b>Year:<\/b> 2017<br><b>Country:<\/b> Republic of Korea<br><b>Percent:<\/b> 4.99%","<b>Year:<\/b> 2018<br><b>Country:<\/b> Republic of Korea<br><b>Percent:<\/b> 4.85%","<b>Year:<\/b> 2019<br><b>Country:<\/b> Republic of Korea<br><b>Percent:<\/b> 4.64%"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,191,196,1)","opacity":0.5,"size":11.3385826771654,"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(127,127,127,1)"}},"hoveron":"points","name":"(Republic of Korea,1)","legendgroup":"(Republic of Korea,1)","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[2011,2012,2013,2014,2015,2016,2017,2018,2019,2020],"y":[8.98066825,8.62414692,8.55824127,8.22676401,7.99137654,7.8069024,7.61442843,7.2832524,6.98514221,6.00555718],"text":["<b>Year:<\/b> 2011<br><b>Country:<\/b> Spain<br><b>Percent:<\/b> 8.98%","<b>Year:<\/b> 2012<br><b>Country:<\/b> Spain<br><b>Percent:<\/b> 8.62%","<b>Year:<\/b> 2013<br><b>Country:<\/b> Spain<br><b>Percent:<\/b> 8.56%","<b>Year:<\/b> 2014<br><b>Country:<\/b> Spain<br><b>Percent:<\/b> 8.23%","<b>Year:<\/b> 2015<br><b>Country:<\/b> Spain<br><b>Percent:<\/b> 7.99%","<b>Year:<\/b> 2016<br><b>Country:<\/b> Spain<br><b>Percent:<\/b> 7.81%","<b>Year:<\/b> 2017<br><b>Country:<\/b> Spain<br><b>Percent:<\/b> 7.61%","<b>Year:<\/b> 2018<br><b>Country:<\/b> Spain<br><b>Percent:<\/b> 7.28%","<b>Year:<\/b> 2019<br><b>Country:<\/b> Spain<br><b>Percent:<\/b> 6.99%","<b>Year:<\/b> 2020<br><b>Country:<\/b> Spain<br><b>Percent:<\/b> 6.01%"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,169,255,1)","opacity":0.5,"size":11.3385826771654,"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(127,127,127,1)"}},"hoveron":"points","name":"(Spain,1)","legendgroup":"(Spain,1)","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[2011,2012,2013,2014,2015,2016,2017,2018,2019],"y":[13.40668415,12.94901445,12.66770519,12.12660496,11.57684134,11.06422596,10.90522384,10.3915795,10.42393428],"text":["<b>Year:<\/b> 2011<br><b>Country:<\/b> United Kingdom<br><b>Percent:<\/b> 13.41%","<b>Year:<\/b> 2012<br><b>Country:<\/b> United Kingdom<br><b>Percent:<\/b> 12.95%","<b>Year:<\/b> 2013<br><b>Country:<\/b> United Kingdom<br><b>Percent:<\/b> 12.67%","<b>Year:<\/b> 2014<br><b>Country:<\/b> United Kingdom<br><b>Percent:<\/b> 12.13%","<b>Year:<\/b> 2015<br><b>Country:<\/b> United Kingdom<br><b>Percent:<\/b> 11.58%","<b>Year:<\/b> 2016<br><b>Country:<\/b> United Kingdom<br><b>Percent:<\/b> 11.06%","<b>Year:<\/b> 2017<br><b>Country:<\/b> United Kingdom<br><b>Percent:<\/b> 10.91%","<b>Year:<\/b> 2018<br><b>Country:<\/b> United Kingdom<br><b>Percent:<\/b> 10.39%","<b>Year:<\/b> 2019<br><b>Country:<\/b> United Kingdom<br><b>Percent:<\/b> 10.42%"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(199,124,255,1)","opacity":0.5,"size":11.3385826771654,"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(127,127,127,1)"}},"hoveron":"points","name":"(United Kingdom,1)","legendgroup":"(United Kingdom,1)","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[2011,2012,2013,2014,2015,2016,2017,2018,2019,2020],"y":[14.91954944,14.60590836,14.25544851,13.88175835,13.52196945,13.24413828,13.00563746,12.88191589,12.64169806,11.31355377],"text":["<b>Year:<\/b> 2011<br><b>Country:<\/b> United States of America<br><b>Percent:<\/b> 14.92%","<b>Year:<\/b> 2012<br><b>Country:<\/b> United States of America<br><b>Percent:<\/b> 14.61%","<b>Year:<\/b> 2013<br><b>Country:<\/b> United States of America<br><b>Percent:<\/b> 14.26%","<b>Year:<\/b> 2014<br><b>Country:<\/b> United States of America<br><b>Percent:<\/b> 13.88%","<b>Year:<\/b> 2015<br><b>Country:<\/b> United States of America<br><b>Percent:<\/b> 13.52%","<b>Year:<\/b> 2016<br><b>Country:<\/b> United States of America<br><b>Percent:<\/b> 13.24%","<b>Year:<\/b> 2017<br><b>Country:<\/b> United States of America<br><b>Percent:<\/b> 13.01%","<b>Year:<\/b> 2018<br><b>Country:<\/b> United States of America<br><b>Percent:<\/b> 12.88%","<b>Year:<\/b> 2019<br><b>Country:<\/b> United States of America<br><b>Percent:<\/b> 12.64%","<b>Year:<\/b> 2020<br><b>Country:<\/b> United States of America<br><b>Percent:<\/b> 11.31%"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(255,97,204,1)","opacity":0.5,"size":11.3385826771654,"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(127,127,127,1)"}},"hoveron":"points","name":"(United States of America,1)","legendgroup":"(United States of America,1)","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":43.7625570776256,"r":7.30593607305936,"b":40.1826484018265,"l":37.2602739726027},"font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"title":{"text":"Percent of IHD Related Deaths per Year by Country","font":{"color":"rgba(0,0,0,1)","family":"","size":17.5342465753425},"x":0.5,"xref":"paper"},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[2010.55,2020.45],"tickmode":"array","ticktext":[2011,2012,2013,2014,2015,2016,2017,2018,2019,2011,2012,2013,2014,2015,2016,2011,2012,2013,2014,2015,2016,2017,2018,2019,2011,2012,2013,2014,2015,2016,2017,2011,2012,2013,2014,2015,2016,2017,2018,2019,2011,2012,2013,2014,2015,2016,2017,2011,2012,2013,2014,2015,2016,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2018,2019,2020,2017,2018,2019,2020],"tickvals":[2011,2012,2013,2014,2015,2016,2017,2018,2019,2011,2012,2013,2014,2015,2016,2011,2012,2013,2014,2015,2016,2017,2018,2019,2011,2012,2013,2014,2015,2016,2017,2011,2012,2013,2014,2015,2016,2017,2018,2019,2011,2012,2013,2014,2015,2016,2017,2011,2012,2013,2014,2015,2016,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2018,2019,2020,2017,2018,2019,2020],"categoryorder":"array","categoryarray":[2011,2012,2013,2014,2015,2016,2017,2018,2019,2011,2012,2013,2014,2015,2016,2011,2012,2013,2014,2015,2016,2017,2018,2019,2011,2012,2013,2014,2015,2016,2017,2011,2012,2013,2014,2015,2016,2017,2018,2019,2011,2012,2013,2014,2015,2016,2017,2011,2012,2013,2014,2015,2016,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2018,2019,2020,2017,2018,2019,2020],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.65296803652968,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176,"zeroline":false,"anchor":"y","title":{"text":"Year","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"standoff":20},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[3.7697432625,22.9593452875],"tickmode":"array","ticktext":["5","10","15","20"],"tickvals":[5,10,15,20],"categoryorder":"array","categoryarray":["5","10","15","20"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.65296803652968,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176,"zeroline":false,"anchor":"x","title":{"text":"Percent of IHD Related Deaths (%)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"standoff":20},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":false,"legend":{"bgcolor":null,"bordercolor":null,"borderwidth":0,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.689497716895}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"247c318013f6":{"x":{},"y":{},"colour":{},"type":"scatter"},"247c1fd31b01":{"x":{},"y":{},"colour":{},"fill":{},"text":{}}},"cur_data":"247c318013f6","visdat":{"247c318013f6":["function (y) ","x"],"247c1fd31b01":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<p>For more plot options from plotly and more documentation, please go to plotly’s <a href="https://plotly.com/r/">website</a>.</p>
+</div>
+</div>
+<div id="saving-the-plot" class="section level2 unnumbered hasAnchor">
+<h2>Saving the Plot<a href="data-visualization.html#saving-the-plot" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In R, a <strong>graphics device</strong> is a tool that makes your plot appear within RStudio.</p>
+<ul>
+<li>A window on your computer (screen device)
+<ul>
+<li>This is the most common place to “send” a plot</li>
+<li>Easy to copy/paste into your document</li>
+</ul></li>
+</ul>
+<p>The file type options available to save your figure(s) are the following:</p>
+<ul>
+<li>PDF</li>
+<li>PNG</li>
+<li>JPEG</li>
+</ul>
+<p>These options provide better quality for journal articles and/or presentations.</p>
+<p><strong>Example:</strong> create a plot that gets saved in a PDF file:</p>
+<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="data-visualization.html#cb156-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pdf</span>(<span class="at">file =</span> <span class="st">&quot;CorrMat.pdf&quot;</span>)                               <span class="co"># Save the plot below as a PDF</span></span>
+<span id="cb156-2"><a href="data-visualization.html#cb156-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mar =</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">1</span>, <span class="dv">1</span>))                                <span class="co"># Enlarge the dimension of the plot</span></span>
+<span id="cb156-3"><a href="data-visualization.html#cb156-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(mtcars[,<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span><span class="sc">:</span><span class="dv">7</span>)]) <span class="sc">%&gt;%</span>                             <span class="co"># Draw the plot</span></span>
+<span id="cb156-4"><a href="data-visualization.html#cb156-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">corrplot</span>(<span class="at">method =</span> <span class="st">&quot;circle&quot;</span>, <span class="at">type =</span> <span class="st">&quot;upper&quot;</span>, <span class="at">diag =</span> F)</span>
+<span id="cb156-5"><a href="data-visualization.html#cb156-5" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()                                               <span class="co"># Finish process and turn it off.</span></span></code></pre></div>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="descriptive-statistics-hypothesis-testing.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="resources.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
