@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>2 Descriptive Statistics &amp; Hypothesis Testing | Introduction to Statistical Computing: R</title>
+  <meta name="description" content="2 Descriptive Statistics &amp; Hypothesis Testing | Introduction to Statistical Computing: R" />
+  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="2 Descriptive Statistics &amp; Hypothesis Testing | Introduction to Statistical Computing: R" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="2 Descriptive Statistics &amp; Hypothesis Testing | Introduction to Statistical Computing: R" />
+  
+  
+  
+
+<meta name="author" content="Heejoon Ahn, MS; Eun Jeung Oh, PhD; and Codruta Chiuzan, PhD" />
+
+
+<meta name="date" content="2023-02-03" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html"/>
+<link rel="next" href="data-visualization.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.10.0/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-2.5.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-2.5.1/plotly-latest.min.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Before getting started…</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#why-r"><i class="fa fa-check"></i>Why R?</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#what-is-rstudio"><i class="fa fa-check"></i>What is RStudio?</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#install-r-and-rstudio"><i class="fa fa-check"></i>Install R and RStudio</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#install-r"><i class="fa fa-check"></i>Install R</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#install-rstudio"><i class="fa fa-check"></i>Install RStudio</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#coding-in-r"><i class="fa fa-check"></i>Coding in R</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#create-r-script"><i class="fa fa-check"></i>Create R Script</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#r-packages"><i class="fa fa-check"></i>R Packages</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#r-syntax"><i class="fa fa-check"></i>R Syntax</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#r-errors"><i class="fa fa-check"></i>R Errors</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="introduction-to-r.html"><a href="introduction-to-r.html"><i class="fa fa-check"></i>Introduction to R</a>
+<ul>
+<li class="chapter" data-level="" data-path="introduction-to-r.html"><a href="introduction-to-r.html#understanding-basic-data-types-and-data-structures"><i class="fa fa-check"></i>Understanding Basic Data Types and Data Structures</a>
+<ul>
+<li class="chapter" data-level="" data-path="introduction-to-r.html"><a href="introduction-to-r.html#variables"><i class="fa fa-check"></i>Variables</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="introduction-to-r.html"><a href="introduction-to-r.html#fundamentals-of-r"><i class="fa fa-check"></i>Fundamentals of R</a>
+<ul>
+<li class="chapter" data-level="" data-path="introduction-to-r.html"><a href="introduction-to-r.html#operators"><i class="fa fa-check"></i>Operators</a></li>
+<li class="chapter" data-level="" data-path="introduction-to-r.html"><a href="introduction-to-r.html#keywords"><i class="fa fa-check"></i>Keywords</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="introduction-to-r.html"><a href="introduction-to-r.html#data-structures"><i class="fa fa-check"></i>Data Structures</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html"><i class="fa fa-check"></i><b>1</b> Overview of R/R Studio, Examining Data Attributes, and Data Manipulation</a>
+<ul>
+<li class="chapter" data-level="" data-path="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#importing-data"><i class="fa fa-check"></i>Importing Data</a>
+<ul>
+<li class="chapter" data-level="" data-path="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#prepare-data"><i class="fa fa-check"></i>Prepare Data</a></li>
+<li class="chapter" data-level="" data-path="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#set-your-working-directory"><i class="fa fa-check"></i>Set Your Working Directory</a></li>
+<li class="chapter" data-level="" data-path="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#read-data-into-r"><i class="fa fa-check"></i>Read Data into R</a></li>
+<li class="chapter" data-level="" data-path="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#load-data-from-r-packages"><i class="fa fa-check"></i>Load Data from R Packages</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#data-description"><i class="fa fa-check"></i>Data Description</a>
+<ul>
+<li class="chapter" data-level="" data-path="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#missing-data"><i class="fa fa-check"></i>Missing Data</a></li>
+<li class="chapter" data-level="" data-path="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#data-class"><i class="fa fa-check"></i>Data Class</a></li>
+<li class="chapter" data-level="" data-path="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#count-and-proportions-of-data"><i class="fa fa-check"></i>Count and Proportions of Data</a></li>
+<li class="chapter" data-level="" data-path="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#summary-statistics"><i class="fa fa-check"></i>Summary Statistics</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#data-manipulation"><i class="fa fa-check"></i>Data Manipulation</a>
+<ul>
+<li class="chapter" data-level="" data-path="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#subset-data"><i class="fa fa-check"></i>Subset Data</a></li>
+<li class="chapter" data-level="" data-path="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#order-data"><i class="fa fa-check"></i>Order Data</a></li>
+<li class="chapter" data-level="" data-path="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#rename-variables"><i class="fa fa-check"></i>Rename Variables</a></li>
+<li class="chapter" data-level="" data-path="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#data-transformation"><i class="fa fa-check"></i>Data Transformation</a></li>
+<li class="chapter" data-level="" data-path="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#if-else-function"><i class="fa fa-check"></i>If-Else Function</a></li>
+<li class="chapter" data-level="" data-path="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#combine-data-sets-stacking"><i class="fa fa-check"></i>Combine Data Sets (Stacking)</a></li>
+<li class="chapter" data-level="" data-path="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html"><a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html#merge-data-sets"><i class="fa fa-check"></i>Merge Data Sets</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="descriptive-statistics-hypothesis-testing.html"><a href="descriptive-statistics-hypothesis-testing.html"><i class="fa fa-check"></i><b>2</b> Descriptive Statistics &amp; Hypothesis Testing</a>
+<ul>
+<li class="chapter" data-level="" data-path="descriptive-statistics-hypothesis-testing.html"><a href="descriptive-statistics-hypothesis-testing.html#descriptive-statistics"><i class="fa fa-check"></i>Descriptive Statistics</a>
+<ul>
+<li class="chapter" data-level="" data-path="descriptive-statistics-hypothesis-testing.html"><a href="descriptive-statistics-hypothesis-testing.html#continuous-vs.-categorical-variables"><i class="fa fa-check"></i>Continuous vs. Categorical Variables</a></li>
+<li class="chapter" data-level="" data-path="descriptive-statistics-hypothesis-testing.html"><a href="descriptive-statistics-hypothesis-testing.html#continuous-variables"><i class="fa fa-check"></i>Continuous Variables</a></li>
+<li class="chapter" data-level="" data-path="descriptive-statistics-hypothesis-testing.html"><a href="descriptive-statistics-hypothesis-testing.html#categorical-variables"><i class="fa fa-check"></i>Categorical Variables</a></li>
+<li class="chapter" data-level="" data-path="descriptive-statistics-hypothesis-testing.html"><a href="descriptive-statistics-hypothesis-testing.html#how-to-create-table-1-with-gtsummary"><i class="fa fa-check"></i>How to Create ‘Table 1’ with <code>gtsummary</code></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="descriptive-statistics-hypothesis-testing.html"><a href="descriptive-statistics-hypothesis-testing.html#basic-hypothesis-testing"><i class="fa fa-check"></i>Basic Hypothesis Testing</a>
+<ul>
+<li class="chapter" data-level="" data-path="descriptive-statistics-hypothesis-testing.html"><a href="descriptive-statistics-hypothesis-testing.html#students-t-test"><i class="fa fa-check"></i>Student’s T-test</a></li>
+<li class="chapter" data-level="" data-path="descriptive-statistics-hypothesis-testing.html"><a href="descriptive-statistics-hypothesis-testing.html#analysis-of-variance-anova"><i class="fa fa-check"></i>Analysis of Variance (ANOVA)</a></li>
+<li class="chapter" data-level="" data-path="descriptive-statistics-hypothesis-testing.html"><a href="descriptive-statistics-hypothesis-testing.html#categorical-data-analysis"><i class="fa fa-check"></i>Categorical Data Analysis</a></li>
+<li class="chapter" data-level="" data-path="descriptive-statistics-hypothesis-testing.html"><a href="descriptive-statistics-hypothesis-testing.html#multiple-comparisons"><i class="fa fa-check"></i>Multiple Comparisons</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="data-visualization.html"><a href="data-visualization.html"><i class="fa fa-check"></i><b>3</b> Data Visualization</a>
+<ul>
+<li class="chapter" data-level="" data-path="data-visualization.html"><a href="data-visualization.html#basic-plots"><i class="fa fa-check"></i>Basic Plots</a>
+<ul>
+<li class="chapter" data-level="" data-path="data-visualization.html"><a href="data-visualization.html#scatterplots"><i class="fa fa-check"></i>Scatterplots</a></li>
+<li class="chapter" data-level="" data-path="data-visualization.html"><a href="data-visualization.html#line-plots"><i class="fa fa-check"></i>Line Plots</a></li>
+<li class="chapter" data-level="" data-path="data-visualization.html"><a href="data-visualization.html#bar-plots"><i class="fa fa-check"></i>Bar Plots</a></li>
+<li class="chapter" data-level="" data-path="data-visualization.html"><a href="data-visualization.html#histogram-and-density-plots"><i class="fa fa-check"></i>Histogram and Density Plots</a></li>
+<li class="chapter" data-level="" data-path="data-visualization.html"><a href="data-visualization.html#boxplots"><i class="fa fa-check"></i>Boxplots</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="data-visualization.html"><a href="data-visualization.html#ggplot2-plots"><i class="fa fa-check"></i><code>ggplot2</code> Plots</a>
+<ul>
+<li class="chapter" data-level="" data-path="data-visualization.html"><a href="data-visualization.html#scatterplots-1"><i class="fa fa-check"></i>Scatterplots</a></li>
+<li class="chapter" data-level="" data-path="data-visualization.html"><a href="data-visualization.html#barplots"><i class="fa fa-check"></i>Barplots</a></li>
+<li class="chapter" data-level="" data-path="data-visualization.html"><a href="data-visualization.html#histogram"><i class="fa fa-check"></i>Histogram</a></li>
+<li class="chapter" data-level="" data-path="data-visualization.html"><a href="data-visualization.html#boxplots-1"><i class="fa fa-check"></i>Boxplots</a></li>
+<li class="chapter" data-level="" data-path="data-visualization.html"><a href="data-visualization.html#formatting-plots"><i class="fa fa-check"></i>Formatting Plots</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="data-visualization.html"><a href="data-visualization.html#other-plots"><i class="fa fa-check"></i>Other Plots</a>
+<ul>
+<li class="chapter" data-level="" data-path="data-visualization.html"><a href="data-visualization.html#forest-plot"><i class="fa fa-check"></i>Forest Plot</a></li>
+<li class="chapter" data-level="" data-path="data-visualization.html"><a href="data-visualization.html#correlation-matrix"><i class="fa fa-check"></i>Correlation Matrix</a></li>
+<li class="chapter" data-level="" data-path="data-visualization.html"><a href="data-visualization.html#interactive-plots-plotly"><i class="fa fa-check"></i>Interactive Plots: Plotly</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="data-visualization.html"><a href="data-visualization.html#saving-the-plot"><i class="fa fa-check"></i>Saving the Plot</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="resources.html"><a href="resources.html"><i class="fa fa-check"></i><b>4</b> Resources</a>
+<ul>
+<li class="chapter" data-level="" data-path="resources.html"><a href="resources.html#cran-repository"><i class="fa fa-check"></i>CRAN repository</a></li>
+<li class="chapter" data-level="" data-path="resources.html"><a href="resources.html#r-and-rstudio-guides"><i class="fa fa-check"></i>R and RStudio Guides</a></li>
+<li class="chapter" data-level="" data-path="resources.html"><a href="resources.html#other-r-package-guides"><i class="fa fa-check"></i>Other R Package Guides</a></li>
+<li class="chapter" data-level="" data-path="resources.html"><a href="resources.html#data-visualization-1"><i class="fa fa-check"></i>Data Visualization</a></li>
+<li class="chapter" data-level="" data-path="resources.html"><a href="resources.html#example-datasets"><i class="fa fa-check"></i>Example Datasets</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introduction to Statistical Computing: R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="descriptive-statistics-hypothesis-testing" class="section level1 hasAnchor" number="2">
+<h1><span class="header-section-number">2</span> Descriptive Statistics &amp; Hypothesis Testing<a href="descriptive-statistics-hypothesis-testing.html#descriptive-statistics-hypothesis-testing" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="descriptive-statistics" class="section level2 unnumbered hasAnchor">
+<h2>Descriptive Statistics<a href="descriptive-statistics-hypothesis-testing.html#descriptive-statistics" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Descriptive statistics’ purpose is to help describe the basic features of the data. This is all exploratory information. Below, some common measures of describing a continuous variable are listed below:</p>
+<ul>
+<li>Measures of central tendency (e.g., mean, median)
+<ul>
+<li>Describes where the “center” of the data is.</li>
+<li>Mean is also known as the “average”.</li>
+<li>Median is also known as the 50th percentile.</li>
+</ul></li>
+<li>Measures of variability/spread (e.g., standard deviation, interquartile range-IQR, range)
+<ul>
+<li>Variance is the squared value of the standard deviation.</li>
+<li>Interquartile range is from the 25th percentile to the 75th percentile.</li>
+<li>Range is the distance from the minimum to the maximum observation.</li>
+</ul></li>
+</ul>
+<p>Here is a list of all the R functions available to provide various descriptive statistics information:</p>
+<ul>
+<li><code>mean(mydata)</code>: Mean of all numeric variables</li>
+<li><code>mean(mydata$myvar)</code>: Mean of a selected numeric variable from the dataset</li>
+<li><code>median(mydata$myvar)</code>: Median: the 50th percentile</li>
+<li><code>var(mydata$myvar)</code>: Variance</li>
+<li><code>sd(mydata$myvar)</code>: Standard Deviation</li>
+<li><code>min(mydata$myvar)</code>: Minimum value</li>
+<li><code>max(mydata$myvar)</code>: Maximum value</li>
+<li><code>range(mydata$myvar)</code>: Range: Min-Max</li>
+<li><code>quantile(mydata$myvar)</code>: Quartiles; Interquartile Range: 25th - 75th percentiles.</li>
+</ul>
+<div id="continuous-vs.-categorical-variables" class="section level3 unnumbered hasAnchor">
+<h3>Continuous vs. Categorical Variables<a href="descriptive-statistics-hypothesis-testing.html#continuous-vs.-categorical-variables" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In data files, to be able to determine what kind of descriptive statistics you need to use, you must first understand your data. Typically, determine whether the values in your variable (column) is continuous, or a categorical. A continuous variable is typically one that you can perform a mathematical operation on. These are spread on a continuous range. Some examples of continuous variables can be age, weight, blood pressure, length of stay, and more.If a column contains “Yes/No” values for a question, then it is categorical.</p>
+<p>One thing to note, is that a column that contains numeric values does not automatically make it a continuous variable. Rather, if seems like the numeric values represent groups (e.g. 0 for no, and 1 for yes), it is actually a categorical variable. The next few sessions explain various ways to calculate descriptive statistics from continuous and categorical variables in R.</p>
+</div>
+<div id="continuous-variables" class="section level3 unnumbered hasAnchor">
+<h3>Continuous Variables<a href="descriptive-statistics-hypothesis-testing.html#continuous-variables" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>To get a quick summary for numeric variables, you can use the <code>summary()</code> function that automatically comes from the <code>base</code> package. This provides the following values:</p>
+<ul>
+<li>Minimum</li>
+<li>1st Quartile</li>
+<li>Median</li>
+<li>Mean</li>
+<li>3rd Quartile</li>
+<li>Maximum</li>
+</ul>
+<p>Here is an example code to get the summary for <code>age</code> column of the <code>low_birth_all</code> data frame.</p>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="descriptive-statistics-hypothesis-testing.html#cb101-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Put in the variable inside the ()</span></span>
+<span id="cb101-2"><a href="descriptive-statistics-hypothesis-testing.html#cb101-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(low_birth_all<span class="sc">$</span>age)  </span></code></pre></div>
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  14.00   25.00   29.00   29.17   33.00   50.00 </code></pre>
+<p>You can run the <code>summary()</code> function on the entire data frame, but it will only return meaningful values for columns that contain numeric values.</p>
+<p>Most manuscripts report the following descriptive statistics:</p>
+<ul>
+<li>Mean and Standard Deviation</li>
+<li>Median and Interquartile Range</li>
+</ul>
+<p>Both are commonly used but, the median and interquartile range is often better to use when you have a “skewed” dataset. This means that the data is not “normally” distributed and leaning more towards a certain value over another (left-tailed, or right-tailed). Medians are not as affected by outliers and skewness as mean values are, so they are better to use if there is any skewed data. For the variability measure to go with the median, use the interquartile range.</p>
+<p>If the median and mean values are close to each other, then it gives you an idea that the data is relatively normally distributed, so you can use either descriptive statistic measures. If they have a large discrepancy, than there may be skewness in the data, so the median and interquartile range are preferred.</p>
+<p>A different way to get the summary statistics of variables is to use the <code>skim()</code> function from the <code>skimr</code> package. This provides the following values:</p>
+<ul>
+<li><code>n_missing</code>: Number of NA values in the column</li>
+<li><code>complete_rate</code>: The percent of rows that do not contain NA values (maximum value is 1)</li>
+<li><code>mean</code>: Mean value of numeric column</li>
+<li><code>sd</code>: Standard deviation value of numeric column</li>
+<li><code>p0</code>: minimum value</li>
+<li><code>p25</code>: 25th percentile value</li>
+<li><code>p50</code>: median value</li>
+<li><code>p75</code>: 75th percentile value</li>
+<li><code>p100</code>: maximum value</li>
+</ul>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="descriptive-statistics-hypothesis-testing.html#cb103-1" aria-hidden="true" tabindex="-1"></a><span class="fu">skim</span>(low_birth_all) <span class="co"># input the entire data set</span></span></code></pre></div>
+<p><img src="Images/skim.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>When using this function, be cautious of reporting the summary of all columns. This function runs across the entire data frame, so it might generate summaries that are not meaningful. For example, running the <code>skim()</code> function with our <code>low_birth_all</code> data frame generates meaningless summaries for the <code>id</code> variable.</p>
+<ul>
+<li>The <code>id</code> column is an identifier column for each unique baby.</li>
+<li>The <code>ht</code> and <code>ptl</code> columns are bivariate (0/1) columns, indicating that they only have values of 0 and 1.
+<ul>
+<li>This kind of binary variables are actually “categorical” variables.</li>
+<li>Therefore, this kind of descriptive statistics is not helpful. Frequencies and percentage values will be more informative.</li>
+</ul></li>
+</ul>
+<p>Meanwhile, if you would like to generate summary statistics for each level of another categorical variable, the <code>dplyr</code> package and the function <code>group_by()</code> can assist with this task. Here is an example of calculating summary statistics of birthweight <code>bwt</code> by <code>race</code>.</p>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="descriptive-statistics-hypothesis-testing.html#cb104-1" aria-hidden="true" tabindex="-1"></a>low_birth_all <span class="sc">%&gt;%</span>                      <span class="co"># use the low_birth_all data</span></span>
+<span id="cb104-2"><a href="descriptive-statistics-hypothesis-testing.html#cb104-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(race) <span class="sc">%&gt;%</span>                   <span class="co"># Group by the race</span></span>
+<span id="cb104-3"><a href="descriptive-statistics-hypothesis-testing.html#cb104-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">n =</span> <span class="fu">n</span>(),                   <span class="co"># total number of observations</span></span>
+<span id="cb104-4"><a href="descriptive-statistics-hypothesis-testing.html#cb104-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">min =</span> <span class="fu">min</span>(bwt),            <span class="co"># minimum</span></span>
+<span id="cb104-5"><a href="descriptive-statistics-hypothesis-testing.html#cb104-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">q1 =</span> <span class="fu">quantile</span>(bwt, <span class="fl">0.25</span>),  <span class="co"># 25th percentile</span></span>
+<span id="cb104-6"><a href="descriptive-statistics-hypothesis-testing.html#cb104-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">median =</span> <span class="fu">median</span>(bwt),      <span class="co"># median</span></span>
+<span id="cb104-7"><a href="descriptive-statistics-hypothesis-testing.html#cb104-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">q3 =</span> <span class="fu">quantile</span>(bwt, <span class="fl">0.75</span>),  <span class="co"># 75th percentile</span></span>
+<span id="cb104-8"><a href="descriptive-statistics-hypothesis-testing.html#cb104-8" aria-hidden="true" tabindex="-1"></a>            <span class="at">max =</span> <span class="fu">max</span>(bwt)) <span class="sc">%&gt;%</span>        <span class="co"># maximum</span></span>
+<span id="cb104-9"><a href="descriptive-statistics-hypothesis-testing.html#cb104-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.data.frame</span>(.) <span class="sc">%&gt;%</span>                 <span class="co"># return the result as a dataframe object in R</span></span>
+<span id="cb104-10"><a href="descriptive-statistics-hypothesis-testing.html#cb104-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate_if</span>(is.numeric, round, <span class="dv">2</span>)      <span class="co"># round numeric columns so they have two decimal points</span></span></code></pre></div>
+<pre><code>   race    n min      q1 median      q3  max
+1 black  573 280 2780.00 3140.0 3470.00 5115
+2 other  390 640 2912.25 3242.5 3516.50 4672
+3 white 2708 482 3005.00 3351.5 3666.25 5530</code></pre>
+<p>If the numeric/continuous variable that you are retrieving calculations for has any <code>NA</code> values, the functions from above may return as <code>NA</code>. The <code>NA</code> value gets returned because these functions take the <code>NA</code> value into the calculation. But the <code>NA</code> value is not a numeric value, so the R code cannot run the calculation properly and returns <code>NA</code>.</p>
+<p>One way to work around this is to add in the option of <code>na.rm = T</code> or <code>na.rm = TRUE</code> into your function (e.g. <code>min(mydata$myvar, na.rm = T)</code>). This <code>na.rm</code> option is typically defaulted to <code>FALSE</code>, but we are setting it to <code>TRUE</code> to ensure that we remove any <code>NA</code> values from our calculations. Feel free to check the documentation for these summary statistics functions using the <code>?function_name()</code> syntax to check if you can do this for a function of interest.</p>
+</div>
+<div id="categorical-variables" class="section level3 unnumbered hasAnchor">
+<h3>Categorical Variables<a href="descriptive-statistics-hypothesis-testing.html#categorical-variables" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>For categorical variables, you can get descriptive statistics by calculating the row, column, and total frequencies and percentages (%). This is typically done through two- and three-way tabulations. Here are some examples:</p>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="descriptive-statistics-hypothesis-testing.html#cb106-1" aria-hidden="true" tabindex="-1"></a>tbl <span class="ot">&lt;-</span> <span class="fu">table</span>(mydata<span class="sc">$</span>var1, mydata<span class="sc">$</span>var2)    <span class="co"># 2-way table</span></span>
+<span id="cb106-2"><a href="descriptive-statistics-hypothesis-testing.html#cb106-2" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.table</span>(tbl, <span class="dv">1</span>)                        <span class="co"># Row Proportions </span></span>
+<span id="cb106-3"><a href="descriptive-statistics-hypothesis-testing.html#cb106-3" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.table</span>(tbl, <span class="dv">2</span>)                        <span class="co"># Column Proportions</span></span>
+<span id="cb106-4"><a href="descriptive-statistics-hypothesis-testing.html#cb106-4" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.table</span>(tbl)                           <span class="co"># Total Proportions</span></span>
+<span id="cb106-5"><a href="descriptive-statistics-hypothesis-testing.html#cb106-5" aria-hidden="true" tabindex="-1"></a><span class="fu">xtabs</span>(<span class="sc">~</span>var1 <span class="sc">+</span> var2 <span class="sc">+</span> var3, <span class="at">data =</span> mydata) <span class="co"># 3-way cross-tabulation</span></span></code></pre></div>
+<p>To get a 1-way tabulation, you can put a single variable inside the <code>table()</code> function. This will return the frequency of that variable. To return the proportion tables in R, you must input the output of the <code>table()</code> function like the <code>tbl</code> object shown above.</p>
+<p>An alternative method to run a 3-way tabulation is to use the following functions from the <code>janitor</code> package.</p>
+<ul>
+<li><code>tabyl()</code>: A function to generate a frequency table (1-, 2-, or 3-way).
+<ul>
+<li><code>show_missing_levels</code> condition set to <code>TRUE</code> if you have any missing data and its percentage.</li>
+</ul></li>
+<li><code>adorn_totals()</code>: Append a totals row and/or column to a data frame.</li>
+<li><code>adorn_percentages()</code>: Convert a data frame of counts to percentages.</li>
+<li><code>adorn_pct_formatting()</code>: Format a data frame of decimals as percentages</li>
+<li><code>adorn_ns()</code>: Add underlying Ns to a tabyl displaying percentages</li>
+<li><code>adorn_title()</code>: Add column name to the top of a 2-way tabyl</li>
+</ul>
+<p>Example: two-way tables of <code>smoke</code> by <code>race</code> stratified by history of hypertension <code>ht</code> (0/1)</p>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="descriptive-statistics-hypothesis-testing.html#cb107-1" aria-hidden="true" tabindex="-1"></a>low_birth_all <span class="sc">%&gt;%</span></span>
+<span id="cb107-2"><a href="descriptive-statistics-hypothesis-testing.html#cb107-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tabyl</span>(smoke, race, ht, <span class="at">show_missing_levels =</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span>  </span>
+<span id="cb107-3"><a href="descriptive-statistics-hypothesis-testing.html#cb107-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># adorn_totals(&quot;col&quot;) %&gt;%</span></span>
+<span id="cb107-4"><a href="descriptive-statistics-hypothesis-testing.html#cb107-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">adorn_percentages</span>(<span class="st">&quot;row&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb107-5"><a href="descriptive-statistics-hypothesis-testing.html#cb107-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">adorn_pct_formatting</span>(<span class="at">digits =</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb107-6"><a href="descriptive-statistics-hypothesis-testing.html#cb107-6" aria-hidden="true" tabindex="-1"></a>  adorn_ns <span class="sc">%&gt;%</span></span>
+<span id="cb107-7"><a href="descriptive-statistics-hypothesis-testing.html#cb107-7" aria-hidden="true" tabindex="-1"></a>  adorn_title</span></code></pre></div>
+<pre><code>$`0`
+              race                         
+ smoke       black       other        white
+     0 15.5% (520) 10.8% (364) 73.7% (2471)
+     1 12.7%  (30)  7.6%  (18) 79.7%  (188)
+
+$`1`
+             race                     
+ smoke      black     other      white
+     0 27.8% (20) 11.1% (8) 61.1% (44)
+     1 37.5%  (3)  0.0% (0) 62.5%  (5)</code></pre>
+</div>
+<div id="how-to-create-table-1-with-gtsummary" class="section level3 unnumbered hasAnchor">
+<h3>How to Create ‘Table 1’ with <code>gtsummary</code><a href="descriptive-statistics-hypothesis-testing.html#how-to-create-table-1-with-gtsummary" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In R, there is a way to combine the descriptive statistics of both continuous and categorical variables and put them inside a table. This is typically done through the <code>gtsummary</code> package. This table can be copy-pasted into your publication since it was created to generate a nicely formatted table for you. To read more on this package (e.g. tutorial articles are provided here), read more from the <a href="https://www.danieldsjoberg.com/gtsummary/index.html">documentation website</a>.</p>
+<p>From this package, you can create the table using the <code>tbl_summary()</code> function to generate a function like the following:</p>
+<p><img src="Images/tbl_summary.png" width="70%" style="display: block; margin: auto;" /></p>
+<p>With this package, you only need to specify what are the continuous and/or categorical variables and how to visualize the descriptive statistics in the table. The table will then be generated for you. Using the <code>tbl_summary()</code> can also display a p-value to see if there is a statistically significant difference between groups, alongside which test was used to generate the p-values. By default, <code>gtsummary</code> will choose the best statistical tests and use those for the p-values. If you want to specify the test, then you can specify it on your end within the code.</p>
+<details>
+<summary>
+<strong>Click HERE to view code to generate “Table 1”:</strong>
+</summary>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="descriptive-statistics-hypothesis-testing.html#cb109-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Make the table</span></span>
+<span id="cb109-2"><a href="descriptive-statistics-hypothesis-testing.html#cb109-2" aria-hidden="true" tabindex="-1"></a>tab <span class="ot">&lt;-</span> low_birth_all <span class="sc">%&gt;%</span></span>
+<span id="cb109-3"><a href="descriptive-statistics-hypothesis-testing.html#cb109-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(age, race, smoke, bwt) <span class="sc">%&gt;%</span></span>
+<span id="cb109-4"><a href="descriptive-statistics-hypothesis-testing.html#cb109-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tbl_summary</span>(<span class="at">by =</span> race, <span class="at">label =</span> <span class="fu">list</span>(age <span class="sc">~</span> <span class="st">&quot;Age&quot;</span>, smoke <span class="sc">~</span> <span class="st">&quot;Smoking&quot;</span>, bwt <span class="sc">~</span> <span class="st">&quot;Birthweight&quot;</span>), </span>
+<span id="cb109-5"><a href="descriptive-statistics-hypothesis-testing.html#cb109-5" aria-hidden="true" tabindex="-1"></a>              <span class="at">type =</span> <span class="fu">all_continuous</span>() <span class="sc">~</span> <span class="st">&quot;continuous2&quot;</span>, </span>
+<span id="cb109-6"><a href="descriptive-statistics-hypothesis-testing.html#cb109-6" aria-hidden="true" tabindex="-1"></a>              <span class="at">statistic =</span> <span class="fu">list</span>(<span class="fu">all_continuous</span>() <span class="sc">~</span> <span class="fu">c</span>(<span class="st">&quot;{mean} ({sd})&quot;</span>, <span class="st">&quot;{median} ({p25}, {p75})&quot;</span>), </span>
+<span id="cb109-7"><a href="descriptive-statistics-hypothesis-testing.html#cb109-7" aria-hidden="true" tabindex="-1"></a>                               <span class="fu">all_categorical</span>() <span class="sc">~</span> <span class="st">&quot;{n} / {N} ({p}%)&quot;</span>),</span>
+<span id="cb109-8"><a href="descriptive-statistics-hypothesis-testing.html#cb109-8" aria-hidden="true" tabindex="-1"></a>              <span class="at">digits =</span> <span class="fu">all_continuous</span>() <span class="sc">~</span> <span class="dv">2</span>,</span>
+<span id="cb109-9"><a href="descriptive-statistics-hypothesis-testing.html#cb109-9" aria-hidden="true" tabindex="-1"></a>              <span class="at">missing_text =</span> <span class="st">&quot;(Missing)&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb109-10"><a href="descriptive-statistics-hypothesis-testing.html#cb109-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_p</span>(<span class="at">pvalue_fun =</span> <span class="sc">~</span><span class="fu">style_pvalue</span>(.x, <span class="at">digits =</span> <span class="dv">2</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb109-11"><a href="descriptive-statistics-hypothesis-testing.html#cb109-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">modify_header</span>(label <span class="sc">~</span> <span class="st">&quot;**Variable**&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb109-12"><a href="descriptive-statistics-hypothesis-testing.html#cb109-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">modify_spanning_header</span>(<span class="fu">c</span>(<span class="st">&quot;stat_1&quot;</span>, <span class="st">&quot;stat_2&quot;</span>, <span class="st">&quot;stat_3&quot;</span>) <span class="sc">~</span> <span class="st">&quot;**Race Categories**&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb109-13"><a href="descriptive-statistics-hypothesis-testing.html#cb109-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">modify_caption</span>(<span class="st">&quot;**Table 1. Patient Characteristics**&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb109-14"><a href="descriptive-statistics-hypothesis-testing.html#cb109-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bold_labels</span>()</span>
+<span id="cb109-15"><a href="descriptive-statistics-hypothesis-testing.html#cb109-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb109-16"><a href="descriptive-statistics-hypothesis-testing.html#cb109-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Export and save the file to HTML </span></span>
+<span id="cb109-17"><a href="descriptive-statistics-hypothesis-testing.html#cb109-17" aria-hidden="true" tabindex="-1"></a>tab <span class="sc">%&gt;%</span></span>
+<span id="cb109-18"><a href="descriptive-statistics-hypothesis-testing.html#cb109-18" aria-hidden="true" tabindex="-1"></a>  gtsummary<span class="sc">::</span><span class="fu">as_gt</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb109-19"><a href="descriptive-statistics-hypothesis-testing.html#cb109-19" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">gtsave</span>(., <span class="st">&quot;Table1_Example.html&quot;</span>)</span>
+<span id="cb109-20"><a href="descriptive-statistics-hypothesis-testing.html#cb109-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb109-21"><a href="descriptive-statistics-hypothesis-testing.html#cb109-21" aria-hidden="true" tabindex="-1"></a><span class="co"># The fille will save automatically to the current working directory</span></span></code></pre></div>
+</details>
+</div>
+</div>
+<div id="basic-hypothesis-testing" class="section level2 unnumbered hasAnchor">
+<h2>Basic Hypothesis Testing<a href="descriptive-statistics-hypothesis-testing.html#basic-hypothesis-testing" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Hypothesis testing provides a framework for making decisions on an objective basis rather than on a subjective basis by simply looking at the data. This is usually done when you have a have-defined question in mind. Otherwise, you are at risk of ending up with a false positive result.</p>
+<p style="text-align: center; color:red;">
+The null hypothesis (<span class="math inline">\(H_{0}\)</span>): hypothesis to be tested
+</p>
+<p style="text-align: center; color:red;">
+vs.
+</p>
+<p style="text-align: center; color:red;">
+The alternative hypothesis (<span class="math inline">\(H_{1}\)</span>): hypothesis contradicting the null
+</p>
+<p>Note that our decisions will <strong>always be with respect to the null hypothesis</strong>.</p>
+<p><strong>Note:</strong> You either reject the null or fail to reject the null hypothesis. You never “accept” the alternative hypothesis.</p>
+<div id="students-t-test" class="section level3 unnumbered hasAnchor">
+<h3>Student’s T-test<a href="descriptive-statistics-hypothesis-testing.html#students-t-test" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A T-test is an analysis of one- or two-population means:</p>
+<ul>
+<li>Used for continuous (numeric) data (outcomes)</li>
+<li>One-sample T-test (compare one population mean to a specified value)</li>
+<li>Two-sample T-test (compare two population means)
+<ul>
+<li>Independent or paired test
+<ul>
+<li>Independent samples are not correlated (e.g. treatment and control, male and female).</li>
+<li>Paired samples means that there is some correlation between two groups (e.g. pre- and post- on the same group at a certain specific time point)</li>
+</ul></li>
+</ul></li>
+</ul>
+<p>Always remember to check model assumptions before inferences:</p>
+<ul>
+<li>Normality (for small samples)
+<ul>
+<li>Can be assessed by histograms (check for bell-shaped curve) or QQplots/Normality tests (not covered here)
+<ul>
+<li>You can also try data transformation (logarithmic, and etc.) to check for normality.</li>
+</ul></li>
+<li>You must test for normality on both groups for two-samples.</li>
+</ul></li>
+<li>Independent observations within the group(s) (not repeated)</li>
+</ul>
+<div id="one-sample-t-test" class="section level4 unnumbered hasAnchor">
+<h4>One-Sample T-test<a href="descriptive-statistics-hypothesis-testing.html#one-sample-t-test" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Hypothesis to be tested (two-sided):</p>
+<p style="text-align: center; color:red;">
+<span class="math inline">\(H_{0}: \mu = \mu_{0}\)</span> vs <span class="math inline">\(H_{1}: \mu \ne \mu_{0}\)</span>
+</p>
+<ul>
+<li>The <span class="math inline">\(\mu_{0}\)</span> is the value that you want to test.</li>
+<li>The <span class="math inline">\(\mu\)</span> is the actual average value of the variable of interest.</li>
+</ul>
+<p><strong>Example:</strong> Is the mother’s average age different from 26?</p>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="descriptive-statistics-hypothesis-testing.html#cb110-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(low_birth_all<span class="sc">$</span>age, <span class="at">mu =</span> <span class="dv">26</span>)  <span class="co"># mu 0 = 26</span></span></code></pre></div>
+<pre><code>
+    One Sample t-test
+
+data:  low_birth_all$age
+t = 33.159, df = 3670, p-value &lt; 2.2e-16
+alternative hypothesis: true mean is not equal to 26
+95 percent confidence interval:
+ 28.98537 29.36059
+sample estimates:
+mean of x 
+ 29.17298 </code></pre>
+<p>Other options that you can change from the default settings of <code>t.test()</code> function are the following:</p>
+<ul>
+<li>Default <code>alternative = 'two-sided'</code>;</li>
+<li>Can be changed to <code>alternative = "less"</code> or <code>alternative = "greater"</code></li>
+<li>Default <code>alpha = 0.05</code></li>
+</ul>
+<p>To interpret the p-value, you use the “Type-I Error”. If the p-value is less than the default alpha (0.05), then you reject the null hypothesis. And you have enough evidence to conclude that the mean is actually different from 26. R specifies the alternative hypothesis to be tested as part of the output for you and provides the 95% confidence interval for you. From these values, you can write an interpretation like the following:</p>
+<p>In the code output, the <code>t.test()</code> function returned a 95% confidence interval of (28.99, 29.36). This can be written in the following manner:</p>
+<blockquote>
+<p>We are 95% confident that in this population the true mean mother’s age is between approximately 28.99 and 29.36 years.</p>
+</blockquote>
+<ul>
+<li>The 95% confidence interval provides the range of where the true mean can fall.</li>
+</ul>
+<p>The interpretation of the entire output can be written as:</p>
+<blockquote>
+<p>At 0.05 significance level, we reject the null hypothesis (p-value &lt; 0.001) and conclude that the tree mean mother’s age is not equal to 26.</p>
+</blockquote>
+</div>
+<div id="two-sample-t-test" class="section level4 unnumbered hasAnchor">
+<h4>Two-Sample T-test<a href="descriptive-statistics-hypothesis-testing.html#two-sample-t-test" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Hypothesis to be tested (two-sided):</p>
+<p style="text-align: center; color:red;">
+<span class="math inline">\(H_{0}: \mu_{1} = \mu_{2}\)</span> vs <span class="math inline">\(H_{1}: \mu_{1} \ne \mu_{2}\)</span>
+</p>
+<p>Here, you are comparing the means of two different samples. In the two-sample case, you also need to test for the equality of variances:</p>
+<ul>
+<li>Testing the equality of variances implies testing the hypotheses:</li>
+</ul>
+<p style="text-align: center; color:red;">
+<span class="math inline">\(H_{0}: \sigma^{2}_{1} = \sigma^{2}_{2}\)</span> vs <span class="math inline">\(H_{1}: \sigma^{2}_{1} \ne \sigma^{2}_{2}\)</span>
+</p
+
+**Example:** Is the birthweight of babies born to smokers significantly different than the birthweight to babies born to non-smokers?
+
+- First, let's test for equality of variances:
+
+
+```r
+bwt_smoke <- subset(low_birth_all, smoke == "1")                       # Get those who have smoke status of 1
+bwt_nonsmoke <- subset(low_birth_all, smoke == "0")                    # Get those who have smoke status of 0
+var.test(bwt_smoke$bwt, bwt_nonsmoke$bwt, alternative = "two.sided")   # Variance test 
+```
+
+```
+
+    F test to compare two variances
+
+data:  bwt_smoke$bwt and bwt_nonsmoke$bwt
+F = 0.85571, num df = 243, denom df = 3426, p-value = 0.1106
+alternative hypothesis: true ratio of variances is not equal to 1
+95 percent confidence interval:
+ 0.7169656 1.0366625
+sample estimates:
+ratio of variances 
+         0.8557125 
+```
+
+Use the p-value and compare it with the type-I error value of 0.05. Because p-value is >
+<p>0.05, you can interpret the result from the variance test as below:</p>
+<blockquote>
+<p>From the output above, you should see that the p-value returned as 0.11. This value indicates that there is not enough evidence to declare inequality of variances.</p>
+</blockquote>
+<ul>
+<li>Then let’s test for equality of means:</li>
+</ul>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="descriptive-statistics-hypothesis-testing.html#cb112-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(bwt_smoke<span class="sc">$</span>bwt, bwt_nonsmoke<span class="sc">$</span>bwt, <span class="at">var.equal =</span> T, <span class="at">paired =</span> F)</span></code></pre></div>
+<pre><code>
+    Two Sample t-test
+
+data:  bwt_smoke$bwt and bwt_nonsmoke$bwt
+t = -5.7962, df = 3669, p-value = 7.355e-09
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -309.8009 -153.1908
+sample estimates:
+mean of x mean of y 
+ 3040.893  3272.389 </code></pre>
+<p>Other options that you can change from the default settings of <code>t.test()</code> function are the following:</p>
+<ul>
+<li>Default <code>var.equal = FALSE</code>; this can be changed to <code>TRUE</code> if variances are equal</li>
+<li>Default <code>paired = FALSE</code>; this can be changed to <code>TRUE</code> if the two samples are not independent of each other.</li>
+</ul>
+<p>The interpretation of the entire output can be written as:</p>
+<blockquote>
+<p>At 0.05 significance level, we reject the null hypothesis (p-value &lt; 0.001) and conclude that the true birthweight means for smokers and non-smokers are significantly different.</p>
+</blockquote>
+</div>
+</div>
+<div id="analysis-of-variance-anova" class="section level3 unnumbered hasAnchor">
+<h3>Analysis of Variance (ANOVA)<a href="descriptive-statistics-hypothesis-testing.html#analysis-of-variance-anova" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The ANOVA is used to compare (continuous) outcomes of 3 or more groups. To use this test, the following model assumptions must be followed:</p>
+<ul>
+<li>Independent samples</li>
+<li>Responses within the groups are independent and identically distributed (i.i.d)</li>
+<li>Residuals are normally distributed</li>
+<li>Equality of variances across groups</li>
+</ul>
+<p><strong>Example:</strong> Is mean birthweight of babies significantly different by race?</p>
+<ul>
+<li>The anova can be run in R using the <code>anova()</code> function.</li>
+<li>Better to declare the categorical variable/predictor as a <strong>factor</strong>, otherwise, it will be considered a continuous measurement.</li>
+</ul>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="descriptive-statistics-hypothesis-testing.html#cb114-1" aria-hidden="true" tabindex="-1"></a><span class="co"># lm : Linear Models</span></span>
+<span id="cb114-2"><a href="descriptive-statistics-hypothesis-testing.html#cb114-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Continuous variable (dependent variable) will be on the left hand side of the ~</span></span>
+<span id="cb114-3"><a href="descriptive-statistics-hypothesis-testing.html#cb114-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Independent variables on the right hand side of the ~ </span></span>
+<span id="cb114-4"><a href="descriptive-statistics-hypothesis-testing.html#cb114-4" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">lm</span>(bwt<span class="sc">~</span><span class="fu">factor</span>(race), <span class="at">data =</span> low_birth_all)</span>
+<span id="cb114-5"><a href="descriptive-statistics-hypothesis-testing.html#cb114-5" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(res)</span></code></pre></div>
+<pre><code>Analysis of Variance Table
+
+Response: bwt
+               Df     Sum Sq  Mean Sq F value    Pr(&gt;F)    
+factor(race)    2   28613986 14306993  39.856 &lt; 2.2e-16 ***
+Residuals    3668 1316696669   358969                      
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>The interpretation of the entire output can be written as:</p>
+<blockquote>
+<p>At 0.05 significance level, we reject the null hypothesis (p-value &lt; 0.001) and conclude that there is a significant difference in mean birthweight by race.</p>
+</blockquote>
+<p>But this can raise the question of, <strong>“where are these differences coming from?”</strong> The following code takes a look at his in more detail:</p>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="descriptive-statistics-hypothesis-testing.html#cb116-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ANOVA table</span></span>
+<span id="cb116-2"><a href="descriptive-statistics-hypothesis-testing.html#cb116-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(res)</span></code></pre></div>
+<pre><code>
+Call:
+lm(formula = bwt ~ factor(race), data = low_birth_all)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-2824.29  -301.29    49.61   363.71  2223.71 
+
+Coefficients:
+                  Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)        3068.39      25.03 122.591   &lt;2e-16 ***
+factor(race)other   123.54      39.33   3.141   0.0017 ** 
+factor(race)white   237.90      27.55   8.635   &lt;2e-16 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 599.1 on 3668 degrees of freedom
+Multiple R-squared:  0.02127,   Adjusted R-squared:  0.02074 
+F-statistic: 39.86 on 2 and 3668 DF,  p-value: &lt; 2.2e-16</code></pre>
+<p>Here you might notice that you do not see the result for the “black” in race variable. This is because it is used as the “reference” category. The values you see are comparisons between other vs. black, and white vs. black. Here, the intercept is the “mean” birthweight of the reference category.</p>
+<p>From this output, the interpretation can be written as:</p>
+<blockquote>
+<p>At 0.05 significance level, we conclude that there are significant differences in mean birthweight between White vs. Black race and Other vs. Black race.</p>
+</blockquote>
+<p>To change the reference category, you can do so using <code>relevel()</code> function.</p>
+<p>One thing to note about ANOVA, is that you cannot use it without first checking a few model assumptions: constant variance and normality of residuals.</p>
+<p>To check if the model assumptions are followed, you can use the following code:</p>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="descriptive-statistics-hypothesis-testing.html#cb118-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span>
+<span id="cb118-2"><a href="descriptive-statistics-hypothesis-testing.html#cb118-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(res)</span></code></pre></div>
+<p><img src="Images/anova_res.png" width="70%" style="display: block; margin: auto;" /></p>
+<ul>
+<li>In constant variance, you want your residuals vs. fitted values to be scattered (homogeneously distributed)
+<ul>
+<li>No pattern should be detected</li>
+<li>If you do see a pattern, then consider changing to a non-parametric test or perform data transformation.</li>
+</ul></li>
+<li>For normality of residuals, you want to see a relatively straight line.
+<ul>
+<li>It might not be a perfectly straight line (especially departures in the tails).</li>
+<li>If there is a bump(s) within the middle of the plot, this is indicating that the residuals are not normally distributed, so ANOVA might not be the best test to conduct.</li>
+</ul></li>
+</ul>
+</div>
+<div id="categorical-data-analysis" class="section level3 unnumbered hasAnchor">
+<h3>Categorical Data Analysis<a href="descriptive-statistics-hypothesis-testing.html#categorical-data-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>Categorical outcome</strong> (Y) with 2 levels (binary) or <span class="math inline">\(\ge3\)</span> levels (nominal or ordinal)</p>
+<p>Here are some examples:</p>
+<ul>
+<li>Nominal: race/ethnicity</li>
+<li>Ordinal: clothing sizes (S, M, L, XL)</li>
+<li>Binary: Disease/No Disease; Republican/Democrat</li>
+</ul>
+<p><strong>Predictor variables</strong> (X) can take on any form: binary, categorical, and/or continuous.</p>
+<div id="chi-square-test-of-independence" class="section level4 unnumbered hasAnchor">
+<h4>Chi-Square Test of Independence<a href="descriptive-statistics-hypothesis-testing.html#chi-square-test-of-independence" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Use two categorical variables (row and column) to test whether they are independent or associated. The hypothesis is as follows:</p>
+<p style="text-align: center; color:red;">
+The null hypothesis (<span class="math inline">\(H_{0}\)</span>): variables A and B are independent
+</p>
+<p style="text-align: center; color:red;">
+vs.
+</p>
+<p style="text-align: center; color:red;">
+The alternative hypothesis (<span class="math inline">\(H_{1}\)</span>): variables A and B are not independent
+</p>
+<p>The test statistics for the Chi-square test is represented as:</p>
+<p><span class="math display">\[X^{2} = \sum\frac{(Observed - Expected)^{2}}{Expected}\]</span></p>
+<p>To run the Chi-Square test of independence, follow these steps:</p>
+<ol style="list-style-type: decimal">
+<li>Create the (r X c) table</li>
+</ol>
+<ul>
+<li>r represents the number of levels for the row variable</li>
+<li>c represents the number of levels for the column variable</li>
+<li>Most common example is a 2 x 2 table</li>
+</ul>
+<ol start="2" style="list-style-type: decimal">
+<li>Use the observed and expected counts in each cell to calculate the chi-squared statistics</li>
+</ol>
+<p>If there are low expected cell counts (&lt;5), use <strong>Fisher’s Exact test</strong> instead.</p>
+<p>In R, we can recreate the steps listed above by doing the following:</p>
+<ol style="list-style-type: decimal">
+<li>Start by tabulating the two categorical variables</li>
+<li>Then apply the function <code>chisq.test()</code></li>
+</ol>
+<p><strong>Example:</strong> Is there an association between smoking and having a low birthweight baby?</p>
+<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="descriptive-statistics-hypothesis-testing.html#cb119-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chisq.test</span>(low_birth_all<span class="sc">$</span>smoke, low_birth_all<span class="sc">$</span>low)</span></code></pre></div>
+<pre><code>
+    Pearson&#39;s Chi-squared test with Yates&#39; continuity correction
+
+data:  low_birth_all$smoke and low_birth_all$low
+X-squared = 10.47, df = 1, p-value = 0.001214</code></pre>
+<p>From this output, the interpretation can be written as:</p>
+<blockquote>
+<p>At 0.05 significance level, we reject the null hypothesis (p-value = 0.001) and conclude that there is a significant association between smoking and having a low birthweight baby.</p>
+</blockquote>
+<p><strong>Note:</strong> Remember that association does not mean causality!</p>
+</div>
+<div id="fishers-exact-test" class="section level4 unnumbered hasAnchor">
+<h4>Fisher’s Exact Test<a href="descriptive-statistics-hypothesis-testing.html#fishers-exact-test" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>This test is used instead of the Chi-Squared Test when there are low expected cell counts (&lt;5).</p>
+<p><strong>Example:</strong> Is there an association between smoking and having a low birthweight baby?</p>
+<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="descriptive-statistics-hypothesis-testing.html#cb121-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fisher.test</span>(low_birth_all<span class="sc">$</span>smoke, low_birth_all<span class="sc">$</span>low)</span></code></pre></div>
+<pre><code>
+    Fisher&#39;s Exact Test for Count Data
+
+data:  low_birth_all$smoke and low_birth_all$low
+p-value = 0.001768
+alternative hypothesis: true odds ratio is not equal to 1
+95 percent confidence interval:
+ 1.250723 2.713328
+sample estimates:
+odds ratio 
+  1.862796 </code></pre>
+<p>From this output, the interpretation can be written as:</p>
+<blockquote>
+<p>At 0.05 significance level, we reject the null hypothesis (p-value = 0.002) and conclude that there is a significant association between smoking and having a low birthweight baby.</p>
+</blockquote>
+<p>When compared to the Chi-Squared test result, the p-values are similar. If you are ever in doubt about the count/frequency of your data, use the Fisher’s Exact Test.</p>
+</div>
+</div>
+<div id="multiple-comparisons" class="section level3 unnumbered hasAnchor">
+<h3>Multiple Comparisons<a href="descriptive-statistics-hypothesis-testing.html#multiple-comparisons" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>For multiple comparisons, you might want to consider Tukey adjustment or Bonferroni adjustment to help with potential inflation of the type-I error.</p>
+<p>If you want to use all-pairwise comparisons, you can use Tukey adjustment to adjust the Type-I error because multiple comparisons typically inflate that value.</p>
+<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="descriptive-statistics-hypothesis-testing.html#cb123-1" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">lm</span>(bwt <span class="sc">~</span> <span class="fu">factor</span>(race), <span class="at">data =</span> low_birth_all)</span>
+<span id="cb123-2"><a href="descriptive-statistics-hypothesis-testing.html#cb123-2" aria-hidden="true" tabindex="-1"></a>ANOVA <span class="ot">&lt;-</span> <span class="fu">aov</span>(res)</span>
+<span id="cb123-3"><a href="descriptive-statistics-hypothesis-testing.html#cb123-3" aria-hidden="true" tabindex="-1"></a>TUKEY <span class="ot">&lt;-</span> <span class="fu">TukeyHSD</span>(ANOVA)</span>
+<span id="cb123-4"><a href="descriptive-statistics-hypothesis-testing.html#cb123-4" aria-hidden="true" tabindex="-1"></a>TUKEY</span></code></pre></div>
+<pre><code>  Tukey multiple comparisons of means
+    95% family-wise confidence level
+
+Fit: aov(formula = res)
+
+$`factor(race)`
+                diff       lwr      upr     p adj
+other-black 123.5400  31.32304 215.7569 0.0048295
+white-black 237.8994 173.30296 302.4958 0.0000000
+white-other 114.3594  38.27583 190.4430 0.0012499</code></pre>
+<p>The output displays the confidence intervals with the adjustments of the multiple comparisons. The p-values are also adjusted based on the Tukey adjustment for the type-I error.</p>
+<p>If you want to use the Bonferroni adjustment (which is more conservative than the Tukey adjustment).</p>
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="descriptive-statistics-hypothesis-testing.html#cb125-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pairwise.t.test</span>(low_birth_all<span class="sc">$</span>bwt, low_birth_all<span class="sc">$</span>race, <span class="at">p.adjust.method =</span> <span class="st">&quot;bonf&quot;</span>)</span></code></pre></div>
+<pre><code>
+    Pairwise comparisons using t tests with pooled SD 
+
+data:  low_birth_all$bwt and low_birth_all$race 
+
+      black  other 
+other 0.0051 -     
+white &lt;2e-16 0.0013
+
+P value adjustment method: bonferroni </code></pre>
+<p>The output displays the p-values for each comparisons by race, and indicates that all of these are statistically significant.</p>
+<p>One suggestion when running ANOVA, is that if the overall ANOVA result returns as statistically significant, then you should move to pairwise comparisons. If the overall ANOVA is not statistically different, then there is no need to run pairwise comparisons, because you will not find anything.</p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="overview-of-rr-studio-examining-data-attributes-and-data-manipulation.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="data-visualization.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

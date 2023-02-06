@@ -1,0 +1,6 @@
+tab:unnamed-chunk-8
+tab:unnamed-chunk-16
+overview-of-rr-studio-examining-data-attributes-and-data-manipulation
+descriptive-statistics-hypothesis-testing
+data-visualization
+resources
