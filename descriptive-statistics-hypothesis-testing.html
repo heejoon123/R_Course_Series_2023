@@ -23,7 +23,7 @@
 <meta name="author" content="Heejoon Ahn, MS; Eun Jeung Oh, PhD; and Codruta Chiuzan, PhD" />
 
 
-<meta name="date" content="2023-02-03" />
+<meta name="date" content="2023-02-06" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -314,8 +314,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Maximum</li>
 </ul>
 <p>Here is an example code to get the summary for <code>age</code> column of the <code>low_birth_all</code> data frame.</p>
-<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="descriptive-statistics-hypothesis-testing.html#cb101-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Put in the variable inside the ()</span></span>
-<span id="cb101-2"><a href="descriptive-statistics-hypothesis-testing.html#cb101-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(low_birth_all<span class="sc">$</span>age)  </span></code></pre></div>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="descriptive-statistics-hypothesis-testing.html#cb100-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Put in the variable inside the ()</span></span>
+<span id="cb100-2"><a href="descriptive-statistics-hypothesis-testing.html#cb100-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(low_birth_all<span class="sc">$</span>age)  </span></code></pre></div>
 <pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
   14.00   25.00   29.00   29.17   33.00   50.00 </code></pre>
 <p>You can run the <code>summary()</code> function on the entire data frame, but it will only return meaningful values for columns that contain numeric values.</p>
@@ -338,7 +338,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><code>p75</code>: 75th percentile value</li>
 <li><code>p100</code>: maximum value</li>
 </ul>
-<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="descriptive-statistics-hypothesis-testing.html#cb103-1" aria-hidden="true" tabindex="-1"></a><span class="fu">skim</span>(low_birth_all) <span class="co"># input the entire data set</span></span></code></pre></div>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="descriptive-statistics-hypothesis-testing.html#cb102-1" aria-hidden="true" tabindex="-1"></a><span class="fu">skim</span>(low_birth_all) <span class="co"># input the entire data set</span></span></code></pre></div>
 <p><img src="Images/skim.png" width="100%" style="display: block; margin: auto;" /></p>
 <p>When using this function, be cautious of reporting the summary of all columns. This function runs across the entire data frame, so it might generate summaries that are not meaningful. For example, running the <code>skim()</code> function with our <code>low_birth_all</code> data frame generates meaningless summaries for the <code>id</code> variable.</p>
 <ul>
@@ -350,16 +350,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 </ul>
 <p>Meanwhile, if you would like to generate summary statistics for each level of another categorical variable, the <code>dplyr</code> package and the function <code>group_by()</code> can assist with this task. Here is an example of calculating summary statistics of birthweight <code>bwt</code> by <code>race</code>.</p>
-<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="descriptive-statistics-hypothesis-testing.html#cb104-1" aria-hidden="true" tabindex="-1"></a>low_birth_all <span class="sc">%&gt;%</span>                      <span class="co"># use the low_birth_all data</span></span>
-<span id="cb104-2"><a href="descriptive-statistics-hypothesis-testing.html#cb104-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(race) <span class="sc">%&gt;%</span>                   <span class="co"># Group by the race</span></span>
-<span id="cb104-3"><a href="descriptive-statistics-hypothesis-testing.html#cb104-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">n =</span> <span class="fu">n</span>(),                   <span class="co"># total number of observations</span></span>
-<span id="cb104-4"><a href="descriptive-statistics-hypothesis-testing.html#cb104-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">min =</span> <span class="fu">min</span>(bwt),            <span class="co"># minimum</span></span>
-<span id="cb104-5"><a href="descriptive-statistics-hypothesis-testing.html#cb104-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">q1 =</span> <span class="fu">quantile</span>(bwt, <span class="fl">0.25</span>),  <span class="co"># 25th percentile</span></span>
-<span id="cb104-6"><a href="descriptive-statistics-hypothesis-testing.html#cb104-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">median =</span> <span class="fu">median</span>(bwt),      <span class="co"># median</span></span>
-<span id="cb104-7"><a href="descriptive-statistics-hypothesis-testing.html#cb104-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">q3 =</span> <span class="fu">quantile</span>(bwt, <span class="fl">0.75</span>),  <span class="co"># 75th percentile</span></span>
-<span id="cb104-8"><a href="descriptive-statistics-hypothesis-testing.html#cb104-8" aria-hidden="true" tabindex="-1"></a>            <span class="at">max =</span> <span class="fu">max</span>(bwt)) <span class="sc">%&gt;%</span>        <span class="co"># maximum</span></span>
-<span id="cb104-9"><a href="descriptive-statistics-hypothesis-testing.html#cb104-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.data.frame</span>(.) <span class="sc">%&gt;%</span>                 <span class="co"># return the result as a dataframe object in R</span></span>
-<span id="cb104-10"><a href="descriptive-statistics-hypothesis-testing.html#cb104-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate_if</span>(is.numeric, round, <span class="dv">2</span>)      <span class="co"># round numeric columns so they have two decimal points</span></span></code></pre></div>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="descriptive-statistics-hypothesis-testing.html#cb103-1" aria-hidden="true" tabindex="-1"></a>low_birth_all <span class="sc">%&gt;%</span>                      <span class="co"># use the low_birth_all data</span></span>
+<span id="cb103-2"><a href="descriptive-statistics-hypothesis-testing.html#cb103-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(race) <span class="sc">%&gt;%</span>                   <span class="co"># Group by the race</span></span>
+<span id="cb103-3"><a href="descriptive-statistics-hypothesis-testing.html#cb103-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">n =</span> <span class="fu">n</span>(),                   <span class="co"># total number of observations</span></span>
+<span id="cb103-4"><a href="descriptive-statistics-hypothesis-testing.html#cb103-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">min =</span> <span class="fu">min</span>(bwt),            <span class="co"># minimum</span></span>
+<span id="cb103-5"><a href="descriptive-statistics-hypothesis-testing.html#cb103-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">q1 =</span> <span class="fu">quantile</span>(bwt, <span class="fl">0.25</span>),  <span class="co"># 25th percentile</span></span>
+<span id="cb103-6"><a href="descriptive-statistics-hypothesis-testing.html#cb103-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">median =</span> <span class="fu">median</span>(bwt),      <span class="co"># median</span></span>
+<span id="cb103-7"><a href="descriptive-statistics-hypothesis-testing.html#cb103-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">q3 =</span> <span class="fu">quantile</span>(bwt, <span class="fl">0.75</span>),  <span class="co"># 75th percentile</span></span>
+<span id="cb103-8"><a href="descriptive-statistics-hypothesis-testing.html#cb103-8" aria-hidden="true" tabindex="-1"></a>            <span class="at">max =</span> <span class="fu">max</span>(bwt)) <span class="sc">%&gt;%</span>        <span class="co"># maximum</span></span>
+<span id="cb103-9"><a href="descriptive-statistics-hypothesis-testing.html#cb103-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.data.frame</span>(.) <span class="sc">%&gt;%</span>                 <span class="co"># return the result as a dataframe object in R</span></span>
+<span id="cb103-10"><a href="descriptive-statistics-hypothesis-testing.html#cb103-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate_if</span>(is.numeric, round, <span class="dv">2</span>)      <span class="co"># round numeric columns so they have two decimal points</span></span></code></pre></div>
 <pre><code>   race    n min      q1 median      q3  max
 1 black  573 280 2780.00 3140.0 3470.00 5115
 2 other  390 640 2912.25 3242.5 3516.50 4672
@@ -370,11 +370,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="categorical-variables" class="section level3 unnumbered hasAnchor">
 <h3>Categorical Variables<a href="descriptive-statistics-hypothesis-testing.html#categorical-variables" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>For categorical variables, you can get descriptive statistics by calculating the row, column, and total frequencies and percentages (%). This is typically done through two- and three-way tabulations. Here are some examples:</p>
-<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="descriptive-statistics-hypothesis-testing.html#cb106-1" aria-hidden="true" tabindex="-1"></a>tbl <span class="ot">&lt;-</span> <span class="fu">table</span>(mydata<span class="sc">$</span>var1, mydata<span class="sc">$</span>var2)    <span class="co"># 2-way table</span></span>
-<span id="cb106-2"><a href="descriptive-statistics-hypothesis-testing.html#cb106-2" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.table</span>(tbl, <span class="dv">1</span>)                        <span class="co"># Row Proportions </span></span>
-<span id="cb106-3"><a href="descriptive-statistics-hypothesis-testing.html#cb106-3" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.table</span>(tbl, <span class="dv">2</span>)                        <span class="co"># Column Proportions</span></span>
-<span id="cb106-4"><a href="descriptive-statistics-hypothesis-testing.html#cb106-4" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.table</span>(tbl)                           <span class="co"># Total Proportions</span></span>
-<span id="cb106-5"><a href="descriptive-statistics-hypothesis-testing.html#cb106-5" aria-hidden="true" tabindex="-1"></a><span class="fu">xtabs</span>(<span class="sc">~</span>var1 <span class="sc">+</span> var2 <span class="sc">+</span> var3, <span class="at">data =</span> mydata) <span class="co"># 3-way cross-tabulation</span></span></code></pre></div>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="descriptive-statistics-hypothesis-testing.html#cb105-1" aria-hidden="true" tabindex="-1"></a>tbl <span class="ot">&lt;-</span> <span class="fu">table</span>(mydata<span class="sc">$</span>var1, mydata<span class="sc">$</span>var2)    <span class="co"># 2-way table</span></span>
+<span id="cb105-2"><a href="descriptive-statistics-hypothesis-testing.html#cb105-2" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.table</span>(tbl, <span class="dv">1</span>)                        <span class="co"># Row Proportions </span></span>
+<span id="cb105-3"><a href="descriptive-statistics-hypothesis-testing.html#cb105-3" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.table</span>(tbl, <span class="dv">2</span>)                        <span class="co"># Column Proportions</span></span>
+<span id="cb105-4"><a href="descriptive-statistics-hypothesis-testing.html#cb105-4" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.table</span>(tbl)                           <span class="co"># Total Proportions</span></span>
+<span id="cb105-5"><a href="descriptive-statistics-hypothesis-testing.html#cb105-5" aria-hidden="true" tabindex="-1"></a><span class="fu">xtabs</span>(<span class="sc">~</span>var1 <span class="sc">+</span> var2 <span class="sc">+</span> var3, <span class="at">data =</span> mydata) <span class="co"># 3-way cross-tabulation</span></span></code></pre></div>
 <p>To get a 1-way tabulation, you can put a single variable inside the <code>table()</code> function. This will return the frequency of that variable. To return the proportion tables in R, you must input the output of the <code>table()</code> function like the <code>tbl</code> object shown above.</p>
 <p>An alternative method to run a 3-way tabulation is to use the following functions from the <code>janitor</code> package.</p>
 <ul>
@@ -389,13 +389,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><code>adorn_title()</code>: Add column name to the top of a 2-way tabyl</li>
 </ul>
 <p>Example: two-way tables of <code>smoke</code> by <code>race</code> stratified by history of hypertension <code>ht</code> (0/1)</p>
-<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="descriptive-statistics-hypothesis-testing.html#cb107-1" aria-hidden="true" tabindex="-1"></a>low_birth_all <span class="sc">%&gt;%</span></span>
-<span id="cb107-2"><a href="descriptive-statistics-hypothesis-testing.html#cb107-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tabyl</span>(smoke, race, ht, <span class="at">show_missing_levels =</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span>  </span>
-<span id="cb107-3"><a href="descriptive-statistics-hypothesis-testing.html#cb107-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># adorn_totals(&quot;col&quot;) %&gt;%</span></span>
-<span id="cb107-4"><a href="descriptive-statistics-hypothesis-testing.html#cb107-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">adorn_percentages</span>(<span class="st">&quot;row&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb107-5"><a href="descriptive-statistics-hypothesis-testing.html#cb107-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">adorn_pct_formatting</span>(<span class="at">digits =</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb107-6"><a href="descriptive-statistics-hypothesis-testing.html#cb107-6" aria-hidden="true" tabindex="-1"></a>  adorn_ns <span class="sc">%&gt;%</span></span>
-<span id="cb107-7"><a href="descriptive-statistics-hypothesis-testing.html#cb107-7" aria-hidden="true" tabindex="-1"></a>  adorn_title</span></code></pre></div>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="descriptive-statistics-hypothesis-testing.html#cb106-1" aria-hidden="true" tabindex="-1"></a>low_birth_all <span class="sc">%&gt;%</span></span>
+<span id="cb106-2"><a href="descriptive-statistics-hypothesis-testing.html#cb106-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tabyl</span>(smoke, race, ht, <span class="at">show_missing_levels =</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span>  </span>
+<span id="cb106-3"><a href="descriptive-statistics-hypothesis-testing.html#cb106-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># adorn_totals(&quot;col&quot;) %&gt;%</span></span>
+<span id="cb106-4"><a href="descriptive-statistics-hypothesis-testing.html#cb106-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">adorn_percentages</span>(<span class="st">&quot;row&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb106-5"><a href="descriptive-statistics-hypothesis-testing.html#cb106-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">adorn_pct_formatting</span>(<span class="at">digits =</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb106-6"><a href="descriptive-statistics-hypothesis-testing.html#cb106-6" aria-hidden="true" tabindex="-1"></a>  adorn_ns <span class="sc">%&gt;%</span></span>
+<span id="cb106-7"><a href="descriptive-statistics-hypothesis-testing.html#cb106-7" aria-hidden="true" tabindex="-1"></a>  adorn_title</span></code></pre></div>
 <pre><code>$`0`
               race                         
  smoke       black       other        white
@@ -418,27 +418,27 @@ $`1`
 <summary>
 <strong>Click HERE to view code to generate “Table 1”:</strong>
 </summary>
-<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="descriptive-statistics-hypothesis-testing.html#cb109-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Make the table</span></span>
-<span id="cb109-2"><a href="descriptive-statistics-hypothesis-testing.html#cb109-2" aria-hidden="true" tabindex="-1"></a>tab <span class="ot">&lt;-</span> low_birth_all <span class="sc">%&gt;%</span></span>
-<span id="cb109-3"><a href="descriptive-statistics-hypothesis-testing.html#cb109-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(age, race, smoke, bwt) <span class="sc">%&gt;%</span></span>
-<span id="cb109-4"><a href="descriptive-statistics-hypothesis-testing.html#cb109-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tbl_summary</span>(<span class="at">by =</span> race, <span class="at">label =</span> <span class="fu">list</span>(age <span class="sc">~</span> <span class="st">&quot;Age&quot;</span>, smoke <span class="sc">~</span> <span class="st">&quot;Smoking&quot;</span>, bwt <span class="sc">~</span> <span class="st">&quot;Birthweight&quot;</span>), </span>
-<span id="cb109-5"><a href="descriptive-statistics-hypothesis-testing.html#cb109-5" aria-hidden="true" tabindex="-1"></a>              <span class="at">type =</span> <span class="fu">all_continuous</span>() <span class="sc">~</span> <span class="st">&quot;continuous2&quot;</span>, </span>
-<span id="cb109-6"><a href="descriptive-statistics-hypothesis-testing.html#cb109-6" aria-hidden="true" tabindex="-1"></a>              <span class="at">statistic =</span> <span class="fu">list</span>(<span class="fu">all_continuous</span>() <span class="sc">~</span> <span class="fu">c</span>(<span class="st">&quot;{mean} ({sd})&quot;</span>, <span class="st">&quot;{median} ({p25}, {p75})&quot;</span>), </span>
-<span id="cb109-7"><a href="descriptive-statistics-hypothesis-testing.html#cb109-7" aria-hidden="true" tabindex="-1"></a>                               <span class="fu">all_categorical</span>() <span class="sc">~</span> <span class="st">&quot;{n} / {N} ({p}%)&quot;</span>),</span>
-<span id="cb109-8"><a href="descriptive-statistics-hypothesis-testing.html#cb109-8" aria-hidden="true" tabindex="-1"></a>              <span class="at">digits =</span> <span class="fu">all_continuous</span>() <span class="sc">~</span> <span class="dv">2</span>,</span>
-<span id="cb109-9"><a href="descriptive-statistics-hypothesis-testing.html#cb109-9" aria-hidden="true" tabindex="-1"></a>              <span class="at">missing_text =</span> <span class="st">&quot;(Missing)&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb109-10"><a href="descriptive-statistics-hypothesis-testing.html#cb109-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_p</span>(<span class="at">pvalue_fun =</span> <span class="sc">~</span><span class="fu">style_pvalue</span>(.x, <span class="at">digits =</span> <span class="dv">2</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb109-11"><a href="descriptive-statistics-hypothesis-testing.html#cb109-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">modify_header</span>(label <span class="sc">~</span> <span class="st">&quot;**Variable**&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb109-12"><a href="descriptive-statistics-hypothesis-testing.html#cb109-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">modify_spanning_header</span>(<span class="fu">c</span>(<span class="st">&quot;stat_1&quot;</span>, <span class="st">&quot;stat_2&quot;</span>, <span class="st">&quot;stat_3&quot;</span>) <span class="sc">~</span> <span class="st">&quot;**Race Categories**&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb109-13"><a href="descriptive-statistics-hypothesis-testing.html#cb109-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">modify_caption</span>(<span class="st">&quot;**Table 1. Patient Characteristics**&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb109-14"><a href="descriptive-statistics-hypothesis-testing.html#cb109-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bold_labels</span>()</span>
-<span id="cb109-15"><a href="descriptive-statistics-hypothesis-testing.html#cb109-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb109-16"><a href="descriptive-statistics-hypothesis-testing.html#cb109-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Export and save the file to HTML </span></span>
-<span id="cb109-17"><a href="descriptive-statistics-hypothesis-testing.html#cb109-17" aria-hidden="true" tabindex="-1"></a>tab <span class="sc">%&gt;%</span></span>
-<span id="cb109-18"><a href="descriptive-statistics-hypothesis-testing.html#cb109-18" aria-hidden="true" tabindex="-1"></a>  gtsummary<span class="sc">::</span><span class="fu">as_gt</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb109-19"><a href="descriptive-statistics-hypothesis-testing.html#cb109-19" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">gtsave</span>(., <span class="st">&quot;Table1_Example.html&quot;</span>)</span>
-<span id="cb109-20"><a href="descriptive-statistics-hypothesis-testing.html#cb109-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb109-21"><a href="descriptive-statistics-hypothesis-testing.html#cb109-21" aria-hidden="true" tabindex="-1"></a><span class="co"># The fille will save automatically to the current working directory</span></span></code></pre></div>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="descriptive-statistics-hypothesis-testing.html#cb108-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Make the table</span></span>
+<span id="cb108-2"><a href="descriptive-statistics-hypothesis-testing.html#cb108-2" aria-hidden="true" tabindex="-1"></a>tab <span class="ot">&lt;-</span> low_birth_all <span class="sc">%&gt;%</span></span>
+<span id="cb108-3"><a href="descriptive-statistics-hypothesis-testing.html#cb108-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(age, race, smoke, bwt) <span class="sc">%&gt;%</span></span>
+<span id="cb108-4"><a href="descriptive-statistics-hypothesis-testing.html#cb108-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tbl_summary</span>(<span class="at">by =</span> race, <span class="at">label =</span> <span class="fu">list</span>(age <span class="sc">~</span> <span class="st">&quot;Age&quot;</span>, smoke <span class="sc">~</span> <span class="st">&quot;Smoking&quot;</span>, bwt <span class="sc">~</span> <span class="st">&quot;Birthweight&quot;</span>), </span>
+<span id="cb108-5"><a href="descriptive-statistics-hypothesis-testing.html#cb108-5" aria-hidden="true" tabindex="-1"></a>              <span class="at">type =</span> <span class="fu">all_continuous</span>() <span class="sc">~</span> <span class="st">&quot;continuous2&quot;</span>, </span>
+<span id="cb108-6"><a href="descriptive-statistics-hypothesis-testing.html#cb108-6" aria-hidden="true" tabindex="-1"></a>              <span class="at">statistic =</span> <span class="fu">list</span>(<span class="fu">all_continuous</span>() <span class="sc">~</span> <span class="fu">c</span>(<span class="st">&quot;{mean} ({sd})&quot;</span>, <span class="st">&quot;{median} ({p25}, {p75})&quot;</span>), </span>
+<span id="cb108-7"><a href="descriptive-statistics-hypothesis-testing.html#cb108-7" aria-hidden="true" tabindex="-1"></a>                               <span class="fu">all_categorical</span>() <span class="sc">~</span> <span class="st">&quot;{n} / {N} ({p}%)&quot;</span>),</span>
+<span id="cb108-8"><a href="descriptive-statistics-hypothesis-testing.html#cb108-8" aria-hidden="true" tabindex="-1"></a>              <span class="at">digits =</span> <span class="fu">all_continuous</span>() <span class="sc">~</span> <span class="dv">2</span>,</span>
+<span id="cb108-9"><a href="descriptive-statistics-hypothesis-testing.html#cb108-9" aria-hidden="true" tabindex="-1"></a>              <span class="at">missing_text =</span> <span class="st">&quot;(Missing)&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb108-10"><a href="descriptive-statistics-hypothesis-testing.html#cb108-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_p</span>(<span class="at">pvalue_fun =</span> <span class="sc">~</span><span class="fu">style_pvalue</span>(.x, <span class="at">digits =</span> <span class="dv">2</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb108-11"><a href="descriptive-statistics-hypothesis-testing.html#cb108-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">modify_header</span>(label <span class="sc">~</span> <span class="st">&quot;**Variable**&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb108-12"><a href="descriptive-statistics-hypothesis-testing.html#cb108-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">modify_spanning_header</span>(<span class="fu">c</span>(<span class="st">&quot;stat_1&quot;</span>, <span class="st">&quot;stat_2&quot;</span>, <span class="st">&quot;stat_3&quot;</span>) <span class="sc">~</span> <span class="st">&quot;**Race Categories**&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb108-13"><a href="descriptive-statistics-hypothesis-testing.html#cb108-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">modify_caption</span>(<span class="st">&quot;**Table 1. Patient Characteristics**&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb108-14"><a href="descriptive-statistics-hypothesis-testing.html#cb108-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bold_labels</span>()</span>
+<span id="cb108-15"><a href="descriptive-statistics-hypothesis-testing.html#cb108-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb108-16"><a href="descriptive-statistics-hypothesis-testing.html#cb108-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Export and save the file to HTML </span></span>
+<span id="cb108-17"><a href="descriptive-statistics-hypothesis-testing.html#cb108-17" aria-hidden="true" tabindex="-1"></a>tab <span class="sc">%&gt;%</span></span>
+<span id="cb108-18"><a href="descriptive-statistics-hypothesis-testing.html#cb108-18" aria-hidden="true" tabindex="-1"></a>  gtsummary<span class="sc">::</span><span class="fu">as_gt</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb108-19"><a href="descriptive-statistics-hypothesis-testing.html#cb108-19" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">gtsave</span>(., <span class="st">&quot;Table1_Example.html&quot;</span>)</span>
+<span id="cb108-20"><a href="descriptive-statistics-hypothesis-testing.html#cb108-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb108-21"><a href="descriptive-statistics-hypothesis-testing.html#cb108-21" aria-hidden="true" tabindex="-1"></a><span class="co"># The fille will save automatically to the current working directory</span></span></code></pre></div>
 </details>
 </div>
 </div>
@@ -494,7 +494,7 @@ The alternative hypothesis (<span class="math inline">\(H_{1}\)</span>): hypothe
 <li>The <span class="math inline">\(\mu\)</span> is the actual average value of the variable of interest.</li>
 </ul>
 <p><strong>Example:</strong> Is the mother’s average age different from 26?</p>
-<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="descriptive-statistics-hypothesis-testing.html#cb110-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(low_birth_all<span class="sc">$</span>age, <span class="at">mu =</span> <span class="dv">26</span>)  <span class="co"># mu 0 = 26</span></span></code></pre></div>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="descriptive-statistics-hypothesis-testing.html#cb109-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(low_birth_all<span class="sc">$</span>age, <span class="at">mu =</span> <span class="dv">26</span>)  <span class="co"># mu 0 = 26</span></span></code></pre></div>
 <pre><code>
     One Sample t-test
 
@@ -572,7 +572,7 @@ Use the p-value and compare it with the type-I error value of 0.05. Because p-va
 <ul>
 <li>Then let’s test for equality of means:</li>
 </ul>
-<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="descriptive-statistics-hypothesis-testing.html#cb112-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(bwt_smoke<span class="sc">$</span>bwt, bwt_nonsmoke<span class="sc">$</span>bwt, <span class="at">var.equal =</span> T, <span class="at">paired =</span> F)</span></code></pre></div>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="descriptive-statistics-hypothesis-testing.html#cb111-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(bwt_smoke<span class="sc">$</span>bwt, bwt_nonsmoke<span class="sc">$</span>bwt, <span class="at">var.equal =</span> T, <span class="at">paired =</span> F)</span></code></pre></div>
 <pre><code>
     Two Sample t-test
 
@@ -609,11 +609,11 @@ mean of x mean of y
 <li>The anova can be run in R using the <code>anova()</code> function.</li>
 <li>Better to declare the categorical variable/predictor as a <strong>factor</strong>, otherwise, it will be considered a continuous measurement.</li>
 </ul>
-<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="descriptive-statistics-hypothesis-testing.html#cb114-1" aria-hidden="true" tabindex="-1"></a><span class="co"># lm : Linear Models</span></span>
-<span id="cb114-2"><a href="descriptive-statistics-hypothesis-testing.html#cb114-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Continuous variable (dependent variable) will be on the left hand side of the ~</span></span>
-<span id="cb114-3"><a href="descriptive-statistics-hypothesis-testing.html#cb114-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Independent variables on the right hand side of the ~ </span></span>
-<span id="cb114-4"><a href="descriptive-statistics-hypothesis-testing.html#cb114-4" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">lm</span>(bwt<span class="sc">~</span><span class="fu">factor</span>(race), <span class="at">data =</span> low_birth_all)</span>
-<span id="cb114-5"><a href="descriptive-statistics-hypothesis-testing.html#cb114-5" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(res)</span></code></pre></div>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="descriptive-statistics-hypothesis-testing.html#cb113-1" aria-hidden="true" tabindex="-1"></a><span class="co"># lm : Linear Models</span></span>
+<span id="cb113-2"><a href="descriptive-statistics-hypothesis-testing.html#cb113-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Continuous variable (dependent variable) will be on the left hand side of the ~</span></span>
+<span id="cb113-3"><a href="descriptive-statistics-hypothesis-testing.html#cb113-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Independent variables on the right hand side of the ~ </span></span>
+<span id="cb113-4"><a href="descriptive-statistics-hypothesis-testing.html#cb113-4" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">lm</span>(bwt<span class="sc">~</span><span class="fu">factor</span>(race), <span class="at">data =</span> low_birth_all)</span>
+<span id="cb113-5"><a href="descriptive-statistics-hypothesis-testing.html#cb113-5" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(res)</span></code></pre></div>
 <pre><code>Analysis of Variance Table
 
 Response: bwt
@@ -627,8 +627,8 @@ Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&
 <p>At 0.05 significance level, we reject the null hypothesis (p-value &lt; 0.001) and conclude that there is a significant difference in mean birthweight by race.</p>
 </blockquote>
 <p>But this can raise the question of, <strong>“where are these differences coming from?”</strong> The following code takes a look at his in more detail:</p>
-<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="descriptive-statistics-hypothesis-testing.html#cb116-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ANOVA table</span></span>
-<span id="cb116-2"><a href="descriptive-statistics-hypothesis-testing.html#cb116-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(res)</span></code></pre></div>
+<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="descriptive-statistics-hypothesis-testing.html#cb115-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ANOVA table</span></span>
+<span id="cb115-2"><a href="descriptive-statistics-hypothesis-testing.html#cb115-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(res)</span></code></pre></div>
 <pre><code>
 Call:
 lm(formula = bwt ~ factor(race), data = low_birth_all)
@@ -656,8 +656,8 @@ F-statistic: 39.86 on 2 and 3668 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p>To change the reference category, you can do so using <code>relevel()</code> function.</p>
 <p>One thing to note about ANOVA, is that you cannot use it without first checking a few model assumptions: constant variance and normality of residuals.</p>
 <p>To check if the model assumptions are followed, you can use the following code:</p>
-<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="descriptive-statistics-hypothesis-testing.html#cb118-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span>
-<span id="cb118-2"><a href="descriptive-statistics-hypothesis-testing.html#cb118-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(res)</span></code></pre></div>
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="descriptive-statistics-hypothesis-testing.html#cb117-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span>
+<span id="cb117-2"><a href="descriptive-statistics-hypothesis-testing.html#cb117-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(res)</span></code></pre></div>
 <p><img src="Images/anova_res.png" width="70%" style="display: block; margin: auto;" /></p>
 <ul>
 <li>In constant variance, you want your residuals vs. fitted values to be scattered (homogeneously distributed)
@@ -715,7 +715,7 @@ The alternative hypothesis (<span class="math inline">\(H_{1}\)</span>): variabl
 <li>Then apply the function <code>chisq.test()</code></li>
 </ol>
 <p><strong>Example:</strong> Is there an association between smoking and having a low birthweight baby?</p>
-<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="descriptive-statistics-hypothesis-testing.html#cb119-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chisq.test</span>(low_birth_all<span class="sc">$</span>smoke, low_birth_all<span class="sc">$</span>low)</span></code></pre></div>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="descriptive-statistics-hypothesis-testing.html#cb118-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chisq.test</span>(low_birth_all<span class="sc">$</span>smoke, low_birth_all<span class="sc">$</span>low)</span></code></pre></div>
 <pre><code>
     Pearson&#39;s Chi-squared test with Yates&#39; continuity correction
 
@@ -731,7 +731,7 @@ X-squared = 10.47, df = 1, p-value = 0.001214</code></pre>
 <h4>Fisher’s Exact Test<a href="descriptive-statistics-hypothesis-testing.html#fishers-exact-test" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>This test is used instead of the Chi-Squared Test when there are low expected cell counts (&lt;5).</p>
 <p><strong>Example:</strong> Is there an association between smoking and having a low birthweight baby?</p>
-<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="descriptive-statistics-hypothesis-testing.html#cb121-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fisher.test</span>(low_birth_all<span class="sc">$</span>smoke, low_birth_all<span class="sc">$</span>low)</span></code></pre></div>
+<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="descriptive-statistics-hypothesis-testing.html#cb120-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fisher.test</span>(low_birth_all<span class="sc">$</span>smoke, low_birth_all<span class="sc">$</span>low)</span></code></pre></div>
 <pre><code>
     Fisher&#39;s Exact Test for Count Data
 
@@ -754,10 +754,10 @@ odds ratio
 <h3>Multiple Comparisons<a href="descriptive-statistics-hypothesis-testing.html#multiple-comparisons" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>For multiple comparisons, you might want to consider Tukey adjustment or Bonferroni adjustment to help with potential inflation of the type-I error.</p>
 <p>If you want to use all-pairwise comparisons, you can use Tukey adjustment to adjust the Type-I error because multiple comparisons typically inflate that value.</p>
-<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="descriptive-statistics-hypothesis-testing.html#cb123-1" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">lm</span>(bwt <span class="sc">~</span> <span class="fu">factor</span>(race), <span class="at">data =</span> low_birth_all)</span>
-<span id="cb123-2"><a href="descriptive-statistics-hypothesis-testing.html#cb123-2" aria-hidden="true" tabindex="-1"></a>ANOVA <span class="ot">&lt;-</span> <span class="fu">aov</span>(res)</span>
-<span id="cb123-3"><a href="descriptive-statistics-hypothesis-testing.html#cb123-3" aria-hidden="true" tabindex="-1"></a>TUKEY <span class="ot">&lt;-</span> <span class="fu">TukeyHSD</span>(ANOVA)</span>
-<span id="cb123-4"><a href="descriptive-statistics-hypothesis-testing.html#cb123-4" aria-hidden="true" tabindex="-1"></a>TUKEY</span></code></pre></div>
+<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="descriptive-statistics-hypothesis-testing.html#cb122-1" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">lm</span>(bwt <span class="sc">~</span> <span class="fu">factor</span>(race), <span class="at">data =</span> low_birth_all)</span>
+<span id="cb122-2"><a href="descriptive-statistics-hypothesis-testing.html#cb122-2" aria-hidden="true" tabindex="-1"></a>ANOVA <span class="ot">&lt;-</span> <span class="fu">aov</span>(res)</span>
+<span id="cb122-3"><a href="descriptive-statistics-hypothesis-testing.html#cb122-3" aria-hidden="true" tabindex="-1"></a>TUKEY <span class="ot">&lt;-</span> <span class="fu">TukeyHSD</span>(ANOVA)</span>
+<span id="cb122-4"><a href="descriptive-statistics-hypothesis-testing.html#cb122-4" aria-hidden="true" tabindex="-1"></a>TUKEY</span></code></pre></div>
 <pre><code>  Tukey multiple comparisons of means
     95% family-wise confidence level
 
@@ -770,7 +770,7 @@ white-black 237.8994 173.30296 302.4958 0.0000000
 white-other 114.3594  38.27583 190.4430 0.0012499</code></pre>
 <p>The output displays the confidence intervals with the adjustments of the multiple comparisons. The p-values are also adjusted based on the Tukey adjustment for the type-I error.</p>
 <p>If you want to use the Bonferroni adjustment (which is more conservative than the Tukey adjustment).</p>
-<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="descriptive-statistics-hypothesis-testing.html#cb125-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pairwise.t.test</span>(low_birth_all<span class="sc">$</span>bwt, low_birth_all<span class="sc">$</span>race, <span class="at">p.adjust.method =</span> <span class="st">&quot;bonf&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="descriptive-statistics-hypothesis-testing.html#cb124-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pairwise.t.test</span>(low_birth_all<span class="sc">$</span>bwt, low_birth_all<span class="sc">$</span>race, <span class="at">p.adjust.method =</span> <span class="st">&quot;bonf&quot;</span>)</span></code></pre></div>
 <pre><code>
     Pairwise comparisons using t tests with pooled SD 
 
