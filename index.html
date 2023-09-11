@@ -23,7 +23,7 @@
 <meta name="author" content="Heejoon Ahn, MS; Eun Jeung Oh, PhD; and Codruta Chiuzan, PhD" />
 
 
-<meta name="date" content="2023-02-06" />
+<meta name="date" content="2023-09-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -269,7 +269,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="header">
 <h1 class="title">Introduction to Statistical Computing: R</h1>
 <p class="author"><em>Heejoon Ahn, MS; Eun Jeung Oh, PhD; and Codruta Chiuzan, PhD</em></p>
-<p class="date"><em>February 06, 2023</em></p>
+<p class="date"><em>September 11, 2023</em></p>
 </div>
 <div id="before-getting-started" class="section level1 unnumbered hasAnchor">
 <h1>Before getting started…<a href="index.html#before-getting-started" class="anchor-section" aria-label="Anchor link to header"></a></h1>
@@ -319,20 +319,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>If you are using a Windows computer for this course series, click on the “base” version if you don’t have R installed already.</li>
 <li>If you are using a Linux computer for this course series, click on the proper version of the Linux device you have.</li>
-<li>If you are using a Mac computer for this course series, scroll down to <strong>“Latest release:”</strong> section and on the left-hand side, click on the most recent version of R (R-4.2.2 pkg)
+<li>If you are using a Mac computer for this course series, scroll down to <strong>“Latest release:”</strong> section and on the left-hand side, click on the most recent version of R (R-4.3.1 pkg)
 <ul>
 <li><strong>NOTE:</strong> Due to Mac’s new conversion from Intel to their M1 (and higher) devices, R now provides two separate versions of the R language based on the device type. The messages under <strong>Latest release:</strong> should be read as follows:
 <ul>
 <li><p>For those using the M1 (or higher) devices:</p>
 <blockquote>
-<p><strong>R 4.2.2</strong> binary for macOS 11 (<strong>Big Sur</strong>) and higher, <strong>Apple silicon arm64</strong> build, signed and notarized package.
-Contains R 4.2.2 framework, R.app GUI 1.79 for Apple silicon Macs (M1 and higher), Tcl/Tk 8.6.12 X11 libraries and Texinfo 6.8.
+<p><strong>R 4.3.1</strong> binary for macOS 11 (<strong>Big Sur</strong>) and higher, signed and notarized packages.
+Contains R 4.3.1 framework, R.app GUI 1.79, Tcl/Tk 8.6.12 X11 libraries and Texinfo 6.8.
+The latter two components are optional and can be ommitted when choosing “custom install”, they are only needed if you want to use the <code>tlctk</code> R package or build package documentation from sources.
 <strong>Important: this version does NOT work on older Intel-based Macs</strong> - see below for Intel version.</p>
 </blockquote></li>
 <li><p>For those using the Intel 64-bit devices:</p>
 <blockquote>
-<p><strong>R 4.2.2</strong> binary for macOS 10.13 (<strong>High Sierra</strong>) and higher, <strong>Intel 64-bit</strong> (older Macs) build, signed and notarized package.
-Contains R 4.2.2 framework, R.app GUI 1.79 in 64-bit for Intel Macs, Tcl/Tk 8.6.6 X11 libraries and Texinfo 6.7.</p>
+<p>macOS Ventura users: there is a known bug in Ventura preventing installations from some locations without a prompt.
+If the installation fails, move the downloaded file away from the <em>Downloads</em> folder (e.g., to your home or Desktop)
+Note: the use of X11 (including <code>tlctk</code>) requires XQuartz (version 2.8.5 or later).
+Always re-install XQuartz when upgrading your macOS to a new major version.
+This release uses Xcode 14.2/14.3 and GNU Fortran 12.2.
+If you wish to compile R packages which contain Fortran code, you may need to download the corresponding GNU Fortran compiler from <a href="https://mac.R-project.org/tools" class="uri">https://mac.R-project.org/tools</a>.
+Any external libraries and tools are expected to live in <code>/opt/R/arm64</code> (Apple silicon) or <code>/opt/R/x84_64</code> (Intel).</p>
 </blockquote></li>
 </ul></li>
 </ul></li>
@@ -401,8 +407,8 @@ img {vertical-align: top;}
 </ul></li>
 </ul>
 <p>How to install new packages through R code:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="index.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages(&quot;PUT THE NAME OF A PACKAGE INSIDE QUOTATION MARKS&quot;)</span></span>
-<span id="cb1-2"><a href="index.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;dplyr&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="index.html#cb1-1" tabindex="-1"></a><span class="co"># install.packages(&quot;PUT THE NAME OF A PACKAGE INSIDE QUOTATION MARKS&quot;)</span></span>
+<span id="cb1-2"><a href="index.html#cb1-2" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;dplyr&quot;</span>)</span></code></pre></div>
 <p>Alternative way to install packages involves clicking on the “Tools” tab in RStudio, and then on “Install Packages…”</p>
 <p><img src="Images/alt_install.png" width="100%" /></p>
 <p>This opens up a pop-up window where you can type in the various packages you want to install.</p>
@@ -410,8 +416,8 @@ img {vertical-align: top;}
 <div id="solutions-for-potential-package-installation-issues" class="section level4 unnumbered hasAnchor">
 <h4>Solutions for Potential Package Installation Issues<a href="index.html#solutions-for-potential-package-installation-issues" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Once you have installed R, and then RStudio, you should first try looking into whether you can load certain packages if you are working on a Windows device. One package that works best as a test case is the <code>dplyr</code> package. This package is used commonly among R coders to help with data cleaning and data manipulation. Try testing this following code:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="index.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;dplyr&quot;</span> <span class="sc">%in%</span> <span class="fu">rownames</span>(<span class="fu">installed.packages</span>())  <span class="co"># Check if you already have dplyr (TRUE/FALSE)</span></span>
-<span id="cb2-2"><a href="index.html#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;dplyr&quot;</span>)                    <span class="co"># Install dplyr if you do not already have dplyr</span></span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="index.html#cb2-1" tabindex="-1"></a><span class="st">&quot;dplyr&quot;</span> <span class="sc">%in%</span> <span class="fu">rownames</span>(<span class="fu">installed.packages</span>())  <span class="co"># Check if you already have dplyr (TRUE/FALSE)</span></span>
+<span id="cb2-2"><a href="index.html#cb2-2" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;dplyr&quot;</span>)                    <span class="co"># Install dplyr if you do not already have dplyr</span></span></code></pre></div>
 <p>If you were able to install <code>dplyr</code> without any issue, ignore the instructions and keep reading ahead from the <strong>“Loading R Packages”</strong> section.
 After running the command above, and you get a message like that below, you might have to install RTools using the following link: <a href="https://cran.r-project.org/bin/windows/Rtools/">RTools CRAN repository</a>.</p>
 <blockquote>
@@ -427,8 +433,8 @@ After running the command above, and you get a message like that below, you migh
 <p>unsupported URL scheme”</p>
 </blockquote>
 <p>If this is the message you are receiving, try running the code below:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="index.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># if working with a different package, replace &quot;dplyr&quot; with your package name inside quotation marks</span></span>
-<span id="cb3-2"><a href="index.html#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;dplyr&quot;</span>, <span class="at">dependencies =</span> <span class="cn">TRUE</span>, <span class="at">repos =</span> <span class="st">&quot;http://cran.rstudio.com/&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="index.html#cb3-1" tabindex="-1"></a><span class="co"># if working with a different package, replace &quot;dplyr&quot; with your package name inside quotation marks</span></span>
+<span id="cb3-2"><a href="index.html#cb3-2" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;dplyr&quot;</span>, <span class="at">dependencies =</span> <span class="cn">TRUE</span>, <span class="at">repos =</span> <span class="st">&quot;http://cran.rstudio.com/&quot;</span>)</span></code></pre></div>
 <p>Instead of the warning messages above, you might also see the following message:</p>
 <blockquote>
 <p>Warning in install.packages :</p>
@@ -444,12 +450,12 @@ After running the command above, and you get a message like that below, you migh
 <div id="loading-r-packages" class="section level4 unnumbered hasAnchor">
 <h4>Loading R Packages<a href="index.html#loading-r-packages" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>How to load packages through R code:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="index.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># library(&quot;PUT THE NAME OF A PACKAGE (NO NEED FOR QUOTATION MARKS)&quot;)</span></span>
-<span id="cb4-2"><a href="index.html#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb4-3"><a href="index.html#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mutate</span>()           <span class="co"># Using the function from the package &quot;dplyr&quot;</span></span>
-<span id="cb4-4"><a href="index.html#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-5"><a href="index.html#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Using one function from a specific package, but without loading the entire package via library()</span></span>
-<span id="cb4-6"><a href="index.html#cb4-6" aria-hidden="true" tabindex="-1"></a>dplyr<span class="sc">::</span><span class="fu">mutate</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="index.html#cb4-1" tabindex="-1"></a><span class="co"># library(&quot;PUT THE NAME OF A PACKAGE (NO NEED FOR QUOTATION MARKS)&quot;)</span></span>
+<span id="cb4-2"><a href="index.html#cb4-2" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb4-3"><a href="index.html#cb4-3" tabindex="-1"></a><span class="fu">mutate</span>()           <span class="co"># Using the function from the package &quot;dplyr&quot;</span></span>
+<span id="cb4-4"><a href="index.html#cb4-4" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="index.html#cb4-5" tabindex="-1"></a><span class="co"># Using one function from a specific package, but without loading the entire package via library()</span></span>
+<span id="cb4-6"><a href="index.html#cb4-6" tabindex="-1"></a>dplyr<span class="sc">::</span><span class="fu">mutate</span>()</span></code></pre></div>
 <p>You might have noticed that in the last line of code above, the function from a package was called using the <code>::</code> notation. This is optional and mostly suggested for when you have loaded multiple packages that may have functions with the same function name. R is open-source and people can upload and publish a package they created, leading to potential overlaps as such. To make sure you are using a specific function from a specific package, this is a useful method to call a function. You also don’t have to call <code>library()</code> if you use the <code>::</code> notation.</p>
 <p>If you require assistance with certain packages and functions, please go to the “Help” tab as shown below:</p>
 <p><img src="Images/help_r.png" width="100%" /></p>
